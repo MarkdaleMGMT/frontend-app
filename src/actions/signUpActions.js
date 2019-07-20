@@ -1,17 +1,13 @@
-import {
-  SET_USER,
-  SET_ERRORS,
-  CLEAR_ERRORS,
-  LOADING_UI,
-  LOADING_USER
-} from "../actions/types";
-import axios from "axios";
+import { SET_USER, SET_ERRORS, CLEAR_ERRORS } from "../actions/types";
+import api from "../apis/axios_api";
 export const signupUser = (newUserData, history) => dispatch => {
-  dispatch({ type: LOADING_UI });
-  axios
+  api
     .post("/signup", newUserData)
     .then(res => {
-      dispatch(getUserData());
+      dispatch({
+        type: SET_USER,
+        payload: res.data
+      });
       dispatch({ type: CLEAR_ERRORS });
       history.push("/dashboard");
     })
@@ -21,17 +17,4 @@ export const signupUser = (newUserData, history) => dispatch => {
         payload: err.response.data
       });
     });
-};
-
-export const getUserData = () => dispatch => {
-  dispatch({ type: LOADING_USER });
-  axios
-    .get("/user")
-    .then(res => {
-      dispatch({
-        type: SET_USER,
-        payload: res.data
-      });
-    })
-    .catch(err => console.log(err));
 };
