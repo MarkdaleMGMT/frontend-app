@@ -1,8 +1,10 @@
-import { combineReducers } from 'redux';
-import { default as UserStore } from './userReducer';
+import { combineReducers } from "redux";
+import { reducer as formReducer } from "redux-form";
+import { default as UserStore } from "./userReducer";
 
 const appReducer = combineReducers({
-  UserStore
+  UserStore,
+  form: formReducer
 });
 
 const rootReducer = (state, action) => {
