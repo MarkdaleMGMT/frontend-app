@@ -2,8 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Route, Switch, Redirect } from "react-router-dom";
 
-import { SignIn, ForgotPassword, Dashboard } from "./pages";
-import SignUp from "./pages/SignUp/Signup2";
+import { SignIn, SignUp, ForgotPassword, Dashboard } from "./pages";
 import "./App.scss";
 
 function App() {
