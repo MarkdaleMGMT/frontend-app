@@ -21,8 +21,8 @@ const validate = values => {
   } else if (values.password.length < 4) {
     errors.password = "Minimum be 4 characters or more";
   }
-  if (!values.referralCode) {
-    errors.referralCode = "Required";
+  if (!values.code) {
+    errors.code = "Required";
   }
   return errors;
 };
@@ -68,7 +68,7 @@ class SignUp extends Component {
             </div>
             <div className="form-group">
               <Field
-                name="referralCode"
+                name="code"
                 component={renderField}
                 label="Referral Code"
               />
