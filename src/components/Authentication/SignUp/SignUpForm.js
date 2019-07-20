@@ -47,12 +47,16 @@ const renderField = ({
 );
 
 class SignUp extends Component {
+  onSubmit = formValues => {
+    this.props.onSubmit(formValues);
+  };
+
   render() {
     const { handleSubmit, pristine, submitting } = this.props;
     return (
       <div className="signin-container">
         <div>
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit(this.onSubmit)}>
             <div className="form-group">
               <Field name="userName" component={renderField} label="Username" />
             </div>
