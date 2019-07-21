@@ -1,9 +1,14 @@
-import { all, fork } from 'redux-saga/effects';
-import * as signInSagas from './signInSaga';
+import { all, fork } from "redux-saga/effects";
+import * as signInSagas from "./signInSaga";
+import * as signUpSagas from "./signUpSaga";
+
+// import { signUpWatcherSaga } from "./signUpSaga";
 
 // import watchers from other files
 export default function* rootSaga() {
-  yield all([
-    ...Object.values(signInSagas)
-  ].map(fork));
+  yield all(
+    [...Object.values(signInSagas), ...Object.values(signUpSagas)].map(fork)
+  );
 }
+
+//[fork(signUpWatcherSaga)]

@@ -2,14 +2,12 @@ import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import { NavLink } from "react-router-dom";
 
-import "./SignUp.scss";
-
 const validate = values => {
   const errors = {};
-  if (!values.userName) {
-    errors.userName = "Required";
-  } else if (values.userName.length < 4) {
-    errors.userName = "Minimum be 4 characters or more";
+  if (!values.username) {
+    errors.username = "Required";
+  } else if (values.username.length < 4) {
+    errors.username = "Minimum be 4 characters or more";
   }
   if (!values.email) {
     errors.email = "Required";
@@ -58,7 +56,7 @@ class SignUp extends Component {
         <div>
           <form onSubmit={handleSubmit(this.onSubmit)}>
             <div className="form-group">
-              <Field name="userName" component={renderField} label="Username" />
+              <Field name="username" component={renderField} label="Username" />
             </div>
             <div className="form-group">
               <Field name="password" component={renderField} label="Password" />
