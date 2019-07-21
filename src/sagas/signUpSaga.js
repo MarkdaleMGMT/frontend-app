@@ -15,7 +15,7 @@ function signUpApi(signUpData) {
 /** saga worker that is responsible for the side effects */
 function* signUpEffectSaga(action) {
   try {
-    // data is obtained after axios call is resolved
+    // data that is obtained after axios call
     let history = action.history;
     let { data } = yield call(signUpApi, action.payload);
 
