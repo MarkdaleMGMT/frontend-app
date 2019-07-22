@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { authenticateUser } from "../../actions/signInActions";
+import { resetPassword } from "../../actions/signInActions";
 import ForgotPasswordForm from "../../components/Authentication/ForgotPassword/ForgotPasswordForm";
 
 import "./ForgotPassword.scss";
 
 class ForgotPassword extends Component {
   onSubmit = formValues => {
-    // this.props.actions.authenticateUser(formValues, this.props.history);
+    this.props.actions.resetPassword(formValues, this.props.history);
   };
   render() {
     const { errors } = this.props.store;
@@ -24,7 +24,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({}, dispatch)
+    actions: bindActionCreators({ resetPassword }, dispatch)
   };
 }
 

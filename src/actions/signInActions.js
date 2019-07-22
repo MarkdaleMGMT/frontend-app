@@ -2,7 +2,8 @@ import {
   FETCH_TOKEN,
   LOGOUT,
   RESET,
-  SET_AUTHENTICATED
+  SET_AUTHENTICATED,
+  RESET_PASSWORD
 } from "../actions/types";
 
 export const fetchToken = payload => ({
@@ -20,6 +21,13 @@ export const clearStore = () => ({
 
 //action creator to authneticate user during the login page
 export const authenticateUser = (formData, history) => ({
+  type: SET_AUTHENTICATED,
+  payload: formData,
+  history: history
+});
+
+//action creator to reset password
+export const resetPassword = (formData, history) => ({
   type: SET_AUTHENTICATED,
   payload: formData,
   history: history
