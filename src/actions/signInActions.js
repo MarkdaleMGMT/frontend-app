@@ -28,7 +28,7 @@ export const authenticateUser = (formData, history) => ({
 
 //action creator to reset password
 export const resetPassword = (formData, history) => ({
-  type: SET_AUTHENTICATED,
+  type: RESET_PASSWORD,
   payload: formData,
   history: history
 });
