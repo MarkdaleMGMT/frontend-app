@@ -1,8 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-import { delay } from "redux-saga";
-
-import { put, call, takeEvery } from "redux-saga/effects";
+import { put, call, takeEvery, delay } from "redux-saga/effects";
 /**import custom built redux saga function {takeOneAndBlock}
  * to prevent duplication of api requests by redux saga effects */
 import { takeOneAndBlock } from "../util/sagaUtil";

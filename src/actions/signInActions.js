@@ -1,6 +1,5 @@
 import {
   FETCH_TOKEN,
-  LOGOUT,
   RESET,
   SET_AUTHENTICATED,
   RESET_PASSWORD,
@@ -14,10 +13,6 @@ import {
 export const fetchToken = payload => ({
   type: FETCH_TOKEN,
   payload
-});
-
-export const logoutUser = () => ({
-  type: LOGOUT
 });
 
 export const clearStore = () => ({
