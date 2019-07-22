@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { put, takeLatest, call, fork, take } from "redux-saga/effects";
+import { put, call } from "redux-saga/effects";
+/**import custom built redux saga function {takeOneAndBlock}
+ * to prevent duplication of api requests by redux saga effects */
+import { takeOneAndBlock } from "../util/sagaUtil";
 import {
   FETCH_TOKEN,
   TOKEN,
@@ -73,15 +76,4 @@ function* loginEffectSaga(action) {
  */
 export function* loginWatcherSaga() {
   yield takeOneAndBlock(SET_AUTHENTICATED, loginEffectSaga);
-}
-
-/**custom built redux saga function to prevent duplication of api requests by redux saga effects */
-function* takeOneAndBlock(pattern, worker, ...args) {
-  const task = yield fork(function*() {
-    while (true) {
-      const action = yield take(pattern);
-      yield call(worker, ...args, action);
-    }
-  });
-  return task;
 }

@@ -1,6 +1,9 @@
 /* eslint-disable no-unused-vars */
-import { put, takeLatest, call, fork, take } from "redux-saga/effects";
+import { put, call } from "redux-saga/effects";
 import { RESET_PASSWORD, CLEAR_ERRORS, SET_ERRORS } from "../actions/types";
+/**import custom built redux saga function {takeOneAndBlock}
+ * to prevent duplication of api requests by redux saga effects */
+import { takeOneAndBlock } from "../util/sagaUtil";
 import { resetPassword } from "../actions/signInActions";
 //import qs library from es6 to stringify form data
 import qs from "qs";
@@ -43,15 +46,4 @@ function* resetPasswordEffectSaga(action) {
  */
 export function* resetPasswordWatcherSaga() {
   yield takeOneAndBlock(RESET_PASSWORD, resetPasswordEffectSaga);
-}
-
-/**custom built redux saga function to prevent duplication of api requests by redux saga effects */
-function* takeOneAndBlock(pattern, worker, ...args) {
-  const task = yield fork(function*() {
-    while (true) {
-      const action = yield take(pattern);
-      yield call(worker, ...args, action);
-    }
-  });
-  return task;
 }
