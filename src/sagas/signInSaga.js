@@ -68,7 +68,6 @@ function* loginEffectSaga(action) {
     // catch error on a bad axios call and dispatch set_errors action creator
     yield put({ type: SET_ERRORS, payload: e.response.data });
     console.log("errors", e.response);
-    yield put(actions.authFail(e));
   }
 }
 

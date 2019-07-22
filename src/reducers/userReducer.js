@@ -1,6 +1,8 @@
 import {
   TOKEN,
-  LOGOUT,
+  AUTH_SUCCESS,
+  AUTH_FAIL,
+  AUTH_LOGOUT,
   SET_USER,
   SET_ERRORS,
   CLEAR_ERRORS,
@@ -9,6 +11,8 @@ import {
 } from "../actions/types";
 
 const initialState = {
+  token: null,
+  userId: null,
   authenticated: false,
   loading: false,
   errors: null,
@@ -18,6 +22,19 @@ const initialState = {
 export default function userReducer(state = initialState, action) {
   let newState = state;
   switch (action.type) {
+    case AUTH_SUCCESS:
+      return {
+        ...state,
+        token: action.token,
+        userId: action.userId,
+        loading: false
+      };
+    case AUTH_FAIL:
+      return { ...state, loading: false, error: action.error };
+
+    case AUTH_LOGOUT:
+      return { ...state, token: null, userId: null };
+
     case TOKEN:
       newState = Object.assign({}, state, { authenticated: true });
       return newState;
@@ -41,10 +58,7 @@ export default function userReducer(state = initialState, action) {
         ...state,
         ...action.payload
       };
-    case LOGOUT:
-      localStorage.removeItem("userId");
-      localStorage.removeItem("token");
-      return state;
+
     case SET_ERRORS:
       return {
         ...state,
