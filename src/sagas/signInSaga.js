@@ -71,11 +71,19 @@ function* loginEffectSaga(action) {
   }
 }
 
+/**
+ * saga watcher that is triggered when dispatching action of type
+ * 'AUTH_CHECK_TIMEOUT' and inturn it fires off AUTH_INITIATE_LOGOUT action creator
+ */
 function* checkAuthTimeout(action) {
   yield delay(action.expirationTime);
   yield put(actions.logout());
 }
 
+/**
+ * saga watcher that is triggered when dispatching action of type
+ * 'AUTH_INITIATE_LOGOUT'
+ */
 function* logout(action) {
   yield localStorage.removeItem("token");
   yield localStorage.removeItem("expirationDate");
