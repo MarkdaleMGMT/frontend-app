@@ -54,7 +54,12 @@ class SignIn extends Component {
               <Field name="username" component={renderField} label="Username" />
             </div>
             <div className="form-group">
-              <Field name="password" component={renderField} label="Password" />
+              <Field
+                type="password"
+                name="password"
+                component={renderField}
+                label="Password"
+              />
             </div>
 
             {/* rendering server side validation */}
