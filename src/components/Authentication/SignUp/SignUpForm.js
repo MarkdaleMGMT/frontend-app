@@ -5,22 +5,22 @@ import { NavLink } from "react-router-dom";
 const validate = values => {
   const errors = {};
   if (!values.username) {
-    errors.username = "Required";
+    errors.username = "Username Required";
   } else if (values.username.length < 4) {
-    errors.username = "Minimum be 4 characters or more";
+    errors.username = "Username must be atleast 4 characters";
   }
   if (!values.email) {
-    errors.email = "Required";
+    errors.email = "Email Required";
   } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
     errors.email = "Invalid email address";
   }
   if (!values.password) {
-    errors.password = "Required";
+    errors.password = "Password Required";
   } else if (values.password.length < 4) {
-    errors.password = "Minimum be 4 characters or more";
+    errors.password = "Password must be 4 characters or more";
   }
   if (!values.code) {
-    errors.code = "Required";
+    errors.code = "Referral Code Required";
   }
   return errors;
 };
