@@ -77,8 +77,8 @@ class SignIn extends Component {
         </div>
 
         <div className="signup-options-container">
-          <NavLink to="/signIn" className="signup-link">
-            Sign In
+          <NavLink to="/signup" className="signup-link">
+            Sign Up
           </NavLink>
           <NavLink to="/forgotpassword" className="forgot-password-link">
             Forgot
