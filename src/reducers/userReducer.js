@@ -10,7 +10,8 @@ import {
 const initialState = {
   authenticated: false,
   loading: false,
-  errors: null
+  errors: null,
+  isUserLoggedIn: false
 };
 
 export default function userReducer(state = initialState, action) {
@@ -28,6 +29,7 @@ export default function userReducer(state = initialState, action) {
     case SET_AUTHENTICATED:
       return {
         authenticated: true,
+        isUserLoggedIn: true,
         ...action.payload
       };
     case LOGOUT:

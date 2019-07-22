@@ -27,7 +27,7 @@ function* signUpEffectSaga(action) {
     //dispatch clear_errors action creator to remove any previous set errors
     yield put({ type: CLEAR_ERRORS });
 
-    // redirect to dashboard route after successful signup
+    // redirect to signIn route after successful signup
 
     history.push("/signin");
   } catch (e) {

@@ -6,15 +6,15 @@ import { NavLink } from "react-router-dom";
 const validate = values => {
   const errors = {};
   if (!values.username) {
-    errors.username = "Required";
+    errors.username = "Username Required";
   } else if (values.username.length < 4) {
-    errors.username = "Minimum be 4 characters or more";
+    errors.username = "Username must have atleast 4 characters";
   }
 
   if (!values.password) {
-    errors.password = "Required";
+    errors.password = "Password Required";
   } else if (values.password.length < 4) {
-    errors.password = "Minimum be 4 characters or more";
+    errors.password = "Password must have atleast 4 characters";
   }
 
   return errors;
@@ -58,7 +58,7 @@ class SignIn extends Component {
             </div>
 
             {/* rendering server side validation */}
-            <p className="text-danger">{errors && errors.msg}</p>
+            <p className="text-danger">{errors && errors.error}</p>
             <div className="form-group">
               <button
                 type="submit"

@@ -20,7 +20,7 @@ export const clearStore = () => ({
 
 //action creator to authneticate user during the login page
 export const authenticateUser = (formData, history) => ({
-  type: "SET_AUTHENTICATED",
+  type: SET_AUTHENTICATED,
   payload: formData,
   history: history
 });

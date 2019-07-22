@@ -8,7 +8,7 @@ import "./SignIn.scss";
 
 class SignIn extends Component {
   onSubmit = formValues => {
-    this.props.authenticateUser(formValues, this.props.history);
+    this.props.actions.authenticateUser(formValues, this.props.history);
   };
   render() {
     const { errors } = this.props.store;
