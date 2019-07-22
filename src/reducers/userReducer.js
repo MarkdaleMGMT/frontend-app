@@ -3,7 +3,8 @@ import {
   LOGOUT,
   SET_USER,
   SET_ERRORS,
-  CLEAR_ERRORS
+  CLEAR_ERRORS,
+  SET_AUTHENTICATED
 } from "../actions/types";
 
 const initialState = {
@@ -22,6 +23,11 @@ export default function userReducer(state = initialState, action) {
       return {
         authenticated: true,
         loading: false,
+        ...action.payload
+      };
+    case SET_AUTHENTICATED:
+      return {
+        authenticated: true,
         ...action.payload
       };
     case LOGOUT:
