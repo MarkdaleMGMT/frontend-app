@@ -71,6 +71,7 @@ class SignUp extends Component {
                 label="Referral Code"
               />
             </div>
+            {/* rendering server side validation */}
             <p className="text-danger">{errors && errors.msg}</p>
             <div className="form-group">
               <button
