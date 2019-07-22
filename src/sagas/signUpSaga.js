@@ -1,14 +1,16 @@
 import { call, put, fork, take } from "redux-saga/effects";
-
+//import actions from signup action creators
 import { signupUser } from "../actions/signUpActions";
 import { SET_USER, SET_ERRORS, CLEAR_ERRORS } from "../actions/types";
-// import axios from "axios";
+//import qs library from es6 to stringify form data
 import qs from "qs";
+// import configured axios from "axios_api file";
 import api from "../apis/axios_api";
 
 /** function that returns an axios call */
 function signUpApi(signUpData) {
-  console.log("formvalues", signUpData);
+  //axios doesn't stringify form data by default.
+  //Hence, qs library is used to stringify upcoming redux-form data.
   return api.post("/signup", qs.stringify(signUpData));
 }
 
@@ -27,11 +29,11 @@ function* signUpEffectSaga(action) {
 
     // redirect to dashboard route after successful signup
 
-    history.push("/dashboard");
+    history.push("/signin");
   } catch (e) {
     // catch error on a bad axios call and dispatch set_errors action creator
     yield put({ type: SET_ERRORS, payload: e.response.data });
-    console.log("errors", e);
+    console.log("errors", e.response);
   }
 }
 
@@ -43,7 +45,7 @@ export function* signUpWatcherSaga() {
   yield takeOneAndBlock(SET_USER, signUpEffectSaga);
 }
 
-/**custom built redux saga function to prevent duplication of api requests */
+/**custom built redux saga function to prevent duplication of api requests by redux saga effects */
 function* takeOneAndBlock(pattern, worker, ...args) {
   const task = yield fork(function*() {
     while (true) {

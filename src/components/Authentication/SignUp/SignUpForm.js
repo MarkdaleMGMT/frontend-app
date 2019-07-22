@@ -50,7 +50,7 @@ class SignUp extends Component {
   };
 
   render() {
-    const { handleSubmit, pristine, submitting } = this.props;
+    const { errors, handleSubmit, pristine, submitting } = this.props;
     return (
       <div className="signin-container">
         <div>
@@ -71,6 +71,7 @@ class SignUp extends Component {
                 label="Referral Code"
               />
             </div>
+            <p className="text-danger">{errors && errors.msg}</p>
             <div className="form-group">
               <button
                 type="submit"

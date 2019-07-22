@@ -9,15 +9,23 @@ class SignUp extends React.Component {
   };
 
   render() {
+    const { errors } = this.props.isError;
     return (
       <>
-        <SignUpForm onSubmit={this.onSubmit} />
+        <SignUpForm errors={errors} onSubmit={this.onSubmit} />
       </>
     );
   }
 }
 
+//to map errors from the user store to the signup page
+const mapStateToProps = state => {
+  return {
+    isError: state.UserStore
+  };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { signupUser }
 )(SignUp);
