@@ -2,18 +2,16 @@
 
 import { delay } from "redux-saga";
 
-import { put, call, takeEvery, takeLatest } from "redux-saga/effects";
+import { put, call, takeEvery } from "redux-saga/effects";
 /**import custom built redux saga function {takeOneAndBlock}
  * to prevent duplication of api requests by redux saga effects */
 import { takeOneAndBlock } from "../util/sagaUtil";
 import {
-  FETCH_TOKEN,
-  TOKEN,
-  TOKEN_FAILED,
-  SET_USER_ID,
   SET_AUTHENTICATED,
   CLEAR_ERRORS,
-  SET_ERRORS
+  SET_ERRORS,
+  AUTH_INITIATE_LOGOUT,
+  AUTH_CHECK_TIMEOUT
 } from "../actions/types";
 import * as actions from "../actions/signInActions";
 //import qs library from es6 to stringify form data
@@ -21,6 +19,7 @@ import qs from "qs";
 // import configured axios from "axios_api file";
 import api from "../apis/axios_api";
 
+/** function that returns data for token and session management */
 function getToken() {
   //TODO: Add logic to get jwt token using username and password
   const expiresIn = 60 * 60 * 1000; // in milli seconds
@@ -47,6 +46,10 @@ function* loginEffectSaga(action) {
     let history = action.history;
     let { data } = yield call(loginApi, action.payload);
 
+    // dispatch authenticate user action to change redux state
+    yield put(actions.authenticateUser(data, history));
+
+    //to set and dispatch session and token management action creators
     const tokenResponse = getToken();
     yield localStorage.setItem("token", tokenResponse.token);
     yield localStorage.setItem("expirationDate", tokenResponse.expirationDate);
@@ -54,9 +57,6 @@ function* loginEffectSaga(action) {
 
     yield put(actions.authSuccess(tokenResponse.token, tokenResponse.userId));
     yield put(actions.checkAuthTimeout(tokenResponse.expiresIn));
-
-    // dispatch authenticate user action to change redux state
-    yield put(actions.authenticateUser(data, history));
 
     //dispatch clear_errors action creator to remove any previous set errors
     yield put({ type: CLEAR_ERRORS });
@@ -89,4 +89,6 @@ function* logout(action) {
  */
 export function* loginWatcherSaga() {
   yield takeOneAndBlock(SET_AUTHENTICATED, loginEffectSaga);
+  yield takeEvery(AUTH_INITIATE_LOGOUT, logout);
+  yield takeEvery(AUTH_CHECK_TIMEOUT, checkAuthTimeout);
 }

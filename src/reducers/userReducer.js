@@ -1,5 +1,4 @@
 import {
-  TOKEN,
   AUTH_SUCCESS,
   AUTH_FAIL,
   AUTH_LOGOUT,
@@ -20,7 +19,6 @@ const initialState = {
 };
 
 export default function userReducer(state = initialState, action) {
-  let newState = state;
   switch (action.type) {
     case AUTH_SUCCESS:
       return {
@@ -35,9 +33,6 @@ export default function userReducer(state = initialState, action) {
     case AUTH_LOGOUT:
       return { ...state, token: null, userId: null };
 
-    case TOKEN:
-      newState = Object.assign({}, state, { authenticated: true });
-      return newState;
     case SET_USER:
       return {
         ...state,
