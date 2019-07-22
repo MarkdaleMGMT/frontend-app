@@ -1,29 +1,34 @@
-import React, { Component } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+// import { authenticateUser } from "../../actions/signInActions";
+import ForgotPasswordForm from "../../components/Authentication/ForgotPassword/ForgotPasswordForm";
 
-
-import './ForgotPassword.scss';
+import "./ForgotPassword.scss";
 
 class ForgotPassword extends Component {
-  render(){
-    return <div className="signin-container">
-        <div >
-          <form >
-            <div className="form-group">
-              <input type="email" className="form-control" id="email" placeholder="Email"></input>
-            </div>
-            <div >
-              <button type="submit" name="signIn" className=" btn btn-info fogotpwd btn">Forgot Password</button>
-            </div>
-          </form>
-        </div>
-        <div className="signup-options-container">
-          <NavLink to="/signIn" className="signup-link">Sign In</NavLink>
-          <NavLink to="/signUp" className="forgot-password-link">Sign Up</NavLink>
-
-        </div>
-      </div>
+  onSubmit = formValues => {
+    // this.props.actions.authenticateUser(formValues, this.props.history);
+  };
+  render() {
+    const { errors } = this.props.store;
+    return <ForgotPasswordForm errors={errors} onSubmit={this.onSubmit} />;
   }
 }
 
-export default ForgotPassword;
+function mapStateToProps(state) {
+  return {
+    store: state.UserStore
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({}, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(ForgotPassword);
