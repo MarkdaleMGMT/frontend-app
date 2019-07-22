@@ -1,5 +1,8 @@
 /* eslint-disable no-unused-vars */
-import { put, call } from "redux-saga/effects";
+
+import { delay } from "redux-saga";
+
+import { put, call, takeEvery, takeLatest } from "redux-saga/effects";
 /**import custom built redux saga function {takeOneAndBlock}
  * to prevent duplication of api requests by redux saga effects */
 import { takeOneAndBlock } from "../util/sagaUtil";
@@ -12,33 +15,23 @@ import {
   CLEAR_ERRORS,
   SET_ERRORS
 } from "../actions/types";
-import { authenticateUser } from "../actions/signInActions";
+import * as actions from "../actions/signInActions";
 //import qs library from es6 to stringify form data
 import qs from "qs";
 // import configured axios from "axios_api file";
 import api from "../apis/axios_api";
 
-// function getToken(data) {
-//   //TODO: Add logic to get jwt token using username and password
-//   return { token: "fakeToken", userId: "fakeUserId" };
-// }
-
-// function* setToken(action) {
-//   try {
-//     // const response = yield call(getToken, action);
-//     localStorage.setItem("userId", "fakeUserId");
-//     localStorage.setItem("token", "fakeToken");
-//     // yield put({ type: SET_USER_ID, response.userId });
-//     // yield put({ type: TOKEN, response.token });
-//   } catch (error) {
-//     console.error(error);
-//     yield put({ type: TOKEN_FAILED, error });
-//   }
-// }
-
-// export function* getTokenSaga() {
-//   yield takeLatest(FETCH_TOKEN, setToken);
-// }
+function getToken() {
+  //TODO: Add logic to get jwt token using username and password
+  const expiresIn = 60 * 60 * 1000; // in milli seconds
+  const expirationDate = new Date(new Date().getTime() + expiresIn);
+  return {
+    token: "fakeToken",
+    userId: "fakeUserId",
+    expirationDate,
+    expiresIn
+  };
+}
 
 /** function that returns an axios call */
 function loginApi(loginData) {
@@ -54,8 +47,16 @@ function* loginEffectSaga(action) {
     let history = action.history;
     let { data } = yield call(loginApi, action.payload);
 
+    const tokenResponse = getToken();
+    yield localStorage.setItem("token", tokenResponse.token);
+    yield localStorage.setItem("expirationDate", tokenResponse.expirationDate);
+    yield localStorage.setItem("userId", tokenResponse.userId);
+
+    yield put(actions.authSuccess(tokenResponse.token, tokenResponse.userId));
+    yield put(actions.checkAuthTimeout(tokenResponse.expiresIn));
+
     // dispatch authenticate user action to change redux state
-    yield put(authenticateUser(data, history));
+    yield put(actions.authenticateUser(data, history));
 
     //dispatch clear_errors action creator to remove any previous set errors
     yield put({ type: CLEAR_ERRORS });
@@ -67,7 +68,20 @@ function* loginEffectSaga(action) {
     // catch error on a bad axios call and dispatch set_errors action creator
     yield put({ type: SET_ERRORS, payload: e.response.data });
     console.log("errors", e.response);
+    yield put(actions.authFail(e));
   }
+}
+
+function* checkAuthTimeout(action) {
+  yield delay(action.expirationTime);
+  yield put(actions.logout());
+}
+
+function* logout(action) {
+  yield localStorage.removeItem("token");
+  yield localStorage.removeItem("expirationDate");
+  yield localStorage.removeItem("userId");
+  yield put(actions.logoutSucceed());
 }
 
 /**
