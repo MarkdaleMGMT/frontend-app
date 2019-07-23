@@ -5,7 +5,7 @@ import {
   SET_USER,
   SET_ERRORS,
   CLEAR_ERRORS,
-  SET_AUTHENTICATED,
+  AUTHENTICATE_USER,
   RESET_PASSWORD
 } from "../actions/types";
 
@@ -40,7 +40,7 @@ export default function userReducer(state = initialState, action) {
         loading: false,
         ...action.payload
       };
-    case SET_AUTHENTICATED:
+    case AUTHENTICATE_USER:
       return {
         ...state,
         authenticated: true,

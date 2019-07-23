@@ -1,7 +1,7 @@
 import {
   FETCH_TOKEN,
   RESET,
-  SET_AUTHENTICATED,
+  AUTHENTICATE_USER,
   RESET_PASSWORD,
   AUTH_SUCCESS,
   AUTH_FAIL,
@@ -21,7 +21,7 @@ export const clearStore = () => ({
 
 //action creator to authneticate user during the login page
 export const authenticateUser = (formData, history) => ({
-  type: SET_AUTHENTICATED,
+  type: AUTHENTICATE_USER,
   payload: formData,
   history: history
 });

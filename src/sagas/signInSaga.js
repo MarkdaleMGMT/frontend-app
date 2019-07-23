@@ -4,8 +4,9 @@ import { put, call, takeEvery, delay } from "redux-saga/effects";
 /**import custom built redux saga function {takeOneAndBlock}
  * to prevent duplication of api requests by redux saga effects */
 import { takeOneAndBlock } from "../util/sagaUtil";
+
 import {
-  SET_AUTHENTICATED,
+  AUTHENTICATE_USER,
   CLEAR_ERRORS,
   SET_ERRORS,
   AUTH_INITIATE_LOGOUT,
@@ -20,7 +21,7 @@ import api from "../apis/axios_api";
 /** function that returns data for token and session management */
 function getToken() {
   //TODO: Add logic to get jwt token using username and password
-  const expiresIn = 60 * 60 * 1000; // in milli seconds
+  const expiresIn = 60 * 1000; // in milli seconds
   const expirationDate = new Date(new Date().getTime() + expiresIn);
   return {
     token: "fakeToken",
@@ -94,7 +95,7 @@ function* logout(action) {
  * 'SET_AUTHENTICATED'
  */
 export function* loginWatcherSaga() {
-  yield takeOneAndBlock(SET_AUTHENTICATED, loginEffectSaga);
+  yield takeEvery(AUTHENTICATE_USER, loginEffectSaga);
   yield takeEvery(AUTH_INITIATE_LOGOUT, logout);
   yield takeEvery(AUTH_CHECK_TIMEOUT, checkAuthTimeout);
 }
