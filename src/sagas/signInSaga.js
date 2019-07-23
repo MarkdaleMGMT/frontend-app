@@ -1,9 +1,6 @@
 /* eslint-disable no-unused-vars */
 
 import { put, call, takeEvery, delay } from "redux-saga/effects";
-/**import custom built redux saga function {takeOneAndBlock}
- * to prevent duplication of api requests by redux saga effects */
-import { takeOneAndBlock } from "../util/sagaUtil";
 
 import {
   AUTHENTICATE_USER,
@@ -36,35 +33,47 @@ function loginApi(loginData) {
   //axios doesn't stringify form data by default.
   //Hence, qs library is used to stringify upcoming redux-form data.
 
-  return api.post("/login", qs.stringify(loginData));
+  //to check if it's a valid form data
+  if (Object.keys(loginData).length === 2) {
+    return api.post("/login", qs.stringify(loginData));
+  }
 }
 
 /** saga worker that is responsible for the side effects */
 function* loginEffectSaga(action) {
   try {
-    // data that is obtained after axios call
     let history = action.history;
+    // data that is obtained after a  axios call
+    const apiResponse = yield call(loginApi, action.payload);
 
-    let { data } = yield call(loginApi, action.payload);
+    if (apiResponse) {
+      let { data } = apiResponse;
 
-    // dispatch authenticate user action to change redux state
-    yield put(actions.authenticateUser(data, history));
+      // dispatch authenticate user action to change redux state
+      yield put(actions.authenticateUser(data, history));
 
-    //to set and dispatch session and token management action creators
-    const tokenResponse = getToken();
-    yield localStorage.setItem("token", tokenResponse.token);
-    yield localStorage.setItem("expirationDate", tokenResponse.expirationDate);
-    yield localStorage.setItem("userId", tokenResponse.userId);
+      if (data) {
+        //to set and dispatch session and token management action creators
+        const tokenResponse = getToken();
+        yield localStorage.setItem("token", tokenResponse.token);
+        yield localStorage.setItem(
+          "expirationDate",
+          tokenResponse.expirationDate
+        );
+        yield localStorage.setItem("userId", tokenResponse.userId);
 
-    yield put(actions.authSuccess(tokenResponse.token, tokenResponse.userId));
-    yield put(actions.checkAuthTimeout(tokenResponse.expiresIn));
+        yield put(
+          actions.authSuccess(tokenResponse.token, tokenResponse.userId)
+        );
+        yield put(actions.checkAuthTimeout(tokenResponse.expiresIn));
 
-    //dispatch clear_errors action creator to remove any previous set errors
-    yield put({ type: CLEAR_ERRORS });
+        //dispatch clear_errors action creator to remove any previous set errors
+        yield put({ type: CLEAR_ERRORS });
 
-    // redirect to dashboard route after successful Login
-
-    history.push("/dashboard");
+        // redirect to dashboard route after successful Login
+        history.push("/dashboard");
+      }
+    }
   } catch (e) {
     // catch error on a bad axios call and dispatch set_errors action creator
     yield put({ type: SET_ERRORS, payload: e.response.data });
@@ -94,10 +103,16 @@ function* logout(action) {
 
 /**
  * saga watcher that is triggered when dispatching action of type
- * 'SET_AUTHENTICATED'
+ * 'AUTHENTICATE_USER'
  */
 export function* loginWatcherSaga() {
   yield takeEvery(AUTHENTICATE_USER, loginEffectSaga);
+}
+
+export function* logoutWatcherSaga() {
   yield takeEvery(AUTH_INITIATE_LOGOUT, logout);
+}
+
+export function* checkAuthWatcherSaga() {
   yield takeEvery(AUTH_CHECK_TIMEOUT, checkAuthTimeout);
 }

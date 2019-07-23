@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { authenticateUser, authStart } from "../../actions/signInActions";
+import { authenticateUser } from "../../actions/signInActions";
 import SignInForm from "../../components/Authentication/SignIn/SignInForm";
 
 import "./SignIn.scss";
@@ -9,7 +9,6 @@ import "./SignIn.scss";
 class SignIn extends Component {
   onSubmit = formValues => {
     this.props.actions.authenticateUser(formValues, this.props.history);
-    this.props.actions.authStart();
   };
   render() {
     const { errors } = this.props.store;
@@ -27,8 +26,7 @@ function mapDispatchToProps(dispatch) {
   return {
     actions: bindActionCreators(
       {
-        authenticateUser,
-        authStart
+        authenticateUser
       },
       dispatch
     )

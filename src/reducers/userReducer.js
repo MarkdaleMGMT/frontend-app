@@ -1,5 +1,4 @@
 import {
-  AUTH_START,
   AUTH_SUCCESS,
   AUTH_FAIL,
   AUTH_LOGOUT,
@@ -21,8 +20,6 @@ const initialState = {
 
 export default function userReducer(state = initialState, action) {
   switch (action.type) {
-    case AUTH_START:
-      return { ...state, loading: true, errors: null };
     case AUTH_SUCCESS:
       return {
         ...state,
