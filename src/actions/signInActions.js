@@ -7,7 +7,8 @@ import {
   AUTH_FAIL,
   AUTH_LOGOUT,
   AUTH_INITIATE_LOGOUT,
-  AUTH_CHECK_TIMEOUT
+  AUTH_CHECK_TIMEOUT,
+  AUTH_START
 } from "../actions/types";
 
 export const fetchToken = payload => ({
@@ -32,6 +33,12 @@ export const resetPassword = (formData, history) => ({
   payload: formData,
   history: history
 });
+
+export const authStart = () => {
+  return {
+    type: AUTH_START
+  };
+};
 
 export const authSuccess = (token, userId) => {
   return {

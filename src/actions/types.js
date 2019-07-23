@@ -10,6 +10,7 @@ export const SET_USER = "SET_USER";
 export const LOADING_USER = "LOADING_USER";
 export const AUTHENTICATE_USER = "AUTHENTICATE_USER";
 export const RESET_PASSWORD = "RESET_PASSWORD";
+export const AUTH_START = "AUTH_START";
 export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAIL = "AUTH_FAIL";
 export const AUTH_INITIATE_LOGOUT = "AUTH_INITIATE_LOGOUT";

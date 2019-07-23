@@ -35,6 +35,7 @@ function getToken() {
 function loginApi(loginData) {
   //axios doesn't stringify form data by default.
   //Hence, qs library is used to stringify upcoming redux-form data.
+
   return api.post("/login", qs.stringify(loginData));
 }
 
@@ -43,6 +44,7 @@ function* loginEffectSaga(action) {
   try {
     // data that is obtained after axios call
     let history = action.history;
+
     let { data } = yield call(loginApi, action.payload);
 
     // dispatch authenticate user action to change redux state
