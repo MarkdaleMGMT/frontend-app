@@ -1,71 +1,73 @@
-import React, { Component } from 'react';
-import './Sidebar.scss';
-import Sidebar, {SidebarStyles} from 'react-sidebar';
+import React, { Component } from "react";
+import "./Sidebar.scss";
+import Sidebar, { SidebarStyles } from "react-sidebar";
+import { NavLink } from "react-router-dom";
 
 class LeftSidebar extends Component {
-
-  render(){
+  render() {
     return (
-        <div className="sidebar-container">
-        <ul className="sidebar navbar-nav" >
-                <div className="navigation-type">
-                <li className="nav-item">
-                    <i className="fa fa-home"></i>
-                    <span>Dashboard</span>
-                </li>
+      <div className="sidebar-container">
+        <ul className="sidebar navbar-nav">
+          <div className="navigation-type">
+            <li className="nav-item">
+              <i className="fa fa-home" />
+              <span>Dashboard</span>
+            </li>
 
-                <li className="nav-item">
-                    <i className="fa fa-empire"></i>
-                    {/* <i class="fas fa-steering-wheel"></i> */}
-                    <span>Affiliates</span>
-                </li>
-                <li className="nav-item">
-                    <i className="fa fa-clock-o"></i>
-                    <span>Stats</span>
-                </li>
+            <li className="nav-item">
+              <i className="fa fa-empire" />
+              {/* <i class="fas fa-steering-wheel"></i> */}
+              <span>
+                <NavLink to="/dashboard/affiliates">Affiliates</NavLink>
+              </span>
+            </li>
+            <li className="nav-item">
+              <i className="fa fa-clock-o" />
+              <span>Stats</span>
+            </li>
 
-                <li className="nav-item">
-                <i className="fa fa-line-chart"></i>
-                    <span>Exchange</span>
-                </li>
-                </div>
-                <div className="Currency-type"><li className="nav-item">
-                    <i className="fa fa-chevron-right"></i>
-                    <span>CLAM</span>
-                </li>
-                <li className="nav-item">
-                    <i className="fa fa-chevron-right"></i>
-                    <span>BTC</span>
-                </li>
-                <li className="nav-item">
-                    <i className="fa fa-chevron-right"></i>
-                    <span>CAD</span>
-                </li>
-                <li className="nav-item">
-                    <i className="fa fa-chevron-right"></i>
-                    <span>USD</span>
-                </li>
-                <li className="nav-item">
-                    <i className="fa fa-chevron-right"></i>
-                    <span>GOLD</span>
-                </li>
-                </div>
-                <div className="other-containt">
-                <li className="nav-item">
-                    <i className="fa fa-envelope-square"></i>
-                    <span>Contact</span>
-                </li>
-                <li className="nav-item">
-                    <i className="fa fa-sign-out"></i>
-                    <span>Logout</span>
-                </li>
-                <li className="nav-item">
-                    <span>Referral Code</span>
-                </li>
-                </div>
-            </ul>
-
-    </div>
+            <li className="nav-item">
+              <i className="fa fa-line-chart" />
+              <span>Exchange</span>
+            </li>
+          </div>
+          <div className="Currency-type">
+            <li className="nav-item">
+              <i className="fa fa-chevron-right" />
+              <span>CLAM</span>
+            </li>
+            <li className="nav-item">
+              <i className="fa fa-chevron-right" />
+              <span>BTC</span>
+            </li>
+            <li className="nav-item">
+              <i className="fa fa-chevron-right" />
+              <span>CAD</span>
+            </li>
+            <li className="nav-item">
+              <i className="fa fa-chevron-right" />
+              <span>USD</span>
+            </li>
+            <li className="nav-item">
+              <i className="fa fa-chevron-right" />
+              <span>GOLD</span>
+            </li>
+          </div>
+          <div className="other-containt">
+            <li className="nav-item">
+              <i className="fa fa-envelope-square" />
+              <span>Contact</span>
+            </li>
+            <li className="nav-item">
+              <i className="fa fa-sign-out" />
+              <span>Logout</span>
+            </li>
+            <li className="nav-item">
+              <span>Referral Code</span>
+            </li>
+          </div>
+        </ul>
+      </div>
     );
   }
 }
