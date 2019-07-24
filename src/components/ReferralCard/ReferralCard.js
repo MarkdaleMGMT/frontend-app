@@ -5,7 +5,7 @@ import "./ReferralCard.scss";
 class ReferralCard extends Component {
   render() {
     const { referralCode } = this.props;
-    console.log("Referral Code", referralCode);
+
     return (
       <div className="rounded-lg card-width mx-auto mb-5 border shadow bg-white">
         <div className="card ">

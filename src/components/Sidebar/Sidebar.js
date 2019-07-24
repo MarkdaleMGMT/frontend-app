@@ -9,7 +9,7 @@ class LeftSidebar extends Component {
       <div className="sidebar-container">
         <ul className="sidebar navbar-nav">
           <div className="navigation-type">
-            <li className="nav-item onHover">
+            <li className="nav-item">
               <i className="fa fa-home" />
               <span>
                 <NavLink activeClassName="active" to="/dashboard">
@@ -18,7 +18,7 @@ class LeftSidebar extends Component {
               </span>
             </li>
 
-            <li className="nav-item onHover">
+            <li className="nav-item">
               <i className="fa fa-empire" />
               {/* <i class="fas fa-steering-wheel"></i> */}
               <span>
