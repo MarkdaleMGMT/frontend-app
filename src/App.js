@@ -1,9 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
+
 import { Route, Switch, Redirect } from "react-router-dom";
-import LeftSideBar from "./components/Sidebar/Sidebar";
-import { SignIn, SignUp, ForgotPassword, Dashboard } from "./pages";
-import Affiliate from "./pages/Affiliate/Affiliate";
+
+import { SignIn, SignUp, ForgotPassword } from "./pages";
+
 import Routes from "./routes/routes";
 import "./App.scss";
 
@@ -15,10 +15,7 @@ function App() {
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/forgotpassword" component={ForgotPassword} />
         <Route component={Routes} />
-        {/* <LeftSideBar />
 
-        <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/dashboard/affiliates" component={Affiliate} /> */}
         <Route
           render={props => (
             <Redirect

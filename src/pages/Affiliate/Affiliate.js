@@ -11,11 +11,14 @@ class Affiliate extends Component {
   render() {
     const { store } = this.props;
     return (
-      <AffiliateForm
-        errors={store.errors}
-        referralCode={store}
-        onSubmit={this.onSubmit}
-      />
+      <>
+        <AffiliateForm
+          errors={store.errors}
+          referralCode={store}
+          onSubmit={this.onSubmit}
+        />
+        <div />
+      </>
     );
   }
 }
