@@ -9,18 +9,22 @@ class LeftSidebar extends Component {
       <div className="sidebar-container">
         <ul className="sidebar navbar-nav">
           <div className="navigation-type">
-            <li className="nav-item">
+            <li className="nav-item onHover">
               <i className="fa fa-home" />
               <span>
-                <NavLink to="/dashboard">Dashboard</NavLink>
+                <NavLink activeClassName="active" to="/dashboard">
+                  Dashboard
+                </NavLink>
               </span>
             </li>
 
-            <li className="nav-item">
+            <li className="nav-item onHover">
               <i className="fa fa-empire" />
               {/* <i class="fas fa-steering-wheel"></i> */}
               <span>
-                <NavLink to="/dashboard/affiliates">Affiliates</NavLink>
+                <NavLink activeClassName="active" to="/dashboard/affiliates">
+                  Affiliates
+                </NavLink>
               </span>
             </li>
             <li className="nav-item">
