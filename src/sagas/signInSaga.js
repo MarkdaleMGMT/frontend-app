@@ -18,7 +18,7 @@ import api from "../apis/axios_api";
 /** function that returns data for token and session management */
 function getToken() {
   //TODO: Add logic to get jwt token using username and password
-  const expiresIn = 60 * 1000; // in milli seconds
+  const expiresIn = 60 * 60 * 1000; // to set expiry time as 1 hour in milli seconds
   const expirationDate = new Date(new Date().getTime() + expiresIn);
   return {
     token: "fakeToken",
