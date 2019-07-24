@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { logoutSucceed } from "../../actions/signInActions";
+import { logout } from "../../actions/signInActions";
 import "./Sidebar.scss";
 // import Sidebar, { SidebarStyles } from "react-sidebar";
 import { NavLink } from "react-router-dom";
@@ -9,7 +9,7 @@ import { NavLink } from "react-router-dom";
 class LeftSidebar extends Component {
   onLogout = e => {
     e.stopPropagation();
-    this.props.actions.logoutSucceed();
+    this.props.actions.logout();
   };
   render() {
     const { store } = this.props;
@@ -102,7 +102,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ logoutSucceed }, dispatch)
+    actions: bindActionCreators({ logout }, dispatch)
   };
 }
 
