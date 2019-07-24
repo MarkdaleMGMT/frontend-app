@@ -1,9 +1,15 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import { bindActionCreators } from "redux";
+import { logoutSucceed } from "../../actions/signInActions";
 import "./Sidebar.scss";
 // import Sidebar, { SidebarStyles } from "react-sidebar";
 import { NavLink } from "react-router-dom";
 
 class LeftSidebar extends Component {
+  onLogout = () => {
+    this.props.actions.logoutSucceed();
+  };
   render() {
     return (
       <div className="sidebar-container">
@@ -66,7 +72,15 @@ class LeftSidebar extends Component {
             </li>
             <li className="nav-item">
               <i className="fa fa-sign-out" />
-              <span>Logout</span>
+              <span>
+                <NavLink
+                  onClick={this.onLogout()}
+                  activeClassName="active"
+                  to="/signin"
+                >
+                  Logout
+                </NavLink>
+              </span>
             </li>
             <li className="nav-item">
               <span>Referral Code</span>
@@ -78,83 +92,19 @@ class LeftSidebar extends Component {
   }
 }
 
-// class LeftSidebar extends Component {
-//     render() {
-//         const sidebar = <div>Item 1</div>
-//         const sidebarStyle = {
-//             root: {
-//                 position: "absolute",
-//                 top: 0,
-//                 left: 0,
-//                 right: 0,
-//                 bottom: 0,
-//                 overflow: "hidden"
-//             },
-//             sidebar: {
-//                 zIndex: 2,
-//                 position: "absolute",
-//                 top: 0,
-//                 bottom: 0,
-//                 transition: "transform .3s ease-out",
-//                 WebkitTransition: "-webkit-transform .3s ease-out",
-//                 willChange: "transform",
-//                 overflowY: "auto",
-//                 width: '250px'
-//             },
-//             content: {
-//                 position: "absolute",
-//                 top: 0,
-//                 left: 0,
-//                 right: 0,
-//                 bottom: 0,
-//                 overflowY: "auto",
-//                 WebkitOverflowScrolling: "touch",
-//                 transition: "left .3s ease-out, right .3s ease-out"
-//             },
-//             overlay: {
-//                 zIndex: 1,
-//                 position: "fixed",
-//                 top: 0,
-//                 left: 0,
-//                 right: 0,
-//                 bottom: 0,
-//                 opacity: 0,
-//                 visibility: "hidden",
-//                 transition: "opacity .3s ease-out, visibility .3s ease-out",
-//                 backgroundColor: "rgba(0,0,0,.3)"
-//             },
-//             dragHandle: {
-//                 zIndex: 1,
-//                 position: "fixed",
-//                 top: 0,
-//                 bottom: 0
-//             }
-//         };
-//         return <Sidebar
-//             defaultSidebarWidth = {
-//                 160
-//             }
-//             docked = {
-//                 true
-//             }
-//             open = {
-//                 true
-//             }
-//             sidebar = {
-//                 sidebar
-//             }
-//             styles = {
-//                 sidebarStyle
-//             }
-//             onSetOpen = {
-//                 (open: boolean) => {}
-//             }
-//             rootId = "test-root-id"
-//             sidebarId = "test-sidebar-id"
-//             contentId = "content-div"
-//             overlayId = "test-overlay-id" >
-//         </Sidebar>
-//     }
-// }
+function mapStateToProps(state) {
+  return {
+    store: state.UserStore
+  };
+}
 
-export default LeftSidebar;
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators({ logoutSucceed }, dispatch)
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(LeftSidebar);
