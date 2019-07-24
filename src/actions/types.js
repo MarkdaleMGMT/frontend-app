@@ -19,3 +19,6 @@ export const AUTH_CHECK_TIMEOUT = "AUTH_CHECK_TIMEOUT";
 
 //UI reducer types
 export const LOADING_UI = "LOADING_UI";
+
+//affilaite reducer types
+export const SEND_INVITE = "SEND_INVITE";

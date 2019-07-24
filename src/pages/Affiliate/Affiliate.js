@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-import { resetPassword } from "../../actions/signInActions";
+import { send_invite } from "../../actions/affiliateActions";
 import AffiliateForm from "../../components/Affiliate/AffiliateForm";
 import "./Affiliate.scss";
 
 class Affiliate extends Component {
   onSubmit = formValues => {
-    this.props.actions.resetPassword(formValues, this.props.history);
+    this.props.actions.send_invite(formValues, this.props.history);
   };
   render() {
     const { store } = this.props;
@@ -31,7 +31,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators({ resetPassword }, dispatch)
+    actions: bindActionCreators({ send_invite }, dispatch)
   };
 }
 
