@@ -1,4 +1,4 @@
-.dashboard-container {
+.affiliate-container {
     display: flex;
     flex-direction: row;
 
@@ -34,10 +34,11 @@
 
 
         .footer-container {
-            position: relative;
+            position: fixed;
             width: 85vw;
             left: 15vw;
             bottom: 0;
+
             min-height: 8vh;
             border-radius: 1px;
             background-color: black;

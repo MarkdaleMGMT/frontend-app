@@ -15,7 +15,6 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard-container">
-        <div className="navigation">{/* <LeftSidebar /> */}</div>
         <div className="content-wrapper" id="content-div">
           <div className="overview-container">
             <div className="overview-table">

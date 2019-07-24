@@ -1,28 +1,33 @@
 .sidebar-container {
-    width:15vw;
-    height:100%;
+    width: 15vw;
+    height: 100%;
     float: left;
     background-color: #646464;
     font-family: Lato;
     color: white;
     font-size: 16px;
+    position: fixed;
+    z-index: 1000;
 
-    .fa{
+    .fa {
         margin-right: 10px;
     }
-    .navigation-type{
+
+    .navigation-type {
         margin-top: 35px;
     }
-    .Currency-type{
+
+    .Currency-type {
         margin-top: 25px;
     }
-    .other-containt{
+
+    .other-containt {
         margin-top: 25px;
     }
 
 
-    .nav-item{
-        width:100%;
+    .nav-item {
+        width: 100%;
         margin-top: 10px;
         height: 35px;
         background-color: #969696;

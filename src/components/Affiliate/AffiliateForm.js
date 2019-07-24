@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
 import ReferralCard from "../ReferralCard/ReferralCard";
+import Footer from "../Footer/Footer";
+import "./AffiliateForm.scss";
 
 const validate = values => {
   const errors = {};
@@ -46,26 +48,33 @@ class AffiliateForm extends Component {
       submitting
     } = this.props;
     return (
-      <div className="signin-container">
-        <div>
-          <ReferralCard referralCode={referralCode} />
-          <form onSubmit={handleSubmit(this.onSubmit)}>
-            <div className="form-group">
-              <Field name="email" component={renderField} label="Email" />
-            </div>
+      <div className="affiliate-container">
+        <div className="content-wrapper ">
+          <div className="signin-container">
+            <div>
+              <ReferralCard referralCode={referralCode} />
+              <form onSubmit={handleSubmit(this.onSubmit)}>
+                <div className="form-group">
+                  <Field name="email" component={renderField} label="Email" />
+                </div>
 
-            {/* rendering server side validation */}
-            <p className="text-danger">{errors && errors.error}</p>
-            <div className="form-group">
-              <button
-                type="submit"
-                disabled={pristine || submitting}
-                className="btn btn-info signin-btn"
-              >
-                Invite
-              </button>
+                {/* rendering server side validation */}
+                <p className="text-danger">{errors && errors.error}</p>
+                <div className="form-group">
+                  <button
+                    type="submit"
+                    disabled={pristine || submitting}
+                    className="btn btn-info signin-btn"
+                  >
+                    Invite
+                  </button>
+                </div>
+              </form>
             </div>
-          </form>
+          </div>
+          <div className="footer-container">
+            <Footer />
+          </div>
         </div>
       </div>
     );

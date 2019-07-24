@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
 import { resetPassword } from "../../actions/signInActions";
 import AffiliateForm from "../../components/Affiliate/AffiliateForm";
+import "./Affiliate.scss";
 
 class Affiliate extends Component {
   onSubmit = formValues => {
