@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Field, reduxForm } from "redux-form";
+import ReferralCard from "../ReferralCard/ReferralCard";
 
 const validate = values => {
   const errors = {};
@@ -37,17 +38,24 @@ class AffiliateForm extends Component {
   };
 
   render() {
-    const { store, handleSubmit, pristine, submitting } = this.props;
+    const {
+      referralCode,
+      errors,
+      handleSubmit,
+      pristine,
+      submitting
+    } = this.props;
     return (
       <div className="signin-container">
         <div>
+          <ReferralCard referralCode={referralCode} />
           <form onSubmit={handleSubmit(this.onSubmit)}>
             <div className="form-group">
               <Field name="email" component={renderField} label="Email" />
             </div>
 
             {/* rendering server side validation */}
-            <p className="text-danger">{store && store.ref_code}</p>
+            <p className="text-danger">{errors && errors.error}</p>
             <div className="form-group">
               <button
                 type="submit"
