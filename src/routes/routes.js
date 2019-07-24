@@ -10,7 +10,7 @@ const Routes = () => (
       <LeftSideBar />
 
       <Route exact path="/dashboard" component={Dashboard} />
-      <Route exact path="/dashboard/affiliates" component={Affiliate} />
+      <Route exact path="/affiliates" component={Affiliate} />
     </div>
   </div>
 );

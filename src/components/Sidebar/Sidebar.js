@@ -22,7 +22,7 @@ class LeftSidebar extends Component {
               <i className="fa fa-empire" />
               {/* <i class="fas fa-steering-wheel"></i> */}
               <span>
-                <NavLink activeClassName="active" to="/dashboard/affiliates">
+                <NavLink activeClassName="active" to="/affiliates">
                   Affiliates
                 </NavLink>
               </span>

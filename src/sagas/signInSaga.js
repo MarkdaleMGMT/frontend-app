@@ -71,7 +71,7 @@ function* loginEffectSaga(action) {
         yield put({ type: CLEAR_ERRORS });
 
         // redirect to dashboard route after successful Login
-        history.push("/dashboard");
+        history.push("/affiliates");
       }
     }
   } catch (e) {
