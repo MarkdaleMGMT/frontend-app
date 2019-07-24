@@ -17,7 +17,6 @@ class Affiliate extends Component {
           referralCode={store}
           onSubmit={this.onSubmit}
         />
-        <div />
       </>
     );
   }
