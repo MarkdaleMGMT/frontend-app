@@ -10,11 +10,11 @@ function App() {
   return (
     <div className="App">
       <Switch>
-        <Route path="/signin" component={SignIn} />
-        <Route path="/signup" component={SignUp} />
-        <Route path="/forgotpassword" component={ForgotPassword} />
-        <Route path="/dashboard" component={Dashboard} />
-        <Route path="/affiliate" component={Affiliate} />
+        <Route exact path="/signin" component={SignIn} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/forgotpassword" component={ForgotPassword} />
+        <Route exact path="/dashboard" component={Dashboard} />
+        <Route exact path="/dashboard/affiliates" component={Affiliate} />
         <Route
           render={props => (
             <Redirect

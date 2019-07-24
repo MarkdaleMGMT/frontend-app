@@ -5,6 +5,7 @@ import "./ReferralCard.scss";
 class ReferralCard extends Component {
   render() {
     const { referralCode } = this.props;
+    console.log("Referral Code", referralCode);
     return (
       <div className="rounded-lg card-width mx-auto mb-5 border shadow bg-white">
         <div className="card ">
@@ -12,7 +13,7 @@ class ReferralCard extends Component {
             <h5 className="card-title">Referral Code</h5>
 
             <h2 className="card-text text-info">
-              {referralCode && referralCode.ref_code}
+              {(referralCode && referralCode.ref_code) || "12cde"}
             </h2>
           </div>
         </div>
