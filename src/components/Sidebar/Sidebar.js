@@ -11,7 +11,9 @@ class LeftSidebar extends Component {
           <div className="navigation-type">
             <li className="nav-item">
               <i className="fa fa-home" />
-              <span>Dashboard</span>
+              <span>
+                <NavLink to="/dashboard">Dashboard</NavLink>
+              </span>
             </li>
 
             <li className="nav-item">

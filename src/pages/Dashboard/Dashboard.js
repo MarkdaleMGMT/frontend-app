@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Dashboard.scss";
 
 import {
-  LeftSidebar,
+  // LeftSidebar,
   TransferModal,
   DoughnutChart,
   LineChart,
@@ -15,9 +15,7 @@ class Dashboard extends Component {
   render() {
     return (
       <div className="dashboard-container">
-        <div className="navigation">
-          <LeftSidebar />
-        </div>
+        <div className="navigation">{/* <LeftSidebar /> */}</div>
         <div className="content-wrapper" id="content-div">
           <div className="overview-container">
             <div className="overview-table">
@@ -36,9 +34,9 @@ class Dashboard extends Component {
           <div className="transfer-modal-container">
             <TransferModal />
           </div>
-          <div className="footer-container">
+          {/* <div className="footer-container">
             <Footer />
-          </div>
+          </div> */}
         </div>
       </div>
     );
