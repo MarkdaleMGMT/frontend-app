@@ -31,7 +31,7 @@ export default function userReducer(state = initialState, action) {
       return { ...state, loading: false, error: action.error };
 
     case AUTH_LOGOUT:
-      return { ...state, token: null, userId: null };
+      return initialState;
 
     case SET_USER:
       return {
