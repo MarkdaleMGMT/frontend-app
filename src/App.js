@@ -14,7 +14,7 @@ function App() {
         <Route exact path="/signin" component={SignIn} />
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/forgotpassword" component={ForgotPassword} />
-        <Route component={Routes} />
+        <Route exact component={Routes} />
 
         <Route
           render={props => (

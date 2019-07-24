@@ -7,10 +7,12 @@ import "./Sidebar.scss";
 import { NavLink } from "react-router-dom";
 
 class LeftSidebar extends Component {
-  onLogout = () => {
+  onLogout = e => {
+    e.stopPropagation();
     this.props.actions.logoutSucceed();
   };
   render() {
+    const { store } = this.props;
     return (
       <div className="sidebar-container">
         <ul className="sidebar navbar-nav">
@@ -74,8 +76,8 @@ class LeftSidebar extends Component {
               <i className="fa fa-sign-out" />
               <span>
                 <NavLink
-                  onClick={this.onLogout()}
                   activeClassName="active"
+                  onClick={this.onLogout}
                   to="/signin"
                 >
                   Logout
@@ -83,7 +85,7 @@ class LeftSidebar extends Component {
               </span>
             </li>
             <li className="nav-item">
-              <span>Referral Code</span>
+              <span> {(store && store.ref_code) || "Refferal Code"}</span>
             </li>
           </div>
         </ul>
