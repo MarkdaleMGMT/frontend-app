@@ -179,6 +179,7 @@ class SignIn extends Component {
                   <div>
                     <Row className="justify-content-center">
                       <Col xs={6} md={8} lg={4}>
+                        {/* Login Button is now Sign In */}
                           <button type="submit" name="signIn" className="btn btn-info signin-btn">Sign In</button>
                       </Col>
                     </Row>
