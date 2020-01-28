@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -208,9 +208,6 @@ class ExchangeForm extends Component {
 
     generateInvestmentList(investments, hidden_investment_id, type){
 
-        
-
-        
         const investmentsOptions = investments.map( (investment, idx) =>{
 
             //set the default source currency
@@ -276,6 +273,10 @@ class ExchangeForm extends Component {
                         </Col>
                         <Col xs={12} md={2} lg={2} className="form-group">
                             <button style={{width: "auto"}} type="submit" name="exchange" className="btn btn-info transfer-btn" >Exchange</button>
+                            <Button variant="outline-dark" onClick={()=>{this.toggle()}}>
+                                {/* <i className="fa fa-exchange-alt"></i> */}
+                                <i className="fa fa-exchange"></i>
+                            </Button>
                         </Col>
                         <Col xs={6} md={2} lg={3} className="form-group no-padding">
                             <select className="form-control Trans-form-control" name="target_investment" required  value={target_investment}  onChange={this.handleInputChange}>
