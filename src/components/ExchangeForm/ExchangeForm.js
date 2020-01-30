@@ -29,7 +29,6 @@ class ExchangeForm extends Component {
 
     constructor(props){
 
-        console.log("props", props)
         super(props);
         this.state = {
             source_investment:'',
@@ -46,6 +45,7 @@ class ExchangeForm extends Component {
         this.findCurrency = this.findCurrency.bind(this);
         this.executeExchange = this.executeExchange.bind(this);
         this.updateExchangeRate = this.updateExchangeRate.bind(this);
+        this.reverse = this.reverse.bind(this);
     }
 
     componentDidMount(){
@@ -53,8 +53,7 @@ class ExchangeForm extends Component {
         const username = localStorage.getItem("username");
         this.props.fetchUserInvestments(username);
         this.props.fetchAllInvestments();
-
-    
+       
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -100,14 +99,20 @@ class ExchangeForm extends Component {
         return matchingInvestment[0].currency;
 
     }
-
     
     updateExchangeRate() {
-
         const { source_currency, target_currency } = this.state;
 
         console.log("this.props.exchange_rates", this.props.exchange_rates);
-        console.log(source_currency, target_currency);
+        console.log("src: " + source_currency)
+        console.log("srcnull: " + !source_currency)
+        //There are cases when source_currency is null at the first time
+        if (!source_currency) {
+           console.log(this.props.user_investments)
+          // source_currency = this.props.user_investments[0].currency
+        }
+        console.log("target " + target_currency)
+        //console.log(source_currency, target_currency);
 
         let exchange_rate = { bid:null, ask:null, mid:null};
 
@@ -132,10 +137,7 @@ class ExchangeForm extends Component {
                     exchange_rate = new_exchange_rate;
                 }
             }
-        }
-
-        // console.log("exchange rate ",exchange_rate)
-         
+        }         
             
         this.setState({ exchange_rate}, ()=>{
             const { amount, exchange_rate} = this.state;
@@ -150,7 +152,7 @@ class ExchangeForm extends Component {
 
     handleInputChange(e){
      
-        // this.updateExchangeRate();
+       // this.updateExchangeRate();
         const { exchange_rate } = this.state;
         
         this.setState({
@@ -161,6 +163,7 @@ class ExchangeForm extends Component {
             //calculate the target amount 
             // this.setState({target_amount: (e.target.value * exchange_rate.mid) })
             console.log("e.target.value ",e.target.value);
+            console.log(exchange_rate)
             console.log("exchange_rate.bid ",exchange_rate.bid);
             
             console.log("target_amount: ", e.target.value * exchange_rate.bid);
@@ -178,16 +181,11 @@ class ExchangeForm extends Component {
         else{
         //source currency or target currency is changed
 
-
-
-
             let investment_id = e.target.value;
             //source or target investments change check if the values are the same, if not then get a new rate 
             if(e.target.name == "source_investment"){
-
                
                 // console.log([e.target.name], e.target.getAttribute("currency"));
-                
                 
                 let currency = this.findCurrency(this.props.user_investments, investment_id);
                 console.log("currency", currency);
@@ -207,13 +205,17 @@ class ExchangeForm extends Component {
     }
 
     generateInvestmentList(investments, hidden_investment_id, type){
-
+        console.log(type)
+        console.log(investments)
         const investmentsOptions = investments.map( (investment, idx) =>{
 
             //set the default source currency
             if(idx==0 ){
-                if(type=="source" && this.state.source_currency=='' && this.state.source_investment=='')
-                    this.setState({source_currency:investment.currency, source_investment:investment.investment_id});
+                if(type=="source" && this.state.source_currency=='' && this.state.source_investment==''){
+                    console.log("TERE")
+                    this.setState({source_currency: investment.currency, source_investment:investment.investment_id}, ()=> {this.updateExchangeRate()});
+
+                }
             
             }
 
@@ -225,21 +227,17 @@ class ExchangeForm extends Component {
                 
             }
 
-
-
-            if(investment.investment_id == hidden_investment_id){
-                return <option style={{display:"none"}} currency={investment.currency} key={investment.investment_id} value={investment.investment_id}>{investment.investment_name + " ("+ investment.currency+")"}</option>
-            }
-            else{
-                return <option  currency={investment.currency}  key={investment.investment_id} value={investment.investment_id}>{investment.investment_name + " ("+ investment.currency+")"}</option>
-            }
+            return <option  currency={investment.currency}  key={investment.investment_id} value={investment.investment_id}>{investment.investment_name + " ("+ investment.currency+")"}</option>
             
         });
 
-        
-
         return investmentsOptions;
 
+    }
+
+    reverse(){
+        const { source_investment, target_investment, source_currency, target_currency, amount, target_amount } = this.state;
+        this.setState({source_investment: target_investment, target_investment: source_investment })
     }
 
     render() {
@@ -260,6 +258,22 @@ class ExchangeForm extends Component {
                 <div className="form-wrapper justify-content-center">
                     <div className="form justify-content-center">
                         <form  onSubmit={this.executeExchange}>
+
+
+                        <Row className="justify-content-space-between">
+                            <Col xs={4} md={4} lg={4} className="form-group no-padding">
+                                Sell
+                            </Col>
+                            <Col xs={4} md={4} lg={4} className="form-group no-padding">
+                                <Button variant="outline-dark" onClick={()=>{this.reverse()}}>
+                                    <i className="fa fa-exchange"></i>
+                                </Button>
+                            </Col>
+                            <Col xs={4} md={4} lg={4} className="form-group no-padding">
+                                Buy
+
+                            </Col>
+                        </Row>
                         <Row className="justify-content-center">
                         <Col xs={6} md={2} lg={3} className="form-group no-padding">
                             <select className="form-control Trans-form-control" name="source_investment" required  value={source_investment}  onChange={this.handleInputChange}>
@@ -273,10 +287,6 @@ class ExchangeForm extends Component {
                         </Col>
                         <Col xs={12} md={2} lg={2} className="form-group">
                             <button style={{width: "auto"}} type="submit" name="exchange" className="btn btn-info transfer-btn" >Exchange</button>
-                            <Button variant="outline-dark" onClick={()=>{this.toggle()}}>
-                                {/* <i className="fa fa-exchange-alt"></i> */}
-                                <i className="fa fa-exchange"></i>
-                            </Button>
                         </Col>
                         <Col xs={6} md={2} lg={3} className="form-group no-padding">
                             <select className="form-control Trans-form-control" name="target_investment" required  value={target_investment}  onChange={this.handleInputChange}>
