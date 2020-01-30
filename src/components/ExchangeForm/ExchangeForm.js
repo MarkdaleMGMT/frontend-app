@@ -237,7 +237,15 @@ class ExchangeForm extends Component {
 
     reverse(){
         const { source_investment, target_investment, source_currency, target_currency, amount, target_amount } = this.state;
-        this.setState({source_investment: target_investment, target_investment: source_investment })
+        this.setState(
+            {
+                source_investment: target_investment, 
+                target_investment: source_investment, 
+                source_currency: target_currency, 
+                target_currency: source_currency, 
+                amount: '',
+                target_amount: ''
+            }, () => {this.updateExchangeRate()})
     }
 
     render() {
