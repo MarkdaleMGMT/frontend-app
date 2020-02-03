@@ -46,6 +46,7 @@ class ExchangeForm extends Component {
         this.executeExchange = this.executeExchange.bind(this);
         this.updateExchangeRate = this.updateExchangeRate.bind(this);
         this.reverse = this.reverse.bind(this);
+        this.checkOutput = this.checkOutput.bind(this);
     }
 
     componentDidMount(){
@@ -171,20 +172,17 @@ class ExchangeForm extends Component {
             console.log("exchange_rate.bid ",exchange_rate.bid);
             
             console.log("target_amount: ", e.target.value * exchange_rate.bid);
-            let val = e.target.value * exchange_rate.bid
-            this.setState({target_amount: isNaN(val) ? 
-                "Not a Number":
-                parseFloat((e.target.value * exchange_rate.bid).toFixed(8)) })
+            let val = this.checkOutput(e.target.value * exchange_rate.bid)
+            
+            this.setState({target_amount: isNaN(val) ? val : parseFloat((val).toFixed(8)) })
         }
 
         else if(e.target.name == "target_amount"){
 
             //calculate the source amount 
             // this.setState({amount: (e.target.value * 1/exchange_rate.mid) })
-            let val = (e.target.value * 1/exchange_rate.ask)
-            this.setState({amount: isNaN(val)?
-                "Not a Number":
-                parseFloat((e.target.value * 1/exchange_rate.ask).toFixed(8)) })
+            let val = this.checkOutput(e.target.value * 1/exchange_rate.ask)
+            this.setState({amount: isNaN(val)? val : parseFloat((val).toFixed(8)) })
         }
 
         else{
@@ -306,6 +304,12 @@ class ExchangeForm extends Component {
                 }, () => {this.updateExchangeRate()})
         }
         
+    }
+
+    checkOutput(input){
+        if (input < 0 && !isNaN(input)) return "Negative Number"
+        else if (isNaN(input)) return "Not A Number"
+        else return input
     }
 
     render() {
