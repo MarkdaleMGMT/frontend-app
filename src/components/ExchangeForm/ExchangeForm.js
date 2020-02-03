@@ -189,13 +189,43 @@ class ExchangeForm extends Component {
                 
                 let currency = this.findCurrency(this.props.user_investments, investment_id);
                 console.log("currency", currency);
-                this.setState({source_currency: currency , source_investment: investment_id}, this.updateExchangeRate);
+
+                if (currency == this.state.target_currency) { // when you want to flip currencies
+                    this.setState(
+                        {
+                            source_currency: currency, 
+                            source_investment: investment_id,
+                            target_currency: this.state.source_currency,
+                            target_investment: this.state.source_investment
+                        }, 
+                        this.updateExchangeRate);
+
+                } else {
+                    this.setState({source_currency: currency , source_investment: investment_id}, this.updateExchangeRate);
+
+                }
+
             }
             else{
-
                 let currency = this.findCurrency(this.props.investments, investment_id);
                 console.log("currency", currency);
-                this.setState({target_currency:currency, target_investment:investment_id}, this.updateExchangeRate);
+                if (currency == this.state.source_currency){
+                    this.setState(
+                        {
+                            target_currency:currency, 
+                            target_investment:investment_id,
+                            source_currency: this.state.target_currency,
+                            source_investment: this.state.target_investment
+                        
+                        }, 
+                        this.updateExchangeRate);
+
+                } else {
+                    this.setState({target_currency:currency, target_investment:investment_id}, this.updateExchangeRate);
+
+                }
+
+               
             }
 
             
@@ -267,21 +297,11 @@ class ExchangeForm extends Component {
                     <div className="form justify-content-center">
                         <form  onSubmit={this.executeExchange}>
 
-
-                        <Row className="justify-content-space-between">
-                            <Col xs={4} md={4} lg={4} className="form-group no-padding">
-                                Sell
-                            </Col>
-                            <Col xs={4} md={4} lg={4} className="form-group no-padding">
-                                <Button variant="outline-dark" onClick={()=>{this.reverse()}}>
-                                    <i className="fa fa-exchange"></i>
-                                </Button>
-                            </Col>
-                            <Col xs={4} md={4} lg={4} className="form-group no-padding">
-                                Buy
-
-                            </Col>
-                        </Row>
+                        {/* Button For Yael */}
+                        <Button variant="outline-dark" onClick={()=>{this.reverse()}}>
+                            <i className="fa fa-exchange"></i>
+                        </Button>
+       
                         <Row className="justify-content-center">
                         <Col xs={6} md={2} lg={3} className="form-group no-padding">
                             <select className="form-control Trans-form-control" name="source_investment" required  value={source_investment}  onChange={this.handleInputChange}>
