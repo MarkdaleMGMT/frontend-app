@@ -337,6 +337,7 @@ class ExchangeForm extends Component {
                         </Button>
        
                         <Row className="justify-content-center">
+                        <Row className="move-buy">Sell</Row>
                         <Col xs={6} md={2} lg={3} className="form-group no-padding">
                             <select className="form-control Trans-form-control" name="source_investment" required  value={source_investment}  onChange={this.handleInputChange}>
                                 {/* <option value="" defaultValue>Investment</option> */}
@@ -350,6 +351,7 @@ class ExchangeForm extends Component {
                         <Col xs={12} md={2} lg={2} className="form-group">
                             <button style={{width: "auto"}} type="submit" name="exchange" className="btn btn-info transfer-btn" >Exchange</button>
                         </Col>
+                        <Row className="move-buy">Buy</Row>
                         <Col xs={6} md={2} lg={3} className="form-group no-padding">
                             <select className="form-control Trans-form-control" name="target_investment" required  value={target_investment}  onChange={this.handleInputChange}>
                                 {/* <option value="" defaultValue>Investment</option> */}
