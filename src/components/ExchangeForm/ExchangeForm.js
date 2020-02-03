@@ -171,15 +171,20 @@ class ExchangeForm extends Component {
             console.log("exchange_rate.bid ",exchange_rate.bid);
             
             console.log("target_amount: ", e.target.value * exchange_rate.bid);
-            
-            this.setState({target_amount: parseFloat((e.target.value * exchange_rate.bid).toFixed(8)) })
+            let val = e.target.value * exchange_rate.bid
+            this.setState({target_amount: isNaN(val) ? 
+                "Not a Number":
+                parseFloat((e.target.value * exchange_rate.bid).toFixed(8)) })
         }
 
         else if(e.target.name == "target_amount"){
 
             //calculate the source amount 
             // this.setState({amount: (e.target.value * 1/exchange_rate.mid) })
-            this.setState({amount: parseFloat((e.target.value * 1/exchange_rate.ask).toFixed(8)) })
+            let val = (e.target.value * 1/exchange_rate.ask)
+            this.setState({amount: isNaN(val)?
+                "Not a Number":
+                parseFloat((e.target.value * 1/exchange_rate.ask).toFixed(8)) })
         }
 
         else{
