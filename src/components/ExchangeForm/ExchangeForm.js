@@ -94,9 +94,13 @@ class ExchangeForm extends Component {
 
         });
 
-        // console.log("matchingInvestment", matchingInvestment)
-
-        return matchingInvestment[0].currency;
+        console.log("matchingInvestment", matchingInvestment)
+        if (matchingInvestment.length > 0){
+            return matchingInvestment[0].currency;
+        } else {
+            return -1;
+        }
+        
 
     }
     
@@ -190,7 +194,8 @@ class ExchangeForm extends Component {
                 let currency = this.findCurrency(this.props.user_investments, investment_id);
                 console.log("currency", currency);
 
-                if (currency == this.state.target_currency) { // when you want to flip currencies
+                if (currency == this.state.target_currency) { // start switch
+
                     this.setState(
                         {
                             source_currency: currency, 
@@ -210,28 +215,42 @@ class ExchangeForm extends Component {
                 let currency = this.findCurrency(this.props.investments, investment_id);
                 console.log("currency", currency);
                 if (currency == this.state.source_currency){
-                    this.setState(
-                        {
-                            target_currency:currency, 
-                            target_investment:investment_id,
-                            source_currency: this.state.target_currency,
-                            source_investment: this.state.target_investment
-                        
-                        }, 
-                        this.updateExchangeRate);
 
+                    //If the user does not have the investment, prevent them from switching currencies
+                    if (this.findCurrency(this.props.user_investments, this.state.target_investment) == -1){
+  
+                        this.setState(
+                            {
+                                target_currency:this.state.target_currency, 
+                                target_investment:this.state.target_investment,
+                                source_currency: this.state.source_currency,
+                                source_investment: this.state.source_investment
+                            
+                            }, 
+                            this.updateExchangeRate);
+
+                        this.props.showAlert("You don't have that currency",'error');
+                        //return   
+                    }
+                        this.setState(
+                            {
+                                target_currency:currency, 
+                                target_investment:investment_id,
+                                source_currency: this.state.target_currency,
+                                source_investment: this.state.target_investment
+                            
+                            }, 
+                            this.updateExchangeRate);
+    
                 } else {
                     this.setState({target_currency:currency, target_investment:investment_id}, this.updateExchangeRate);
 
                 }
-
-               
+         
             }
 
-            
         }
            
-        
     }
 
     generateInvestmentList(investments, hidden_investment_id, type){
@@ -266,16 +285,22 @@ class ExchangeForm extends Component {
     }
 
     reverse(){
-        const { source_investment, target_investment, source_currency, target_currency, amount, target_amount } = this.state;
-        this.setState(
-            {
-                source_investment: target_investment, 
-                target_investment: source_investment, 
-                source_currency: target_currency, 
-                target_currency: source_currency, 
-                amount: '',
-                target_amount: ''
-            }, () => {this.updateExchangeRate()})
+        let { source_investment, target_investment, source_currency, target_currency, amount, target_amount } = this.state;
+        
+        if (this.findCurrency(this.props.user_investments, this.state.target_investment) == -1){
+            this.props.showAlert(`You don't have the [${this.state.target_currency}] investment account in your portfolio`,'error');
+        } else {
+            this.setState(
+                {
+                    source_investment: target_investment, 
+                    target_investment: source_investment, 
+                    source_currency: target_currency, 
+                    target_currency: source_currency, 
+                    amount: '',
+                    target_amount: ''
+                }, () => {this.updateExchangeRate()})
+        }
+        
     }
 
     render() {
