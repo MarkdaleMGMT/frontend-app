@@ -1,52 +1,51 @@
 .main-container {
+  display: flex;
+  flex-direction: row;
+  background-color: #ffffff;
+  font-family: "Lato";
+  min-height: 100%;
+  margin: auto;
+  height: -webkit-fill-available;
+
+  .navigation {
     display: flex;
-    flex-direction: row;
-    background-color: #ffffff;
-    font-family: 'Lato';
-    min-height: 100%;
-    margin: auto;
-    height: -webkit-fill-available;
+    flex-direction: column;
+    justify-content: left;
+  }
 
-    .navigation{
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-    }
-   
+  .content-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    // margin-left: 0px;
+    // margin-right: 0px;
+    max-width: 100%;
 
-    .content-wrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        // margin-left: 0px;
-        // margin-right: 0px;
-        max-width: 100%;
-
-        .page-content{
-            // margin-top: 50px;
-            height: 100%;
-            padding: 50px 10%;
-        }
-
-        // min-height: 500px;
-        //width: -webkit-fill-available;
-
-     
+    .page-content {
+      // margin-top: 50px;
+      height: 100%;
+      padding: 50px 10%;
     }
 
-    .footer-container {
-        // display: flex;
-        // position: fixed;
-        // bottom: 0;
-        // right: 0;
-        // width: 100%;
-        min-height: auto;
-        background-color: #373737;
+    // min-height: 500px;
+    //width: -webkit-fill-available;
+  }
 
-    
-    }
+  .footer-container {
+    // display: flex;
+    // position: fixed;
+    // bottom: 0;
+    // right: 0;
+    // width: 100%;
+    min-height: auto;
+    background-color: #373737;
+  }
 }
 
-.auto-height{
-    height: auto;
+.auto-height {
+  height: auto;
+}
+
+.fullscreen-enabled .simple-chart-container {
+  padding-top: 0;
 }
