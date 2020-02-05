@@ -34,7 +34,8 @@ export default class Stats extends Component {
       overall_balance: {},
       user_count: 0,
       time_period_chart: 365,
-      isFull: false
+      isFull: false,
+      averageBalance: 0
     };
 
     this.updateInfo = this.updateInfo.bind(this);
@@ -45,6 +46,9 @@ export default class Stats extends Component {
     );
     this.updataOverallBalance = this.updataOverallBalance.bind(this);
     this.fetchRatesInCAD = this.fetchRatesInCAD.bind(this);
+    // this.updateAverageBalancePerUser = this.updateAverageBalancePerUser.bind(
+    //   this
+    // );
   }
 
   componentDidMount() {
@@ -73,12 +77,19 @@ export default class Stats extends Component {
     this.updateRegisteredUserHistory();
     this.fetchRatesInCAD();
     this.updataOverallBalance();
+    // this.updateAverageBalancePerUser();
   }
 
   updataOverallBalance() {
     getOverviewTableData({ key: "username", value: INVESTMENT_USER })
       .then(res => {
         this.setState({ overall_balance: res.data });
+        let sum = 0;
+        res.data.user_balance.forEach(user => {
+          sum += user.balance_cad;
+        });
+
+        this.setState({ averageBalance: sum });
       })
       .catch(err => {
         //triggers a state change which will refresh all components
@@ -135,7 +146,8 @@ export default class Stats extends Component {
       user_history,
       overall_balance,
       time_period_chart,
-      rates_in_cad
+      rates_in_cad,
+      averageBalance
     } = this.state;
     const TransactionTableMin = FetchDataMin(
       TransactionTable,
@@ -253,10 +265,7 @@ export default class Stats extends Component {
                   >
                     <InfoCard
                       label={"Average Balance Per User"}
-                      value={console.log(
-                        "-----higifusgdfiusdgfiusdgfuisdgf-----",
-                        overall_balance
-                      )}
+                      value={(averageBalance / user_count).toFixed(2) + " CAD"}
                     ></InfoCard>
                   </Col>
                   <Col lg={8} md={8} sm={8} className="auto-height"></Col>
