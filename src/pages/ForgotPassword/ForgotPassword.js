@@ -73,7 +73,7 @@ class ForgotPassword extends Component {
           }
           <form className={ className } noValidate onSubmit={this.handleSubmit}>
             <Row  className="justify-content-center">
-              <Col xs={12} md={8} lg={8}>  
+              <Col xs={12} md={12} lg={12}>  
                 <input name="email" type="email" className="form-control forgotPwd-form-control" id="email" placeholder="Email" required value={email} onChange={this.handleInputChange} pattern={ EMAIL_CHECK }></input>
                 <div className="invalid-feedback text-left ml-1">
                   Incorrect email format.
@@ -88,8 +88,8 @@ class ForgotPassword extends Component {
           </form>
 
             <Row className="forgotPwd-options-container justify-content-center" >
-              <Col xs={5} md={4} lg={4}> <NavLink to="/login" className="signup-link">Sign In</NavLink> </Col>
-              <Col xs={5} md={4} lg={4}>  <NavLink to="/signUp" className="forgot-password-link">Sign Up</NavLink> </Col>
+              <Col> <NavLink to="/login" className="signup-link">Login</NavLink> </Col>
+              <Col>  <NavLink to="/signUp" className="forgot-password-link">Sign Up</NavLink> </Col>
             </Row>
           </Container>
           
