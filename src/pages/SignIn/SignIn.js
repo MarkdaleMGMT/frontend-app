@@ -186,7 +186,7 @@ class SignIn extends Component {
               </form>
               <Row className="signup-options-container">
                   <Col xs={6} md={6} lg={6} ><NavLink to="/signup" className="signup-link">Sign Up</NavLink></Col>
-                  <Col xs={6} md={6} lg={6} ><NavLink to="/forgotpassword" className="forgot-password-link">Forgot</NavLink></Col>
+                  <Col xs={6} md={6} lg={6} ><NavLink to="/forgot" className="forgot-password-link">Forgot</NavLink></Col>
               </Row>
             </Col>
           </Row>     

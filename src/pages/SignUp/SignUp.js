@@ -114,17 +114,17 @@ class SignUp extends Component {
                   </Row>
                 </form>
                 <div className="signup-options-container">
-                    <NavLink to="/signIn" className="signup-link" >Login</NavLink>
-                    <NavLink to="/forgotpassword" className="forgot-password-link">Forgot</NavLink>
+                    <NavLink to="/login" className="signup-link" >Login</NavLink>
+                    <NavLink to="/forgot" className="forgot-password-link">Forgot</NavLink>
                 </div>
             </Col>
           </Row>     
         </Container>
         )
     else
-        return <Redirect to="signin"
+        return <Redirect to="login"
                 to= {{
-                  pathname: '/signin',
+                  pathname: '/login',
                   state: { confirmation_msg }
                 }}
         

@@ -88,7 +88,7 @@ class ForgotPassword extends Component {
           </form>
 
             <Row className="forgotPwd-options-container justify-content-center" >
-              <Col xs={5} md={4} lg={4}> <NavLink to="/signIn" className="signup-link">Sign In</NavLink> </Col>
+              <Col xs={5} md={4} lg={4}> <NavLink to="/login" className="signup-link">Sign In</NavLink> </Col>
               <Col xs={5} md={4} lg={4}>  <NavLink to="/signUp" className="forgot-password-link">Sign Up</NavLink> </Col>
             </Row>
           </Container>
