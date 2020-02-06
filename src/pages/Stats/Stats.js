@@ -165,15 +165,7 @@ export default class Stats extends Component {
               </Row>
               <Row style={{ alignItems: "center" }}>
                 <Col lg={12} md={12} sm={12}>
-                  <SimpleChart
-                    chartTitle={"Total Users"}
-                    data={user_history}
-                    dataType="users"
-                    chartType="area"
-                    index={0}
-                    refreshData={this.updateRegisteredUserHistory}
-                    interval={time_period_chart}
-                  ></SimpleChart>
+                  <ExchangeTable data={rates_in_cad}></ExchangeTable>
                 </Col>
               </Row>
             </Container>
