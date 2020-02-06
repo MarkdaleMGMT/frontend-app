@@ -163,7 +163,7 @@ export default class Stats extends Component {
                   <DoughnutChart data={overall_balance}></DoughnutChart>
                 </Col>
               </Row>
-              <Row style={{ alignItems: "center" }}>
+              <Row style={{ alignItems: "center", paddingTop: "3%" }}>
                 <Col lg={12} md={12} sm={12}>
                   <ExchangeTable data={rates_in_cad}></ExchangeTable>
                 </Col>
