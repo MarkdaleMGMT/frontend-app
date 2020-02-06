@@ -64,12 +64,7 @@ class LeftSidebar extends Component {
         return currencyInvestmentMapping
     }
 
-
-
-
     renderInvestmentsMenu(){
-
-
 
         // rearrange the investments
         const currencyInvestmentMapping = this.getCurrencyInvestmentMapping();
@@ -125,7 +120,7 @@ class LeftSidebar extends Component {
                                     }
                                     }} 
                                 className="nav-link"
-                                // onClick={() => {window.location.reload();}} 
+                                onClick={() => {this.props.toggle()}} 
                                 >{i.investment_name}</Link>
                             </div>
 
@@ -141,8 +136,7 @@ class LeftSidebar extends Component {
                                     }
                                     }} 
                                 className="nav-link"
-                                // onClick={() => {window.location.reload();}} 
-                                >{i.investment_name}</Link>
+s                                >{i.investment_name}</Link>
                             </div>
                            
                             </li>)
@@ -194,6 +188,7 @@ class LeftSidebar extends Component {
                     {/* <i class="fas fa-steering-wheel"></i> */}
                     <Link to="/affiliate" className="nav-link-top">Affiliate</Link>
                 </li>
+
                 <li className="nav-item">
                     <i className="fa fa-exchange"></i>
                     <Link to="/payments" className="nav-link-top">Payments</Link>
@@ -219,7 +214,7 @@ class LeftSidebar extends Component {
 
                 {level != null &&
                 <div>
-                <li className="nav-item" onClick={this.props.logout}>
+                <li className="nav-item">
                     <i className="fa fa-sign-out"></i>
                     <a href="/" className="nav-link-top">Logout</a>
                 </li>

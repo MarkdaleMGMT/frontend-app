@@ -36,7 +36,7 @@ export function filterRow(row, query){
 
   // return true
   return ((new Date(row.time).toLocaleDateString().includes(query)) ||
-  (String(row.amount_cad.toFixed(2)).includes(query))||
+  (String(row.amount_cad).includes(query))||
   (String(row.amount).includes(query)) ||
   (String(row.account_balance).includes(query)) ||
   (row.description.toLowerCase().includes(query)) ||  (row.investment_name.toLowerCase().includes(query)))

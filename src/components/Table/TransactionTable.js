@@ -72,7 +72,7 @@ export default class TransactionTable extends Component {
             },
             { id: 'amount_cad', Header: 'Amount in CAD',
                 accessor: (data) => {
-                    return '$' + formatAmount((+data.amount_cad).toFixed(2),true);
+                    return '$' + formatAmount(data.amount_cad,true);
                 },
                 sortMethod: (a, b) => {
 
@@ -116,7 +116,6 @@ export default class TransactionTable extends Component {
                 <div className="reacttable-container">
                     <div className="transaction-container">
                         <div className="table-title">{ title || "Transaction History"}</div>
-                        <div className="table-filters">
                             <Row style={{width:"100%", justifyContent: "space-between"}}>
                                 <Col xs={6} md={6} lg={6}>
                                 <div>
@@ -133,7 +132,7 @@ export default class TransactionTable extends Component {
                                 </form>                                
                                 </div>
                                 </Col>
-                                <Col xs={6} md={4} lg={3}>
+                                <Col xs={6} md={6} lg={4}>
                                 <div className="search-container">
                                 <div className="form-group">
                                     {/* <input name="search" style={{width:"100%"}} className="form-control trasaction-input-control" placeholder="Search" value={search} onChange={this.handleChange}></input> */}
@@ -143,7 +142,6 @@ export default class TransactionTable extends Component {
                                 </Col>
 
                             </Row>
-                        </div>
                     </div>
                     <div>
                        <ReactTable 
@@ -153,6 +151,12 @@ export default class TransactionTable extends Component {
                         columns={columns}
                         pageSize={entries}
                         showPagination={true}
+                        defaultSorted={[
+                            {
+                              id: "date",
+                              desc: true
+                            }
+                          ]}
                         resizable={true}
                         minRows={0}
                         />

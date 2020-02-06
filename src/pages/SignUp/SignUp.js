@@ -53,7 +53,7 @@ class SignUp extends Component {
       const { code, username, password, email} = this.state;
       axios.post(FRONTEND_API + "signup", {code, username, password, email})
       .then((res)=>{
-          if(res.data.code === 'Signup successful, please check your inbox to confirm your e-mail address - might go to "junk/spam" folder')
+          //if(res.data.code === 'Signup successful, please check your inbox to confirm your e-mail address - might go to "junk/spam" folder')
             this.setState({ isSuccess: true , confirmation_msg:{show:true, msg:res.data.code}});
 
 
@@ -114,17 +114,17 @@ class SignUp extends Component {
                   </Row>
                 </form>
                 <div className="signup-options-container">
-                    <NavLink to="/signIn" className="signup-link" >Login</NavLink>
-                    <NavLink to="/forgotpassword" className="forgot-password-link">Forgot</NavLink>
+                    <NavLink to="/login" className="signup-link" >Login</NavLink>
+                    <NavLink to="/forgot" className="forgot-password-link">Forgot</NavLink>
                 </div>
             </Col>
           </Row>     
         </Container>
         )
     else
-        return <Redirect to="signin"
+        return <Redirect to="login"
                 to= {{
-                  pathname: '/signin',
+                  pathname: '/login',
                   state: { confirmation_msg }
                 }}
         

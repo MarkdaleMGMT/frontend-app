@@ -98,7 +98,7 @@ class TransferModal extends Component {
                     <div className="form">
                         <form onSubmit={this.executeTransfer}>
                             <Row className="justify-content-center">
-                                <Col  xs={8} md={8} lg={4}>
+                                <Col  xs={8} md={8} lg={8}>
                                 {   showInvestments && 
                                 <div className="form-group">
                                     <select className="form-control Trans-form-control" name="investment_id" required  value={investment_id} onChange={this.handleInputChange}>
@@ -114,7 +114,7 @@ class TransferModal extends Component {
                                 </Col>
                             </Row>
                             <Row className="justify-content-center">
-                                <Col xs={6} md={6} lg={3}>
+                                <Col xs={6} md={6} lg={6}>
                                     <div>
                                         <button type="submit" name="transfer" className="btn btn-info transfer-btn" >Global Update</button>
                                     </div>

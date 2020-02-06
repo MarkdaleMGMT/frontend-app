@@ -10,7 +10,7 @@ import {
     ExchangeForm,
     SimpleChart } from './../../components';
 
-import { getExchangeRates, getRatesInCAD, getRatesHistory } from '../../service/axios-service'
+import { getExchangeRates, getRatesInCAD, getRatesHistory, getNewRatesHistory } from '../../service/axios-service'
 import './Exchange.scss'
 import { stat } from 'fs';
 
@@ -46,9 +46,9 @@ export default class Exchange extends Component {
     }
 
     componentDidMount(){
-    
-        this.updateInfoTimer = setInterval(() => this.updateInfo(), 60*1000);
+        //this.updateInfoTimer = setInterval(() => this.updateInfo(), 60*1000);
         this.updateInfo();
+        //this.setState({rates_history: getNewRatesHistory})
     }
 
     componentWillUnmount(){
@@ -71,18 +71,17 @@ export default class Exchange extends Component {
     }
 
     updateRateHistory(newInterval){
-
+        console.log(newInterval)
         let time_period_days = this.state.time_period_chart;
 
         if(newInterval){
-            this.setState({ time_period_chart: newInterval });
-            time_period_days = newInterval;
+            this.setState({ time_period_chart:parseInt(newInterval) });
+            time_period_days = parseInt(newInterval);
         }
 
-        getRatesHistory({ time_period_days: parseInt(time_period_days) })
+        getNewRatesHistory({ time_period_days: time_period_days })
         .then((res)=>{
             console.log("rates_history ", res.data.rates_history );
-            
             this.setState({rates_history: res.data.rates_history});
         })
         .catch((err)=>{

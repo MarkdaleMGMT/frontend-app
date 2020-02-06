@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row, Col, Button } from 'react-bootstrap';
 
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -29,7 +29,6 @@ class ExchangeForm extends Component {
 
     constructor(props){
 
-        console.log("props", props)
         super(props);
         this.state = {
             source_investment:'',
@@ -46,6 +45,8 @@ class ExchangeForm extends Component {
         this.findCurrency = this.findCurrency.bind(this);
         this.executeExchange = this.executeExchange.bind(this);
         this.updateExchangeRate = this.updateExchangeRate.bind(this);
+        this.reverse = this.reverse.bind(this);
+        this.checkOutput = this.checkOutput.bind(this);
     }
 
     componentDidMount(){
@@ -53,8 +54,7 @@ class ExchangeForm extends Component {
         const username = localStorage.getItem("username");
         this.props.fetchUserInvestments(username);
         this.props.fetchAllInvestments();
-
-    
+       
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -95,19 +95,29 @@ class ExchangeForm extends Component {
 
         });
 
-        // console.log("matchingInvestment", matchingInvestment)
-
-        return matchingInvestment[0].currency;
+        console.log("matchingInvestment", matchingInvestment)
+        if (matchingInvestment.length > 0){
+            return matchingInvestment[0].currency;
+        } else {
+            return -1;
+        }
+        
 
     }
-
     
     updateExchangeRate() {
-
         const { source_currency, target_currency } = this.state;
 
         console.log("this.props.exchange_rates", this.props.exchange_rates);
-        console.log(source_currency, target_currency);
+        console.log("src: " + source_currency)
+        console.log("srcnull: " + !source_currency)
+        //There are cases when source_currency is null at the first time
+        if (!source_currency) {
+           console.log(this.props.user_investments)
+          // source_currency = this.props.user_investments[0].currency
+        }
+        console.log("target " + target_currency)
+        //console.log(source_currency, target_currency);
 
         let exchange_rate = { bid:null, ask:null, mid:null};
 
@@ -132,10 +142,7 @@ class ExchangeForm extends Component {
                     exchange_rate = new_exchange_rate;
                 }
             }
-        }
-
-        // console.log("exchange rate ",exchange_rate)
-         
+        }         
             
         this.setState({ exchange_rate}, ()=>{
             const { amount, exchange_rate} = this.state;
@@ -150,7 +157,7 @@ class ExchangeForm extends Component {
 
     handleInputChange(e){
      
-        // this.updateExchangeRate();
+       // this.updateExchangeRate();
         const { exchange_rate } = this.state;
         
         this.setState({
@@ -161,62 +168,106 @@ class ExchangeForm extends Component {
             //calculate the target amount 
             // this.setState({target_amount: (e.target.value * exchange_rate.mid) })
             console.log("e.target.value ",e.target.value);
+            console.log(exchange_rate)
             console.log("exchange_rate.bid ",exchange_rate.bid);
             
             console.log("target_amount: ", e.target.value * exchange_rate.bid);
+            let val = this.checkOutput(e.target.value * exchange_rate.bid)
             
-            this.setState({target_amount: parseFloat((e.target.value * exchange_rate.bid).toFixed(8)) })
+            this.setState({target_amount: isNaN(val) ? val : parseFloat((val).toFixed(8)) })
         }
 
         else if(e.target.name == "target_amount"){
 
             //calculate the source amount 
             // this.setState({amount: (e.target.value * 1/exchange_rate.mid) })
-            this.setState({amount: parseFloat((e.target.value * 1/exchange_rate.ask).toFixed(8)) })
+            let val = this.checkOutput(e.target.value * 1/exchange_rate.ask)
+            this.setState({amount: isNaN(val)? val : parseFloat((val).toFixed(8)) })
         }
 
         else{
         //source currency or target currency is changed
 
-
-
-
             let investment_id = e.target.value;
             //source or target investments change check if the values are the same, if not then get a new rate 
             if(e.target.name == "source_investment"){
-
                
                 // console.log([e.target.name], e.target.getAttribute("currency"));
                 
-                
                 let currency = this.findCurrency(this.props.user_investments, investment_id);
                 console.log("currency", currency);
-                this.setState({source_currency: currency , source_investment: investment_id}, this.updateExchangeRate);
+
+                if (currency == this.state.target_currency) { // start switch
+
+                    this.setState(
+                        {
+                            source_currency: currency, 
+                            source_investment: investment_id,
+                            target_currency: this.state.source_currency,
+                            target_investment: this.state.source_investment
+                        }, 
+                        this.updateExchangeRate);
+
+                } else {
+                    this.setState({source_currency: currency , source_investment: investment_id}, this.updateExchangeRate);
+
+                }
+
             }
             else{
-
                 let currency = this.findCurrency(this.props.investments, investment_id);
                 console.log("currency", currency);
-                this.setState({target_currency:currency, target_investment:investment_id}, this.updateExchangeRate);
+                if (currency == this.state.source_currency){
+
+                    //If the user does not have the investment, prevent them from switching currencies
+                    if (this.findCurrency(this.props.user_investments, this.state.target_investment) == -1){
+  
+                        this.setState(
+                            {
+                                target_currency:this.state.target_currency, 
+                                target_investment:this.state.target_investment,
+                                source_currency: this.state.source_currency,
+                                source_investment: this.state.source_investment
+                            
+                            }, 
+                            this.updateExchangeRate);
+
+                        this.props.showAlert("You don't have that currency",'error');
+                        //return   
+                    }
+                        this.setState(
+                            {
+                                target_currency:currency, 
+                                target_investment:investment_id,
+                                source_currency: this.state.target_currency,
+                                source_investment: this.state.target_investment
+                            
+                            }, 
+                            this.updateExchangeRate);
+    
+                } else {
+                    this.setState({target_currency:currency, target_investment:investment_id}, this.updateExchangeRate);
+
+                }
+         
             }
 
-            
         }
            
-        
     }
 
     generateInvestmentList(investments, hidden_investment_id, type){
-
-        
-
-        
+        console.log(type)
+        console.log(investments)
         const investmentsOptions = investments.map( (investment, idx) =>{
 
             //set the default source currency
             if(idx==0 ){
-                if(type=="source" && this.state.source_currency=='' && this.state.source_investment=='')
-                    this.setState({source_currency:investment.currency, source_investment:investment.investment_id});
+                if(type=="source" && this.state.source_currency=='' && this.state.source_investment==''){
+                    console.log("TERE")
+                    this.setState({source_currency: investment.currency, source_investment:investment.investment_id}, ()=> {this.updateExchangeRate()});
+
+                }
             
             }
 
@@ -228,21 +279,37 @@ class ExchangeForm extends Component {
                 
             }
 
-
-
-            if(investment.investment_id == hidden_investment_id){
-                return <option style={{display:"none"}} currency={investment.currency} key={investment.investment_id} value={investment.investment_id}>{investment.investment_name + " ("+ investment.currency+")"}</option>
-            }
-            else{
-                return <option  currency={investment.currency}  key={investment.investment_id} value={investment.investment_id}>{investment.investment_name + " ("+ investment.currency+")"}</option>
-            }
+            return <option  currency={investment.currency}  key={investment.investment_id} value={investment.investment_id}>{investment.investment_name + " ("+ investment.currency+")"}</option>
             
         });
 
-        
-
         return investmentsOptions;
 
+    }
+
+    reverse(){
+        let { source_investment, target_investment, source_currency, target_currency, amount, target_amount } = this.state;
+        
+        if (this.findCurrency(this.props.user_investments, this.state.target_investment) == -1){
+            this.props.showAlert(`You don't have the [${this.state.target_currency}] investment account in your portfolio`,'error');
+        } else {
+            this.setState(
+                {
+                    source_investment: target_investment, 
+                    target_investment: source_investment, 
+                    source_currency: target_currency, 
+                    target_currency: source_currency, 
+                    amount: '',
+                    target_amount: ''
+                }, () => {this.updateExchangeRate()})
+        }
+        
+    }
+
+    checkOutput(input){
+        if (input < 0 && !isNaN(input)) return "Negative Number"
+        else if (isNaN(input)) return "Not A Number"
+        else return input
     }
 
     render() {
@@ -263,6 +330,12 @@ class ExchangeForm extends Component {
                 <div className="form-wrapper justify-content-center">
                     <div className="form justify-content-center">
                         <form  onSubmit={this.executeExchange}>
+
+                        {/* Button For Yael */}
+                        <Button variant="outline-dark" onClick={()=>{this.reverse()}}>
+                            <i className="fa fa-exchange"></i>
+                        </Button>
+       
                         <Row className="justify-content-center">
                         <Row className="move-buy">Sell</Row>
                         <Col xs={6} md={2} lg={3} className="form-group no-padding">

@@ -19,11 +19,7 @@ export { default as ExchangeTable } from './Table/ExchangeTable';
 export { default as DepositModal } from './DepositModal/DepositModal';
 export { default as GlobalUpdateModal } from './GlobalUpdateModal/GlobalUpdateModal';
 export { default as WithdrawModal } from './WithdrawModal/WithdrawModal';
-
-export { default as WelcomeSlider} from './WelcomeSlider/WelcomeSlider';
-export { default as PaymentsTable} from './Table/PaymentsTable';
-
 export { default as TransferModal } from './TransferModal/TransferModal';
 export { default as ExchangeForm } from './ExchangeForm/ExchangeForm';
-
-
+export { default as WelcomeSlider} from './WelcomeSlider/WelcomeSlider';
+export { default as PaymentsTable} from './Table/PaymentsTable';

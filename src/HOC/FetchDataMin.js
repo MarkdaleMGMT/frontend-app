@@ -32,8 +32,6 @@ export default function FetchDataMin(WrappedComponents, axios_services, data){
         }
         
         componentDidMount(){
-
-            //create a timer to refresh the data
              this.getData();
              this.fetchDataTimer = this.setFetchDataInterval();
         }

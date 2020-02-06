@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Row, Col, Button} from 'react-bootstrap';
+
+import { Container, Row, Col, Navbar, NavbarBrand, Button, Collapse, NavDropdown } from 'react-bootstrap';
+import { AnnotationLabel } from 'react-annotation';
+
 import PropTypes from 'prop-types';
 import './Dashboard.scss';
 import Fullscreen from "react-full-screen";
@@ -7,10 +10,12 @@ import Fullscreen from "react-full-screen";
 import FetchDataMin from '../../HOC/FetchDataMin'
 import {    getOverviewTableData,
             getBalanceHistory,
-            getTransactionHistory, 
-            } from '../../service/axios-service'
+            getTransactionHistory,
+            getNewBalanceHistory,
+            getNewTransactionHistory } from '../../service/axios-service'
 import { user, balance, account} from '../../service/body-data'
 import { INVESTMENT_USER } from '../../config/config'
+// import { AnnotationLabel, EditableAnnotation, ConnectorElbow, ConnectorEndDot, Note } from 'react-annotation'
 
 import {    LeftSidebar,
             ResponsiveSidebar,
@@ -45,11 +50,8 @@ export default class Dashboard extends Component{
             isAlertVisible : false,
             alertType:'',
             alertMessage:'',
-
-
-            showOrientation: parseInt(localStorage.getItem("new_user")) == 1
-
-
+            showOrientation: parseInt(localStorage.getItem("new_user")) == 1,
+            isFull: false
         };
 
        this.showAlert = this.showAlert.bind(this);
@@ -103,22 +105,34 @@ export default class Dashboard extends Component{
         if(level == 0)
             username = INVESTMENT_USER
 
-        if(showOrientation && level!=0)
-        return <WelcomeSlider history={this.props.history} close={this.hideWelcomePage}></WelcomeSlider>
+        // if(showOrientation && level!=0)
+        // return 
 
         const ChartTableMin = FetchDataMin(ChartTable, getOverviewTableData, {"key":"username", "value":username});
         const DoughnutChartMin = FetchDataMin(DoughnutChart, getOverviewTableData, {"key":"username", "value":username});
         const LineChartMin = FetchDataMin(LineChart, getBalanceHistory, {username , time_period_days:linechart_time_days, chart:true });
-        console.log("TABLE 0")
-        console.log(getTransactionHistory)
 
-        const TransactionTableMin = FetchDataMin(TransactionTable, getTransactionHistory, level == 0 ? {} : {username});
+        const TransactionTableMin = FetchDataMin(TransactionTable, getNewTransactionHistory, level == 0 ? {} : {username});
 
 
         
 
         return (
             <div >
+            {
+             (showOrientation && level!=0) && 
+             (<div className="page-overlay">
+            
+                <WelcomeSlider
+                show={showOrientation}
+                onHide={this.hideWelcomePage} 
+                history={this.props.history} close={this.hideWelcomePage}></WelcomeSlider>
+            
+            </div>)
+        
+        }
+
+
             <div className="navigation d-lg-none d-sm">
                     <ResponsiveSidebar  history={this.props.history} />
             </div>
@@ -141,9 +155,11 @@ export default class Dashboard extends Component{
             
             <div className="dashboard-container">
 
+
                 <div className="expandButton d-none d-lg-block">
                     <Button style={{border:"none"}} variant="outline-dark" className="fa fa-expand" onClick={this.goFull}></Button>
                 </div>
+
 
                 <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
                     
@@ -153,9 +169,12 @@ export default class Dashboard extends Component{
 
                 <Container fluid={true} className="content-wrapper " id="content-div">
                     <Container class="row form-group">
+                    
                     <Row >
-                        <Col></Col>
-                        <Col></Col>
+                        <Col> 
+                        
+                        </Col>
+                        
                     </Row>
 
                     <Row style={{ alignItems: "center"}} >
@@ -191,6 +210,8 @@ export default class Dashboard extends Component{
                 
                 
             </div>    
+
+            
             </div>    
         );
     }

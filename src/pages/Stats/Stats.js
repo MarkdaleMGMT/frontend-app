@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import FetchDataMin from '../../HOC/FetchDataMin'
 import {  
     ResponsiveSidebar, 
     LeftSidebar,
@@ -11,7 +12,11 @@ import {
     DoughnutChart,
     ExchangeTable,
     ChartTable } from './../../components';
-import { getTransactionHistory, getTotalUser, getDailyRegisteredUsers, getOverviewTableData} from '../../service/axios-service';
+import { 
+        getNewTransactionHistory, 
+        getTotalUser, 
+        getDailyRegisteredUsers, 
+        getOverviewTableData} from '../../service/axios-service';
 import { INVESTMENT_USER } from '../../config/config';
 import { getRatesInCAD } from '../../service/axios-service'
 import './Stats.scss'
@@ -43,12 +48,12 @@ export default class Stats extends Component {
     }
 
     componentDidMount(){
-        this.updateInfoTimer = setInterval(() => this.updateInfo(), 60*1000);
+       // this.updateInfoTimer = setInterval(() => this.updateInfo(), 60*1000);
         this.updateInfo();
     }
 
     componentWillUnmount(){
-        clearInterval(this.updateInfoTimer);
+       // clearInterval(this.updateInfoTimer);
     }
 
     fetchRatesInCAD(){
@@ -64,7 +69,7 @@ export default class Stats extends Component {
     }
     updateInfo(){
         this.updateUserCount();
-        this.updateTxHistory();
+        //this.updateTxHistory();
         this.updateRegisteredUserHistory();
         this.fetchRatesInCAD();
         this.updataOverallBalance();
@@ -92,7 +97,7 @@ export default class Stats extends Component {
         });
     }
     updateTxHistory(){
-        getTransactionHistory()
+        getNewTransactionHistory()
         .then((res)=>{
             
             this.setState({tx_history: res.data});
@@ -130,6 +135,8 @@ export default class Stats extends Component {
   
         // const { isAlertVisible, alertType, alertMessage, account_details, account_tx_history, account_balance_history, linechart_time_days } = this.state;
         const { tx_history, user_count, user_history, overall_balance,  time_period_chart, rates_in_cad} = this.state;
+        const TransactionTableMin = FetchDataMin(TransactionTable, getNewTransactionHistory, {});
+
 
         return (
             <div>
@@ -147,7 +154,7 @@ export default class Stats extends Component {
                     </Col>        
                 </Row>
                 <Row style={{alignContent: "center", alignItems: "center"}}>
-                            <Col lg={6} md={12} sm={12} ><ChartTable data={overall_balance}></ChartTable></Col>
+                            <Col lg={6} md={12} sm={12} ><TransactionTableMin></TransactionTableMin></Col>
                             <Col lg={6} md={12} sm={12} className=""><DoughnutChart data={overall_balance}></DoughnutChart></Col>
                 </Row>
                 </Container>
@@ -175,7 +182,7 @@ export default class Stats extends Component {
                             <ExchangeTable data={rates_in_cad}></ExchangeTable>
                         </Row>
                         <Row>
-                            <TransactionTable data={tx_history} title={"Site Wide Transactions"} mask={true}></TransactionTable>
+                            <TransactionTableMin title={"Site Wide Transactions"} mask={true}></TransactionTableMin>
                         </Row>
                         <Row>
                             <SimpleChart chartTitle={"Total Users"} data={user_history} dataType="users" chartType="area" index={0} refreshData={this.updateRegisteredUserHistory} interval={time_period_chart}></SimpleChart>
