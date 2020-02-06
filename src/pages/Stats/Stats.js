@@ -30,6 +30,7 @@ export default class Stats extends Component {
     this.state = {
       rates_in_cad: [],
       user_history: [],
+      averageBalanceHistory: [],
       tx_history: {},
       overall_balance: {},
       user_count: 0,
@@ -83,13 +84,11 @@ export default class Stats extends Component {
   updataOverallBalance() {
     getOverviewTableData({ key: "username", value: INVESTMENT_USER })
       .then(res => {
-        this.setState({ overall_balance: res.data });
         let sum = 0;
         res.data.user_balance.forEach(user => {
           sum += user.balance_cad;
         });
-
-        this.setState({ averageBalance: sum });
+        this.setState({ overall_balance: res.data, averageBalance: sum });
       })
       .catch(err => {
         //triggers a state change which will refresh all components
@@ -144,6 +143,7 @@ export default class Stats extends Component {
       tx_history,
       user_count,
       user_history,
+      averageBalanceHistory,
       overall_balance,
       time_period_chart,
       rates_in_cad,
@@ -230,6 +230,17 @@ export default class Stats extends Component {
                     chartTitle={"Total Users"}
                     data={user_history}
                     dataType="users"
+                    chartType="area"
+                    index={0}
+                    refreshData={this.updateRegisteredUserHistory}
+                    interval={time_period_chart}
+                  ></SimpleChart>
+                </Row>
+                <Row>
+                  <SimpleChart
+                    chartTitle={"Average Balance per User"}
+                    data={averageBalanceHistory}
+                    dataType="averageBalance"
                     chartType="area"
                     index={0}
                     refreshData={this.updateRegisteredUserHistory}
