@@ -155,7 +155,13 @@ export default class Stats extends Component {
         >
           {this.state.isFull && (
             <Container fluid={true} className="fullScreen">
-              <Row style={{ alignContent: "center", alignItems: "center" }}>
+              <Row
+                style={{
+                  alignContent: "center",
+                  alignItems: "center",
+                  paddingTop: "3%"
+                }}
+              >
                 <Col lg={6} md={12} sm={12}>
                   <ChartTable data={overall_balance}></ChartTable>
                 </Col>
