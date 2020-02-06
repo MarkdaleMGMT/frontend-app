@@ -54,8 +54,39 @@
     padding: 0px !important;
 }
 
-.move-buy{
+
+
+.move-sell{
     position: relative;
     bottom: 1.5em;
     left: 2em
+}
+
+@media (min-width:0px) and (max-width:500px){
+.btn-outline-dark {
+    position: relative;
+    top: 100px;
+    right: 25%;
+}
+
+.move-buy{
+    position: relative; 
+    top: 2em;
+    right: 90%;
+}
+
+}
+
+@media (min-width:768px) {
+    .move-buy{
+        position: relative;
+        bottom: 1.5em;
+        left: 2em
+    }
+
+    .btn-outline-dark {
+        position: relative;
+        bottom: .2em;
+        
+    }
 }
