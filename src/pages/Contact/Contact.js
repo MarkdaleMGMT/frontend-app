@@ -8,8 +8,9 @@ import {
 } from './../../components';
 import { Container, Row, Col, Button } from 'react-bootstrap';
 import './Contact.scss'
-import Axios from 'axios';
-import { FRONTEND_API } from "../../config/config";
+// import Axios from 'axios';
+// import { FRONTEND_API } from "../../config/config";
+import { postContact } from '../../service/axios-service'
 
 
 
@@ -19,8 +20,13 @@ export default class Contact extends Component {
         this.state = {
             name: '',
             email: '',
-            message: ''
+            message: '',
+            isAlertVisible : false,
+            alertType:'',
+            alertMessage:'',
         }
+        this.showAlert = this.showAlert.bind(this);
+        this.dismissAlert = this.dismissAlert.bind(this);
     }
 
     onHandleChange(event) {
@@ -29,25 +35,29 @@ export default class Contact extends Component {
             email: event.target.value.email,
             message: event.target.value.message
         })
-        console.log(event.target.value);
-        console.log("on handle change")
+      //  console.log(event.target.value);
+      //  console.log("on handle change")
     }
 
     handleSubmit(event) {
         event.preventDefault();
-        console.log(event.target);
-        Axios({
-            method: "POST",
-            url: FRONTEND_API + "/contact",
-            data: this.state
-        }).then((response) => {
-            if (response.data.status === "success") {
-                alert("email sent!!!");
-                this.resetForm();
-            } else if (response.data.status === "fail") {
-                alert("email not sent");
-            }
-        })
+        //console.log(event.target);
+        console.log("MEMES")
+        postContact({name: this.state.name, email: this.state.email, body: this.state.message})
+        .then( (res)=> {console.log(res); console.log("MEMES")})
+        .catch((err) => {console.log(err.response.data.code+": "+err.response.data.message)})
+        // Axios({
+        //     method: "POST",
+        //     url: FRONTEND_API + "/contact",
+        //     data: this.state
+        // }).then((response) => {
+        //     if (response.data.status === "success") {
+        //         alert("email sent!!!");
+        //         this.resetForm();
+        //     } else if (response.data.status === "fail") {
+        //         alert("email not sent");
+        //     }
+        // })
     }
 
     resetForm() {
@@ -57,9 +67,19 @@ export default class Contact extends Component {
             message: ''
         })
     }
-    render() {
-        return (
 
+    showAlert(message, type){
+        this.setState({ alertMessage:message, alertType:type, isAlertVisible:true });
+    }
+
+    dismissAlert(){
+        this.setState({ isAlertVisible: false });
+    }
+
+    render() {
+        let {isAlertVisible, alertType, alertMessage} = this.state
+
+        return (
             <div style={{ height: "inherit" }}>
                 <div className="navigation d-lg-none d-sm">
                     <ResponsiveSidebar history={this.props.history} />
@@ -69,6 +89,7 @@ export default class Contact extends Component {
                         <LeftSidebar history={this.props.history} />
                     </div>
                     <Container className="content-wrapper" id="content-div" style={{ paddingTop: "70px" }}>
+                    {/* <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar> */}
 
                         <Row style={{ marginBottom: "auto" }} className="justify-content-center">
                             <Col lg={12} md={12} xs={12}>
