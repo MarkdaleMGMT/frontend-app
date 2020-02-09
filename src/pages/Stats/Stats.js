@@ -17,12 +17,14 @@ import {
   getNewTransactionHistory,
   getTotalUser,
   getDailyRegisteredUsers,
+  getDailyAverageBalance,
   getOverviewTableData
 } from "../../service/axios-service";
 import { INVESTMENT_USER } from "../../config/config";
 import { getRatesInCAD } from "../../service/axios-service";
 import "./Stats.scss";
 import Fullscreen from "react-full-screen";
+import { formatAmount, filterRow } from "../../util/util";
 
 export default class Stats extends Component {
   constructor(props) {
@@ -126,6 +128,14 @@ export default class Stats extends Component {
     getDailyRegisteredUsers({ time_period_days })
       .then(res => {
         this.setState({ user_history: res.data.stats });
+      })
+      .catch(err => {
+        //triggers a state change which will refresh all components
+        // this.showAlert(err.response.data.code,'error');
+      });
+    getDailyAverageBalance({ time_period_days })
+      .then(res => {
+        this.setState({ averageBalanceHistory: res.data });
       })
       .catch(err => {
         //triggers a state change which will refresh all components
@@ -276,7 +286,12 @@ export default class Stats extends Component {
                   >
                     <InfoCard
                       label={"Average Balance Per User"}
-                      value={(averageBalance / user_count).toFixed(2) + " CAD"}
+                      value={
+                        formatAmount(
+                          (averageBalance / user_count).toFixed(2),
+                          true
+                        ) + " CAD"
+                      }
                     ></InfoCard>
                   </Col>
                   <Col lg={8} md={8} sm={8} className="auto-height"></Col>

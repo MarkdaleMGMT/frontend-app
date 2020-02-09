@@ -38,7 +38,8 @@ export default class SimpleChart extends Component {
       return lineChartSingleSeries(this.props.investmentName, data, interval);
     else if (dataType === "rates") return formatRatesHistoryData(data);
     else if (dataType === "averageBalance")
-      return formatUserHistoryData("Average Balance", data);
+      console.log("sdhasdfyasdyfasydafsd-----", data);
+    return formatUserHistoryData("Average Balance", data);
   }
 
   getChartOptions(chartData, chartType, dataType, interval, color_index) {
