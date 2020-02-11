@@ -30,6 +30,7 @@ export default class Contact extends Component {
         this.dismissAlert = this.dismissAlert.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onHandleInputChange = this.onHandleInputChange.bind(this)
+        this.resetForm =  this.resetForm.bind(this)
     }
 
     onHandleInputChange(e) {
@@ -39,20 +40,25 @@ export default class Contact extends Component {
     }
 
     handleSubmit(event) {
+        event.preventDefault();
+        console.log(this.state.message)
         postContact(
             {"email": this.state.email,
              "name": this.state.name, 
              "subject": this.state.subject,
-             "body": this.state.message})
-        .then(() => {})
-        .catch(() => {})
+             "message": this.state.message})
+        .then((res) => {
+            this.resetForm()}
+            )
+        .catch((err) => {})
     }
 
     resetForm() {
         this.setState({
             name: '',
             email: '',
-            message: ''
+            message: '',
+            subject: ''
         })
     }
 
@@ -88,7 +94,7 @@ export default class Contact extends Component {
                                         </div>
                                         <div className="contact">
                                             <Container>
-                                                <form id="contact-form" onSubmit={this.handleSubmit} method="POST">
+                                                <form id="contact-form" onSubmit={this.handleSubmit}>
                                                     <div className="form-group">
                                                         <input name="name" type="text" className="form-control contact-form-control" placeholder="Name" value={this.state.name} onChange={this.onHandleInputChange} />
                                                     </div>
