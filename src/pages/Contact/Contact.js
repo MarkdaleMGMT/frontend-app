@@ -39,6 +39,14 @@ export default class Contact extends Component {
           })
     }
 
+    showAlert(message, type){
+        this.setState({ alertMessage:message, alertType:type, isAlertVisible:true });
+    }
+
+    dismissAlert(){
+        this.setState({ isAlertVisible: false });
+    }
+
     handleSubmit(event) {
         event.preventDefault();
         console.log(this.state.message)
@@ -48,9 +56,13 @@ export default class Contact extends Component {
              "subject": this.state.subject,
              "message": this.state.message})
         .then((res) => {
+            this.showAlert(res.data.code,'success');
             this.resetForm()}
             )
-        .catch((err) => {})
+        .catch((err) => {
+            this.showAlert(err.response.data.code+": "+err.response.data.message,'error');
+
+        })
     }
 
     resetForm() {
@@ -83,7 +95,7 @@ export default class Contact extends Component {
                         <LeftSidebar history={this.props.history} />
                     </div>
                     <Container className="content-wrapper" id="content-div" style={{ paddingTop: "70px" }}>
-                    {/* <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar> */}
+                    <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
 
                         <Row style={{ marginBottom: "auto" }} className="justify-content-center">
                             <Col lg={12} md={12} xs={12}>
