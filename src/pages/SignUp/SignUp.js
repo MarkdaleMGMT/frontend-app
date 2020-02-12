@@ -61,7 +61,7 @@ class SignUp extends Component {
       .catch((err)=>{
         this.setState({
           // Here, I used the message returned from server for user. Or customize a message for user.
-          err_msg: {err: true, msg:`${err.response.data.code}: ${err.response.data.message}.`},
+          err_msg: {err: true, msg:`${err.response.data.code}: ${err.response.data.message}`},
           className: 'needs-validation'
         });
       })
