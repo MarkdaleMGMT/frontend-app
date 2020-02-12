@@ -149,23 +149,22 @@ export default class Dashboard extends Component {
               history={this.props.history}
               close={this.hideWelcomePage}
             ></WelcomeSlider>
-            <div className="navigation d-lg-none d-sm">
+            {/* <div className="navigation d-lg-none d-sm">
               <ResponsiveSidebar
                 history={this.props.history}
                 show={showOrientation}
               />
-            </div>
+            </div> */}
           </div>
         )}
-        {!showOrientation && level === 0 && (
-          <div className="navigation d-lg-none d-sm">
-            <ResponsiveSidebar
-              history={this.props.history}
-              show={showOrientation}
-            />
-          </div>
+        {/* {!showOrientation && level === 0 && ( */}
+        <div className="navigation d-lg-none d-sm">
+          <ResponsiveSidebar
+            history={this.props.history}
+            show={showOrientation}
+          />
+        </div>
         )}
-
         <Fullscreen
           enabled={this.state.isFull}
           onChange={isFull => this.setState({ isFull })}
@@ -188,7 +187,6 @@ export default class Dashboard extends Component {
             </Container>
           )}
         </Fullscreen>
-
         <div className="dashboard-container">
           <div className="expandButton d-none d-lg-block">
             <Button

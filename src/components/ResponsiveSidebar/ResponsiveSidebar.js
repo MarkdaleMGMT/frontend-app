@@ -32,9 +32,9 @@ class ResponsiveSidebar extends Component {
     const height = document.getElementById("nav-bar").clientHeight;
     this.setState({ height });
 
-    if (this.props.show) {
-      this.setState({ open: true });
-    }
+    // if (this.props.show) {
+    //   this.setState({ open: true });
+    // }
   }
 
   toggle() {
