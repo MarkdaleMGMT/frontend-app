@@ -11,7 +11,7 @@
 //         flex-direction: column;
 //         justify-content: left;
 //     }
-   
+
 
 //     .content-wrapper{
 //         display: flex;
@@ -24,7 +24,7 @@
 //         // min-height: 500px;
 //         //width: -webkit-fill-available;
 
-     
+
 //     }
 
 //     .footer-container {
@@ -36,14 +36,15 @@
 //         min-height: 8vh;
 //         background-color: #373737;
 
-    
+
 //     }
 // }
 
 
-.main-container{
+.main-container {
     height: -webkit-fill-available;
 }
+
 
 .dashboard-container {
     display: flex;
@@ -51,26 +52,26 @@
     background-color: #ffffff;
     font-family: 'Lato';
 
-    .content-wrapper{
+    .content-wrapper {
         display: flex;
         flex-direction: column;
         justify-content: left;
         //width: -webkit-fill-available;
         padding-top: 64px;
 
-        .overview-container{
+        .overview-container {
             display: flex;
             flex-direction: row;
             justify-content: left;
 
-            .overview-table{
+            .overview-table {
                 //border: 1px solid red;
-                margin-left:7.758vw;
+                margin-left: 7.758vw;
                 margin-top: 3.156vw;
                 margin-right: 3.414vw;
             }
 
-            .table-container{
+            .table-container {
                 border: 1px solid green;
             }
 
@@ -81,11 +82,11 @@
             }
         }
 
-       
+
     }
 }
 
-.footer-container{
+.footer-container {
     // margin-top: 7.142vw;
     min-height: 8vh;
     background-color: #373737;
@@ -94,18 +95,37 @@
     // bottom:0;
 }
 
-.side-margin{
-     padding-right: 15px;
+.side-margin {
+    padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
 }
 
-.no-margin{
-    margin:0px !important;
+.submitBtn {
+    width: 20%;
+    color: white;
+    height: 40px;
+    border-radius: 40px !important;
+    background-color: #4d96cc !important;
 }
 
-.hidescroll{
-  overflow: scroll;
-  scrollbar-width: none; /* Firefox */
+.no-margin {
+    margin: 0px !important;
+}
+
+.hidescroll {
+    overflow: scroll;
+    scrollbar-width: none;
+    /* Firefox */
+}
+
+.contact-form-control {
+    box-shadow: 0px 12px 6px #DBDBDB;
+}
+
+.contact {
+    text-align: left;
+    padding: 10px;
+    box-shadow: 5px 10px 18px #888888;
 }
