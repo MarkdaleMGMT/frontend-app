@@ -31,9 +31,11 @@
     padding: 10px;
 }
 
- .ReactTable .rt-table{
-    overflow: inherit;
- }
+//  .ReactTable .rt-table{
+//     overflow-y: visible;
+//     overflow-x: visible;
+    
+//  }
 
 @media (min-width:321px) and (max-width:410px){
     body{
@@ -132,7 +134,7 @@
    
            .-striped {
                border: solid 1px #ffffff;
-               height: 300px;
+            //    height: 300px;
            }
         }
    }
@@ -331,7 +333,7 @@
    
            .-striped {
                border: solid 1px #ffffff;
-               height: 300px;
+            //    height: 300px;
            }
         }
    }
@@ -414,6 +416,8 @@
     display:block;
     width: 100px;
     white-space: unset;
+    overflow-y: inherit;
+    overflow-x: hidden;
    }
    .container{
     padding:0;
@@ -427,15 +431,16 @@
     }
 }
 
+
 @media (min-width:375px) and (max-width:812px){
     .main-container .footer-container {
-        position: relative;
-        top: 660px;
+        position: absolute;
+        top: 900px;
     }
 
     .transactiontable-container .reacttable-container1 {
         width: 320px;
-        height: 80%;
+        height: 100%;
         min-width: 50vw;
         box-shadow: 1px 2px 6px 3px #DBDBDB;
         border-radius: 15px;
@@ -470,7 +475,7 @@
         background-color: #ffffff;
         //font-size: 0.9375vw;
         font-size: small;
-   
+        
        .rt-tr-group {
            //line-height: 1.264vw;
        }
@@ -533,7 +538,7 @@
         //    border: 1px solid black;
         //    width: 300px;
            min-width: 50vw;
-           height: 92%;
+        //    height: 92%;
            // width: 61.351vw;
            // margin-top: 6.823vw;
            // margin-left: 10.4154vw;
@@ -550,7 +555,7 @@
    
            .-striped {
                border: solid 1px #ffffff;
-               height: 300px;
+            //    height: 300px;
            }
         }
    }
