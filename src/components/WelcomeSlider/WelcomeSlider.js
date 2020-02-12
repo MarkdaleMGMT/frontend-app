@@ -13,31 +13,31 @@ import {
 
 const annotationConfigurations = [
   {
-    x: 130,
+    x: 110,
     y: 10,
     title: "Portfolio Overview",
     details: "Provides an overview off all your investments"
   },
   {
-    x: 130,
+    x: 110,
     y: 55,
     title: "Invite Friends",
     details: "Earn gains by becoming an affiliate"
   },
   {
-    x: 130,
+    x: 110,
     y: 100,
     title: "Deposit/ Withdraw Investments",
     details: "Add value/ diversify your portfolio"
   },
   {
-    x: 130,
+    x: 110,
     y: 190,
     title: "Trade between investments",
     details: "Buy/sell currencies at competitive rates"
   },
   {
-    x: 130,
+    x: 110,
     y: 490,
     title: "Investment Overview",
     details: "Provides details on particular investment"
