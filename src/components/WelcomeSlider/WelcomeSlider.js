@@ -146,9 +146,7 @@ export default class WelcomeSlider extends Component {
         <svg height="100%" width="100%">
           {this.renderAnnotation(activeIndex)}
         </svg>
-        <Card
-          style={{ width: "18rem", position: "absolute", top: 0, right: 0 }}
-        >
+        <Card className="welcome-message-container">
           <Card.Body>
             <Card.Title>Welcome to Qoinify!</Card.Title>
             <Card.Text>
