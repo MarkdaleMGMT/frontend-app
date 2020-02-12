@@ -31,6 +31,10 @@ class ResponsiveSidebar extends Component {
 
     const height = document.getElementById("nav-bar").clientHeight;
     this.setState({ height });
+
+    if (this.props.show) {
+      this.setState({ open: true });
+    }
   }
 
   toggle() {
@@ -71,13 +75,6 @@ class ResponsiveSidebar extends Component {
         </Navbar>
 
         {this.state.open && (
-          <div id="overlay">
-            <div id="overlay-content" style={{ paddingTop: this.state.height }}>
-              <LeftSidebar history={this.props.history} toggle={this.toggle} />
-            </div>
-          </div>
-        )}
-        {this.props.show && (
           <div id="overlay">
             <div id="overlay-content" style={{ paddingTop: this.state.height }}>
               <LeftSidebar history={this.props.history} toggle={this.toggle} />
