@@ -22,28 +22,28 @@ export default class Contact extends Component {
             email: '',
             message: '',
             subject: '',
-            isAlertVisible : false,
-            alertType:'',
-            alertMessage:'',
+            isAlertVisible: false,
+            alertType: '',
+            alertMessage: '',
         }
         this.showAlert = this.showAlert.bind(this);
         this.dismissAlert = this.dismissAlert.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onHandleInputChange = this.onHandleInputChange.bind(this)
-        this.resetForm =  this.resetForm.bind(this)
+        this.resetForm = this.resetForm.bind(this)
     }
 
     onHandleInputChange(e) {
         this.setState({
             [e.target.name]: e.target.value
-          })
+        })
     }
 
-    showAlert(message, type){
-        this.setState({ alertMessage:message, alertType:type, isAlertVisible:true });
+    showAlert(message, type) {
+        this.setState({ alertMessage: message, alertType: type, isAlertVisible: true });
     }
 
-    dismissAlert(){
+    dismissAlert() {
         this.setState({ isAlertVisible: false });
     }
 
@@ -51,18 +51,21 @@ export default class Contact extends Component {
         event.preventDefault();
         console.log(this.state.message)
         postContact(
-            {"email": this.state.email,
-             "name": this.state.name, 
-             "subject": this.state.subject,
-             "message": this.state.message})
-        .then((res) => {
-            this.showAlert(res.data.code,'success');
-            this.resetForm()}
+            {
+                "email": this.state.email,
+                "name": this.state.name,
+                "subject": this.state.subject,
+                "message": this.state.message
+            })
+            .then((res) => {
+                this.showAlert(res.data.code, 'success');
+                this.resetForm()
+            }
             )
-        .catch((err) => {
-            this.showAlert(err.response.data.code+": "+err.response.data.message,'error');
+            .catch((err) => {
+                this.showAlert(err.response.data.code + ": " + err.response.data.message, 'error');
 
-        })
+            })
     }
 
     resetForm() {
@@ -74,16 +77,16 @@ export default class Contact extends Component {
         })
     }
 
-    showAlert(message, type){
-        this.setState({ alertMessage:message, alertType:type, isAlertVisible:true });
+    showAlert(message, type) {
+        this.setState({ alertMessage: message, alertType: type, isAlertVisible: true });
     }
 
-    dismissAlert(){
+    dismissAlert() {
         this.setState({ isAlertVisible: false });
     }
 
     render() {
-        let {isAlertVisible, alertType, alertMessage} = this.state
+        let { isAlertVisible, alertType, alertMessage } = this.state
 
         return (
             <div style={{ height: "inherit" }}>
@@ -95,7 +98,7 @@ export default class Contact extends Component {
                         <LeftSidebar history={this.props.history} />
                     </div>
                     <Container className="content-wrapper" id="content-div" style={{ paddingTop: "70px" }}>
-                    <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
+                        <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
 
                         <Row style={{ marginBottom: "auto" }} className="justify-content-center">
                             <Col lg={12} md={12} xs={12}>
@@ -111,13 +114,13 @@ export default class Contact extends Component {
                                                         <input name="name" type="text" className="form-control contact-form-control" placeholder="Name" value={this.state.name} onChange={this.onHandleInputChange} />
                                                     </div>
                                                     <div className="form-group">
-                                                        <input name="email" type="email" className="form-control contact-form-control" placeholder="Email" value={this.state.email} onChange={ this.onHandleInputChange} />
+                                                        <input name="email" type="email" className="form-control contact-form-control" placeholder="Email" value={this.state.email} onChange={this.onHandleInputChange} />
                                                     </div>
                                                     <div className="form-group">
                                                         <input name="subject" type="text" className="form-control contact-form-control" placeholder="Subject" value={this.state.subject} onChange={this.onHandleInputChange} />
                                                     </div>
                                                     <div className="form-group">
-                                                        <textarea name="message" className="form-control contact-form-control" rows="5" placeholder="Message" value={this.state.message} onChange={ this.onHandleInputChange} />
+                                                        <textarea name="message" className="form-control contact-form-control" rows="5" placeholder="Message" value={this.state.message} onChange={this.onHandleInputChange} />
                                                     </div>
                                                     <button type="submit" className="btn btn-info" className="submitBtn">Submit</button>
                                                 </form>
