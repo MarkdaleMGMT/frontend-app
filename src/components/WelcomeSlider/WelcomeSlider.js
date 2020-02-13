@@ -13,27 +13,42 @@ import {
 
 const annotationConfigurationsText = [
   {
-    classNameSelector: ".sidebar-container .navigation-type .dashboard",
+    classNameSelector:
+      window.screen.width < 992
+        ? ".responsive-sidebar-container .sidebar-container .navigation-type .dashboard"
+        : ".dashboard-container .sidebar-container .navigation-type .dashboard",
     title: "Portfolio Overview",
     details: "Provides an overview off all your investments"
   },
   {
-    classNameSelector: ".sidebar-container .affiliate",
+    classNameSelector:
+      window.screen.width < 992
+        ? ".responsive-sidebar-container .sidebar-container .navigation-type .affiliate"
+        : ".dashboard-container .sidebar-container .navigation-type .affiliate",
     title: "Invite Friends",
     details: "Earn gains by becoming an affiliate"
   },
   {
-    classNameSelector: ".sidebar-container .payments",
+    classNameSelector:
+      window.screen.width < 992
+        ? ".responsive-sidebar-container .sidebar-container .navigation-type .payments"
+        : ".dashboard-container .sidebar-container .navigation-type .payments",
     title: "Deposit/ Withdraw Investments",
     details: "Add value/ diversify your portfolio"
   },
   {
-    classNameSelector: ".sidebar-container .exchange",
+    classNameSelector:
+      window.screen.width < 992
+        ? ".responsive-sidebar-container .sidebar-container .navigation-type .exchange"
+        : ".dashboard-container .sidebar-container .navigation-type .exchange",
     title: "Trade between investments",
     details: "Buy/sell currencies at competitive rates"
   },
   {
-    classNameSelector: ".sidebar-container .currency-type",
+    classNameSelector:
+      window.screen.width < 992
+        ? ".responsive-sidebar-container .sidebar-container .currency-type"
+        : ".dashboard-container .sidebar-container .currency-type",
     title: "Investment Overview",
     details: "Provides details on particular investment"
   }
