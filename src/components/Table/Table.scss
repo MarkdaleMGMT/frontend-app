@@ -120,7 +120,8 @@
   .Table__pagination {
     display: flex;
     justify-content: center;
-    padding: 20px 10px;
+    // changed padding to 50 so doesn't block the Description and Amount
+    padding: 50px 10px; 
   }
   
   .Table__pageButton {

@@ -38,8 +38,9 @@ export default class Dashboard extends Component{
     constructor(props){
         super(props);
         this.state = {
-            refresh_interval_sec: 60,
-            linechart_time_days: 180,
+            refresh_interval_sec: 50,
+            // linechart_time is 60 instead of 180
+            linechart_time_days: 60,
             isAlertVisible : false,
             alertType:'',
             alertMessage:'',

@@ -218,6 +218,8 @@ export default class LineChart extends Component {
                                         <option value='30'>Last 30 Days</option>
                                         <option value='60'>Last 60 Days</option>
                                         <option value='90'>Last 90 Days</option>
+                                        {/* added 120 days option */}
+                                        <option value='120'>Last 120 Days</option>
                                         <option value='180'>Last 180 Days</option>
                                         <option value='365'>Last 1 year</option>
                                     </select>
