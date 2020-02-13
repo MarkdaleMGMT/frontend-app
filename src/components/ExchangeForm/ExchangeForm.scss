@@ -77,6 +77,21 @@
 
 }
 
+@media (min-width:500px) and (max-width:767px){
+    .btn-outline-dark {
+        position: relative;
+        top: 105px;
+        right: 20%;
+    }
+    
+    .move-buy{
+        position: relative; 
+        top: 2em;
+        right: 94%;
+    }
+    
+    }
+
 @media (min-width:768px) {
     .move-buy{
         position: relative;
