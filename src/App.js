@@ -23,9 +23,9 @@ function App() {
 
     <div className="App">
         <Switch>
-          <Route path="/signin" component={SignIn}/>
+          <Route path="/login" component={SignIn}/>
           <Route path="/signup" component={SignUp}/>
-          <Route path="/forgotpassword" component={ForgotPassword}/>
+          <Route path="/forgot" component={ForgotPassword}/>
           <Route path="/resetPassword" component={PasswordReset}/>
           <Route path="/dashboard" component={sessionTimeout(Dashboard)}/>
           <Route path="/affiliate" component={sessionTimeout(Affiliates)}/>
@@ -35,7 +35,7 @@ function App() {
           <Route path="/contact" component={sessionTimeout(Contact)}/>
           <Route path="/payments" component={sessionTimeout(Payments)}/>
 
-          <Route render={ props => <Redirect to={{ pathname: '/signin', state: { from: props.location } }} /> } />
+          <Route render={ props => <Redirect to={{ pathname: '/login', state: { from: props.location } }} /> } />
         </Switch>
     </div>
 

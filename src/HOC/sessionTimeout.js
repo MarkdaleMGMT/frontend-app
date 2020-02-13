@@ -33,7 +33,7 @@ export default function(Wrappedcomponent){
           if( localStorage['username'] && localStorage['username'] != '')
             return <Wrappedcomponent { ...this.props}/>
           else
-            return <Redirect to="/signin"></Redirect>
+            return <Redirect to="/login"></Redirect>
       }
   }
 }
