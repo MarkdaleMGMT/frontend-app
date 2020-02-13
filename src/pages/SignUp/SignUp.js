@@ -53,7 +53,7 @@ class SignUp extends Component {
       const { code, username, password, email} = this.state;
       axios.post(FRONTEND_API + "signup", {code, username, password, email})
       .then((res)=>{
-          //if(res.data.code === 'Signup successful, please check your inbox to confirm your e-mail address - might go to "junk/spam" folder')
+          if(res.data.code === 'Signup successful, please check your inbox to confirm your e-mail address - might go to "junk/spam" folder')
             this.setState({ isSuccess: true , confirmation_msg:{show:true, msg:res.data.code}});
 
 
