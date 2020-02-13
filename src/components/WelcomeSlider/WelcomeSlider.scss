@@ -72,11 +72,13 @@ rect.annotation-note-bg {
   fill-opacity: 0.8;
 }
 
-.welcome-message-container {
-  width: 18rem;
-  position: absolute;
-  top: 0;
-  right: 0;
+@media (min-width: 1025px) {
+  .welcome-message-container {
+    width: 18rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
 }
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) and (orientation: portrait) {
@@ -85,8 +87,6 @@ rect.annotation-note-bg {
     position: absolute;
     bottom: 0;
     left: 0;
-    top: auto;
-    right: auto;
   }
 }
 
@@ -96,8 +96,6 @@ rect.annotation-note-bg {
     position: absolute;
     bottom: 0;
     left: 0;
-    top: auto;
-    right: auto;
   }
 }
 
@@ -107,7 +105,5 @@ rect.annotation-note-bg {
     position: absolute;
     bottom: 0;
     left: 0;
-    top: auto;
-    right: auto;
   }
 }

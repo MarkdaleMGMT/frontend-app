@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Carousel, Col, Row, Modal, Button, Card } from "react-bootstrap";
-import "./WelcomeSlider.scss";
 import "bootstrap/dist/css/bootstrap.css";
+import "./WelcomeSlider.scss";
 import { updateUserInfo } from "../../service/axios-service";
 import {
   AnnotationLabel,
@@ -10,39 +10,30 @@ import {
   ConnectorEndDot,
   Note
 } from "react-annotation";
-import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-const dashboardElement = document.getElementsByClassName("fa-home");
-const dashboardDomRect = dashboardElement.getBoundingClientRect();
-
-const annotationConfigurations = [
+const annotationConfigurationsText = [
   {
-    x: dashboardDomRect.top,
-    y: dashboardDomRect.left,
+    classNameSelector: ".sidebar-container .navigation-type .dashboard",
     title: "Portfolio Overview",
     details: "Provides an overview off all your investments"
   },
   {
-    x: 110,
-    y: 125,
+    classNameSelector: ".sidebar-container .affiliate",
     title: "Invite Friends",
     details: "Earn gains by becoming an affiliate"
   },
   {
-    x: 110,
-    y: 170,
+    classNameSelector: ".sidebar-container .payments",
     title: "Deposit/ Withdraw Investments",
     details: "Add value/ diversify your portfolio"
   },
   {
-    x: 110,
-    y: 260,
+    classNameSelector: ".sidebar-container .exchange",
     title: "Trade between investments",
     details: "Buy/sell currencies at competitive rates"
   },
   {
-    x: 110,
-    y: 450,
+    classNameSelector: ".sidebar-container .currency-type",
     title: "Investment Overview",
     details: "Provides details on particular investment"
   }
@@ -54,25 +45,51 @@ export default class WelcomeSlider extends Component {
     this.onClose = this.onClose.bind(this);
     this.navigateToPayments = this.navigateToPayments.bind(this);
     this.state = {
-      activeIndex: 0
+      activeIndex: 0,
+      defaultAnnotationConfigurationsPosition: { x: 0, y: 0 }
     };
 
     this.updateIndex = this.updateIndex.bind(this);
     this.renderAnnotation = this.renderAnnotation.bind(this);
   }
 
-  componentDidMount() {
-    // this.updateIndexTimer = setInterval(() => this.updateIndex(), 5*1000);
-  }
-
   componentWillUnmount() {
     // clearInterval(this.updateIndexTimer);
   }
 
+  componentDidUpdate(prevProps) {
+    if (
+      prevProps.dashbboardMounted === false &&
+      this.props.dashbboardMounted === true
+    ) {
+      const dashboardElement = document.querySelector(
+        annotationConfigurationsText[0].classNameSelector
+      );
+      const dashboardDomRect = dashboardElement.getBoundingClientRect();
+      this.setState({
+        defaultAnnotationConfigurationsPosition: {
+          x: dashboardDomRect.x,
+          y: dashboardDomRect.y
+        }
+      });
+    }
+  }
+
   updateIndex() {
+    const activeIndex =
+      (this.state.activeIndex + 1) % annotationConfigurationsText.length;
+    const dashboardElement = document.querySelector(
+      annotationConfigurationsText[activeIndex].classNameSelector
+    );
+
+    const dashboardDomRect = dashboardElement.getBoundingClientRect();
     this.setState({
       activeIndex:
-        (this.state.activeIndex + 1) % annotationConfigurations.length
+        (this.state.activeIndex + 1) % annotationConfigurationsText.length,
+      defaultAnnotationConfigurationsPosition: {
+        x: dashboardDomRect.x,
+        y: dashboardDomRect.y
+      }
     });
   }
 
@@ -94,10 +111,11 @@ export default class WelcomeSlider extends Component {
     }
   }
 
-  renderAnnotation(idx) {
-    console.log("annotationConfigurations", annotationConfigurations);
-    console.log("ann idx", idx);
-    const { x, y, title, details } = annotationConfigurations[idx ? idx : 0];
+  renderAnnotation(idx, defaultAnnotationConfigurationsPosition) {
+    // console.log("annotationConfigurations", annotationConfigurations);
+    // console.log("ann idx", idx);
+    const { title, details } = annotationConfigurationsText[idx ? idx : 0];
+    const { x, y } = defaultAnnotationConfigurationsPosition;
 
     return (
       <AnnotationLabel
@@ -119,7 +137,7 @@ export default class WelcomeSlider extends Component {
           lineType: "vertical"
         }}
         connector={{ type: "elbow", end: "dot" }}
-        subject={{ width: -50, height: 100 }}
+        // subject={{ width: -50, height: 100 }}
       />
     );
   }
@@ -143,13 +161,16 @@ export default class WelcomeSlider extends Component {
   }
   render() {
     const props = this.props;
-    const { activeIndex } = this.state;
-    console.log("activeIndex", activeIndex);
-    const annotations = this.renderAnnotation();
+    const { activeIndex, defaultAnnotationConfigurationsPosition } = this.state;
+    // console.log("activeIndex", activeIndex);
+    // const annotations = this.renderAnnotation();
     return (
       <div className="welcome-container">
         <svg height="100%" width="100%">
-          {this.renderAnnotation(activeIndex)}
+          {this.renderAnnotation(
+            activeIndex,
+            defaultAnnotationConfigurationsPosition
+          )}
         </svg>
         <Card className="welcome-message-container">
           <Card.Body>
