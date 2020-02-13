@@ -100,3 +100,14 @@ rect.annotation-note-bg {
     right: auto;
   }
 }
+
+@media only screen and (device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) {
+  .welcome-message-container {
+    width: 18rem;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    top: auto;
+    right: auto;
+  }
+}

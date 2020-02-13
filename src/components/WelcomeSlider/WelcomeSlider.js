@@ -10,11 +10,15 @@ import {
   ConnectorEndDot,
   Note
 } from "react-annotation";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
+
+const dashboardElement = document.getElementsByClassName("fa-home");
+const dashboardDomRect = dashboardElement.getBoundingClientRect();
 
 const annotationConfigurations = [
   {
-    x: 110,
-    y: 80,
+    x: dashboardDomRect.top,
+    y: dashboardDomRect.left,
     title: "Portfolio Overview",
     details: "Provides an overview off all your investments"
   },
@@ -94,6 +98,7 @@ export default class WelcomeSlider extends Component {
     console.log("annotationConfigurations", annotationConfigurations);
     console.log("ann idx", idx);
     const { x, y, title, details } = annotationConfigurations[idx ? idx : 0];
+
     return (
       <AnnotationLabel
         x={x}
