@@ -7,13 +7,13 @@ import { serverIP } from '../config'
 
 export const SERVERIP = serverIP;
 
-// export const FRONTEND_API = SERVERIP + "/frontend/";
+export const FRONTEND_API = SERVERIP + "/frontend/";
 
-// export const BACKEND_API = SERVERIP + "/backend/";
+export const BACKEND_API = SERVERIP + "/backend/";
 
-export const FRONTEND_API = "http://localhost:3001/" + "frontend/";
+// export const FRONTEND_API = "http://localhost:3001/" + "frontend/";
 
-export const BACKEND_API = "http://localhost:3000/" + "backend/";
+// export const BACKEND_API = "http://localhost:3000/" + "backend/";
 
 export const SESSION_SIGNOUT_TIME = 1000 * 60 * 60;
 
@@ -21,7 +21,7 @@ export const FETCH_DATA_INTERVAL = 1000 * 60;
 
 export const ALERT_SIGNOUT_MSG = "Time is up. Please log in again.";
 
-export const EVENTS = [ 'mousemove', 'mousedown', 'load', 'click', 'scroll', 'keypress'];
+export const EVENTS = ['mousemove', 'mousedown', 'load', 'click', 'scroll', 'keypress'];
 
 export const USERNAME_CHECK = "^[a-zA-Z0-9_]{4,16}$";
 
