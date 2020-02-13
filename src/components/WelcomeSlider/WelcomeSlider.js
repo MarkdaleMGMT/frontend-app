@@ -32,7 +32,7 @@ const annotationConfigurations = [
   },
   {
     x: 110,
-    y: 240,
+    y: 260,
     title: "Trade between investments",
     details: "Buy/sell currencies at competitive rates"
   },
