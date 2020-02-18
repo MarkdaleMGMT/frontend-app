@@ -15,6 +15,7 @@ class SignUp extends Component {
   state = {
     code: '',
     password: '',
+    confirmPassword: '',
     username: '',
     email: '',
     className: 'needs-validation',  // When validation fails, add a boostrap class to display prompts.
@@ -46,12 +47,31 @@ class SignUp extends Component {
     })
   }
 
+//   handleSubmit = () => {
+//     const { password, confirmPassword } = this.state;
+//     // perform all neccassary validations
+//     if (password !== confirmPassword) {
+//         alert("Passwords don't match");
+//     } else {
+//         // make API call
+//     }
+// }
+
   handleSubmit = (e)=>{
+
+    const { password, confirmPassword } = this.state;
+    // perform all neccassary validations
+    if (password !== confirmPassword) {
+        alert("Passwords don't match");
+    } else {
+        // make API call
+    }
+    
     if(!e.target.checkValidity()){  // Add a Bootstrap class to show prompts if checkValidity is false.
       this.setState({ className: 'needs-validation was-validated'});
     }else{
-      const { code, username, password, email} = this.state;
-      axios.post(FRONTEND_API + "signup", {code, username, password, email})
+      const { code, username, password, confirmPassword, email} = this.state;
+      axios.post(FRONTEND_API + "signup", {code, username, password, confirmPassword, email})
       .then((res)=>{
           //if(res.data.code === 'Signup successful, please check your inbox to confirm your e-mail address - might go to "junk/spam" folder')
             this.setState({ isSuccess: true , confirmation_msg:{show:true, msg:res.data.code}});
@@ -72,7 +92,7 @@ class SignUp extends Component {
 
 
   render(){
-    const { code, username, password, email, className, isSuccess, err_msg, confirmation_msg} = this.state;
+    const { code, username, password, confirmPassword, email, className, isSuccess, err_msg, confirmation_msg} = this.state;
     if(!isSuccess)
         return (
           <Container fluid={true} className="formbox" >
@@ -92,6 +112,12 @@ class SignUp extends Component {
                   </div>
                   <div className="form-group">
                       <input name="password" type="password" className="form-control signup-form-control" id="password" placeholder="Password" required value={password} onChange={this.handleInputChange} ></input>
+                      <div className="invalid-feedback text-left ml-1">
+                        Make sure it's at least 6 characters including a number, a lowercase, a uppercase and a special character.
+                      </div>
+                  </div>
+                  <div className="form-group">
+                      <input name="confirmPassword" type="password" className="form-control signup-form-control" id="confirmPassword" placeholder="Password Confimation" required value={confirmPassword} onChange={this.handleInputChange} ></input>
                       <div className="invalid-feedback text-left ml-1">
                         Make sure it's at least 6 characters including a number, a lowercase, a uppercase and a special character.
                       </div>

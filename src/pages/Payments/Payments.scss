@@ -2,7 +2,7 @@
 .reacttable-container1{
     //border: 1px solid black;
     // width: 320px;
-    height: 100%;
+    // height: 100%;
     min-width: 50vw;
     // width: 61.351vw;
     // margin-top: 6.823vw;
@@ -116,7 +116,7 @@
        .reacttable-container1{
            //border: 1px solid black;
            width: 320px;
-           height: 100%;
+        //    height: 100%;
            min-width: 50vw;
            // width: 61.351vw;
            // margin-top: 6.823vw;
@@ -315,7 +315,7 @@
        .reacttable-container1{
            //border: 1px solid black;
         //    width: 300px;
-           height: 130%;
+        //    height: 130%;
            min-width: 50vw;
            // width: 61.351vw;
            // margin-top: 6.823vw;
@@ -435,12 +435,12 @@
 @media (min-width:375px) and (max-width:812px){
     .main-container .footer-container {
         position: absolute;
-        top: 900px;
+        top: 800px;
     }
 
     .transactiontable-container .reacttable-container1 {
         width: 320px;
-        height: 100%;
+        // height: 100%;
         min-width: 50vw;
         box-shadow: 1px 2px 6px 3px #DBDBDB;
         border-radius: 15px;
@@ -642,7 +642,7 @@
 
    .main-container .footer-container{
     position: relative;
-    top: 680px;
+    top: 690px;
 }
    
    
@@ -734,7 +734,7 @@
        .reacttable-container1{
            //border: 1px solid black;
         //    width: 00px;
-           height: 100%;
+        //    height: 100%;
            min-width: 50vw;
            // width: 61.351vw;
            // margin-top: 6.823vw;
@@ -747,7 +747,8 @@
            padding-right: 1.302vw;
            padding-top: 1.146vw;
            padding-bottom: 2.127vw;
-           
+           position: relative;
+           width: 100%;
    
            .-striped {
                border: solid 1px #ffffff;
