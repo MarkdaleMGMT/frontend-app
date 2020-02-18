@@ -426,8 +426,8 @@
 //        margin-top:118px;
 //    }
     .main-container .footer-container {
-        position: fixed;
-        bottom:0;
+        position: absolute;
+        bottom: -300px;
     }
 }
 
