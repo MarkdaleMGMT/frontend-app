@@ -62,9 +62,15 @@ class SignUp extends Component {
     const { password, confirmPassword } = this.state;
     // perform all neccassary validations
     if (password !== confirmPassword) {
-        alert("Passwords don't match");
+      this.setState({
+        err_msg: {err: true, msg:`Passwords dont match.`},
+        className: 'needs-validation'
+
+      });
+      return;
     } else {
         // make API call
+        
     }
     
     if(!e.target.checkValidity()){  // Add a Bootstrap class to show prompts if checkValidity is false.
