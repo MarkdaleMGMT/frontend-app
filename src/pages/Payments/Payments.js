@@ -111,9 +111,9 @@ export default class Payments extends Component {
                     </div>
 
                     </Container>
-            
+                <div>
                     <Row><Col lg={12} md={12} sm={12} className="footer-container"><Footer history={this.props.history} /></Col></Row>
-
+                </div>
                 </Container>
                 
 
