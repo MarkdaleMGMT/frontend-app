@@ -1,45 +1,15 @@
 //media query for responsive
-.reacttable-container1 {
-  //border: 1px solid black;
-  // width: 320px;
-  min-width: 50vw;
-  // width: 61.351vw;
-  // margin-top: 6.823vw;
-  // margin-left: 10.4154vw;
-  box-shadow: 1px 2px 6px 3px #dbdbdb;
-  border-radius: 15px;
-  // font-size: 0.9375vw;
-  font-size: small;
-  padding-left: 1.302vw;
-  padding-right: 1.302vw;
-  padding-top: 1.146vw;
-  padding-bottom: 2.127vw;
-  position: relative;
-  left: 2em;
-  //fix
-
-  .-striped {
-    border: solid 1px #ffffff;
-    // height: 300px;
-  }
-}
-
-@media (min-width: 321px) and (max-width: 410px) {
-  body {
-    width: 100%;
-  }
-  .Charttable-container {
-    min-width: 25vw;
-    width: 100%;
-    margin: 0px;
-    padding-top: 1.765vw;
-    padding-right: 1.209vw;
-    padding-bottom: 1.278vw;
-    padding-left: 1.209vw;
-    box-shadow: 1px 2px 6px 3px #dbdbdb;
-    border-radius: 5px;
-    background-color: #ffffff;
-    //font-size: 0.9375vw;
+.reacttable-container1{
+    //border: 1px solid black;
+    // width: 320px;
+    height: 100%;
+    min-width: 50vw;
+    // width: 61.351vw;
+    // margin-top: 6.823vw;
+    // margin-left: 10.4154vw;
+    box-shadow: 1px 2px 6px 3px #DBDBDB;
+    border-radius: 15px;
+   // font-size: 0.9375vw;
     font-size: small;
 
     .rt-tr-group {
@@ -197,19 +167,209 @@
   .ReactTable .rt-th,
   .ReactTable .rt-td {
     display: block;
+ .main-container .content-wrapper .page-content {
+    margin-top: 50px;
+    height: 100%;
+    padding: 10px;
+}
+
+//  .ReactTable .rt-table{
+//     overflow-y: visible;
+//     overflow-x: visible;
+    
+//  }
+
+@media (min-width:321px) and (max-width:410px){
+    body{
+        width: 100%;
+    }
+    .Charttable-container{
+        min-width: 25vw;
+        width: 100%;
+        margin: 0px;
+        padding-top: 1.765vw;
+        padding-right: 1.209vw;
+        padding-bottom: 1.278vw;
+        padding-left: 1.209vw;
+        box-shadow: 1px 2px 6px 3px #DBDBDB;
+        border-radius: 5px;
+        background-color: #ffffff;
+        //font-size: 0.9375vw;
+        font-size: small;
+   
+       .rt-tr-group {
+           //line-height: 1.264vw;
+       }
+   
+       
+   
+       .-striped {
+           border: solid 1px #ffffff;
+          
+       }
+   
+       .rt-tr-group div div:nth-child(even) {
+           border-left: solid 1px #f2f2f2;
+           border-right:solid 1px #f2f2f2;
+       }
+   
+       .-header {
+           height: 0;
+       }
+   }
+   
+   .transactiontable-container{
+       //border: 1px solid blue;    
+       display: flex;
+       flex-direction: column;
+       min-width:100%;
+       margin-top: 5.416vw;
+       
+   
+       // display: flex;
+       // flex-direction: column;
+       // box-shadow: 1px 5px 12px 6px #DBDBDB;
+       // padding-top: 1.25vw;
+       // padding-left: 0.683vw;
+       // padding-right: 0.752vw;
+       // padding-bottom: 1.25vw;
+   
+       .transaction-container{
+           // border: 1px solid blue;
+           // margin-top: 0.752vw;
+           // margin-right: 1.302vw;
+           // margin-bottom: 1,239vw;
+           // margin-left: 1.302vw;
+   
+           .table-title {
+               text-align: left;
+               margin-bottom: 0.547vw;
+               //font-size: 1.25vw;
+               font-size: medium;
+           }
+   
+           .table-filters {
+               //border: 1px solid pink;
+               display: inline-block;            
+               flex-direction: row;
+               justify-content: space-between;
+           }
+       }
+       .reacttable-container1{
+           //border: 1px solid black;
+           width: 320px;
+           height: 100%;
+           min-width: 50vw;
+           // width: 61.351vw;
+           // margin-top: 6.823vw;
+           // margin-left: 10.4154vw;
+           box-shadow: 1px 2px 6px 3px #DBDBDB;
+           border-radius: 15px;
+          // font-size: 0.9375vw;
+           font-size: small;
+           padding-left: 1.302vw;
+           padding-right: 1.302vw;
+           padding-top: 1.146vw;
+           padding-bottom: 2.127vw;
+           position: absolute;
+           left:1em;
+   
+           .-striped {
+               border: solid 1px #ffffff;
+            //    height: 300px;
+           }
+        }
+   }
+   
+   .trasaction-input-control {
+       //width: 13.874vw !important;
+       box-shadow: 3px 3px 3px #DBDBDB;
+       margin-bottom: 7.923%;
+       //font-size: 0.9375vw !important;
+       font-size: small;
+       color: #969696;
+   }
+   
+   .transaction-select-control {
+       //font-size: 0.9375vw !important;
+       font-size: small;
+       text-align: center;
+       letter-spacing: 0.54px;
+       color: #646464;
+       opacity: 1;
+       width: auto;
+   }
+   
+   /*
+   ** For Pagination Component
+   */
+   .Table__itemCount {
+       /* margin-top: 10px; */
+       //font-size: 0.9375vw;
+       font-size: small;
+     }
+     
+     .Table__pagination {
+       display: flex;
+       justify-content: center;
+       padding: 20px 10px;
+     }
+     
+     .Table__pageButton {
+      // font-size: 0.9375vw;
+       font-size: small;
+       outline: none;
+       border: none;
+       background-color: transparent;
+       cursor: pointer;
+     }
+     
+     .Table__pageButton:disabled {
+       cursor: not-allowed;
+       color: gray;
+     }
+     
+     .Table__pageButton--active {
+       color: #40BBF2;
+       font-weight: bold;
+     }
+   
+     .marginTop-1vw{
+         margin-top: 1vw;
+     }
+   
+   .payments-btn{
+       // width: 6vw;
+       // border-radius: 40px !important;
+       // background: #4D96CC 0% 0% no-repeat padding-box !important;
+       border-radius: 30px !important;
+       opacity: 1 !important;
+       margin: 3px;
+       font-size: 0.8rem !important;
+       border-color: transparent
+   
+   }
+
+   .rt-td{
+       flex: 0 auto;
+       width: 50px;
+   }
+
+   .ReactTable .rt-th, .ReactTable .rt-td {
+    display:block;
     width: 100px;
     white-space: unset;
   }
   .container {
     // padding:0;
-  }
-  //    .main-container .footer-container {
-  //        margin-top:118px;
-  //    }
-  .main-container .footer-container {
-    position: fixed;
-    bottom: 0;
-  }
+   }
+//    .main-container .footer-container {
+//        margin-top:118px;
+//    }
+    .main-container .footer-container {
+        position: relative;
+        top:650px;
+    }
 }
 
 @media (min-width: 0px) and (max-width: 320px) {
@@ -307,28 +467,130 @@
         height: 300px;
       }
     }
-  }
 
-  .trasaction-input-control {
-    //width: 13.874vw !important;
-    box-shadow: 3px 3px 3px #dbdbdb;
-    margin-bottom: 7.923%;
-    //font-size: 0.9375vw !important;
-    font-size: small;
-    color: #969696;
-  }
-
-  .transaction-select-control {
-    //font-size: 0.9375vw !important;
-    font-size: small;
-    text-align: center;
-    letter-spacing: 0.54px;
-    color: #646464;
-    opacity: 1;
-    width: auto;
-  }
-
-  /*
+    .main-container .content-wrapper .page-content {
+        margin-top: 50px;
+        height: 100%;
+        padding: 10px;
+    }
+    .Charttable-container{
+        min-width: 25vw;
+        width: 100%;
+        margin: 0px;
+        padding-top: 1.765vw;
+        padding-right: 1.209vw;
+        padding-bottom: 1.278vw;
+        padding-left: 1.209vw;
+        box-shadow: 1px 2px 6px 3px #DBDBDB;
+        border-radius: 5px;
+        background-color: #ffffff;
+        //font-size: 0.9375vw;
+        font-size: small;
+   
+       .rt-tr-group {
+           //line-height: 1.264vw;
+       }
+   
+       
+   
+       .-striped {
+           border: solid 1px #ffffff;
+          
+       }
+   
+       .rt-tr-group div div:nth-child(even) {
+           border-left: solid 1px #f2f2f2;
+           border-right:solid 1px #f2f2f2;
+       }
+   
+       .-header {
+           height: 0;
+       }
+   }
+   
+   .transactiontable-container{
+       //border: 1px solid blue;    
+       display: flex;
+       flex-direction: column;
+       min-width:100%;
+       margin-top: 5.416vw;
+       
+   
+       // display: flex;
+       // flex-direction: column;
+       // box-shadow: 1px 5px 12px 6px #DBDBDB;
+       // padding-top: 1.25vw;
+       // padding-left: 0.683vw;
+       // padding-right: 0.752vw;
+       // padding-bottom: 1.25vw;
+   
+       .transaction-container{
+           // border: 1px solid blue;
+           // margin-top: 0.752vw;
+           // margin-right: 1.302vw;
+           // margin-bottom: 1,239vw;
+           // margin-left: 1.302vw;
+   
+           .table-title {
+               text-align: left;
+               margin-bottom: 0.547vw;
+               //font-size: 1.25vw;
+               font-size: medium;
+           }
+   
+           .table-filters {
+               //border: 1px solid pink;
+               display: inline-block;            
+               flex-direction: row;
+               justify-content: space-between;
+           }
+       }
+       .reacttable-container1{
+           //border: 1px solid black;
+        //    width: 300px;
+           height: 130%;
+           min-width: 50vw;
+           // width: 61.351vw;
+           // margin-top: 6.823vw;
+           // margin-left: 10.4154vw;
+           box-shadow: 1px 2px 6px 3px #DBDBDB;
+           border-radius: 15px;
+          // font-size: 0.9375vw;
+           font-size: small;
+           padding-left: 1.302vw;
+           padding-right: 1.302vw;
+           padding-top: 1.146vw;
+           padding-bottom: 2.127vw;
+           position: absolute;
+           left:.4em;
+   
+           .-striped {
+               border: solid 1px #ffffff;
+            //    height: 300px;
+           }
+        }
+   }
+   
+   .trasaction-input-control {
+       //width: 13.874vw !important;
+       box-shadow: 3px 3px 3px #DBDBDB;
+       margin-bottom: 7.923%;
+       //font-size: 0.9375vw !important;
+       font-size: small;
+       color: #969696;
+   }
+   
+   .transaction-select-control {
+       //font-size: 0.9375vw !important;
+       font-size: small;
+       text-align: center;
+       letter-spacing: 0.54px;
+       color: #646464;
+       opacity: 1;
+       width: auto;
+   }
+   
+   /*
    ** For Pagination Component
    */
   .Table__itemCount {
@@ -387,52 +649,47 @@
     display: block;
     width: 100px;
     white-space: unset;
-  }
-  .container {
-    padding: 0;
-  }
-  //    .main-container .footer-container {
-  //        margin-top:118px;
-  //    }
-  .main-container .footer-container {
-    position: fixed;
-    bottom: 0;
-  }
+    overflow-y: inherit;
+    overflow-x: hidden;
+   }
+   .container{
+    padding:0;
+   }
+//    .main-container .footer-container {
+//        margin-top:118px;
+//    }
+    .main-container .footer-container {
+        position: fixed;
+        bottom:0;
+    }
 }
 
-@media (min-width: 411px) and (max-width: 767px) {
-  html {
-    width: 100%;
-  }
 
-  body {
-    width: 100%;
-  }
-  .Charttable-container {
-    min-width: 25vw;
-    width: 100%;
-    margin: 0px;
-    padding-top: 1.765vw;
-    padding-right: 1.209vw;
-    padding-bottom: 1.278vw;
-    padding-left: 1.209vw;
-    box-shadow: 1px 2px 6px 3px #dbdbdb;
-    border-radius: 5px;
-    background-color: #ffffff;
-    //font-size: 0.9375vw;
-    font-size: small;
-
-    .rt-tr-group {
-      //line-height: 1.264vw;
+@media (min-width:375px) and (max-width:812px){
+    .main-container .footer-container {
+        position: absolute;
+        top: 900px;
     }
 
-    .-striped {
-      border: solid 1px #ffffff;
+    .transactiontable-container .reacttable-container1 {
+        width: 320px;
+        height: 100%;
+        min-width: 50vw;
+        box-shadow: 1px 2px 6px 3px #DBDBDB;
+        border-radius: 15px;
+        font-size: small;
+        padding-left: 1.302vw;
+        padding-right: 1.302vw;
+        padding-top: 1.146vw;
+        padding-bottom: 2.127vw;
+        position: absolute;
+        left: 1em;
     }
+}
 
-    .rt-tr-group div div:nth-child(even) {
-      border-left: solid 1px #f2f2f2;
-      border-right: solid 1px #f2f2f2;
+@media (min-width:411px) and (max-width:767px){
+    html{
+        width: 100%;
     }
 
     .-header {
@@ -499,28 +756,124 @@
         height: 300px;
       }
     }
-  }
-
-  .trasaction-input-control {
-    //width: 13.874vw !important;
-    box-shadow: 3px 3px 3px #dbdbdb;
-    margin-bottom: 7.923%;
-    //font-size: 0.9375vw !important;
-    font-size: small;
-    color: #969696;
-  }
-
-  .transaction-select-control {
-    //font-size: 0.9375vw !important;
-    font-size: small;
-    text-align: center;
-    letter-spacing: 0.54px;
-    color: #646464;
-    opacity: 1;
-    width: auto;
-  }
-
-  /*
+    .Charttable-container{
+        min-width: 25vw;
+        width: 100%;
+        margin: 0px;
+        padding-top: 1.765vw;
+        padding-right: 1.209vw;
+        padding-bottom: 1.278vw;
+        padding-left: 1.209vw;
+        box-shadow: 1px 2px 6px 3px #DBDBDB;
+        border-radius: 5px;
+        background-color: #ffffff;
+        //font-size: 0.9375vw;
+        font-size: small;
+        
+       .rt-tr-group {
+           //line-height: 1.264vw;
+       }
+   
+       
+   
+       .-striped {
+           border: solid 1px #ffffff;
+          
+       }
+   
+       .rt-tr-group div div:nth-child(even) {
+           border-left: solid 1px #f2f2f2;
+           border-right:solid 1px #f2f2f2;
+       }
+   
+       .-header {
+           height: 0;
+       }
+   }
+   
+   .transactiontable-container{
+       //border: 1px solid blue;    
+       display: flex;
+       flex-direction: column;
+       min-width:100%;
+       margin-top: 5.416vw;
+       
+   
+       // display: flex;
+       // flex-direction: column;
+       // box-shadow: 1px 5px 12px 6px #DBDBDB;
+       // padding-top: 1.25vw;
+       // padding-left: 0.683vw;
+       // padding-right: 0.752vw;
+       // padding-bottom: 1.25vw;
+   
+       .transaction-container{
+           // border: 1px solid blue;
+           // margin-top: 0.752vw;
+           // margin-right: 1.302vw;
+           // margin-bottom: 1,239vw;
+           // margin-left: 1.302vw;
+   
+           .table-title {
+               text-align: left;
+               margin-bottom: 0.547vw;
+               //font-size: 1.25vw;
+               font-size: medium;
+           }
+   
+           .table-filters {
+               //border: 1px solid pink;
+               display: inline-block;            
+               flex-direction: row;
+               justify-content: space-between;
+           }
+       }
+       .reacttable-container1{
+        //    border: 1px solid black;
+        //    width: 300px;
+           min-width: 50vw;
+        //    height: 92%;
+           // width: 61.351vw;
+           // margin-top: 6.823vw;
+           // margin-left: 10.4154vw;
+           box-shadow: 1px 2px 6px 3px #DBDBDB;
+           border-radius: 15px;
+          // font-size: 0.9375vw;
+           font-size: small;
+           padding-left: 1.302vw;
+           padding-right: 1.302vw;
+           padding-top: 1.146vw;
+           padding-bottom: 2.127vw;
+           position: absolute;
+           left:4em;
+   
+           .-striped {
+               border: solid 1px #ffffff;
+            //    height: 300px;
+           }
+        }
+   }
+   
+   .trasaction-input-control {
+       //width: 13.874vw !important;
+       box-shadow: 3px 3px 3px #DBDBDB;
+       margin-bottom: 7.923%;
+       //font-size: 0.9375vw !important;
+       font-size: small;
+       color: #969696;
+   }
+   
+   .transaction-select-control {
+       //font-size: 0.9375vw !important;
+       font-size: small;
+       text-align: center;
+       letter-spacing: 0.54px;
+       color: #646464;
+       opacity: 1;
+       width: auto;
+   }
+   
+   /*
    ** For Pagination Component
    */
   .Table__itemCount {
@@ -581,46 +934,17 @@
     white-space: unset;
   }
 
-  .main-container .footer-container {
-    position: fixed;
-    bottom: 0;
-  }
+   .main-container .footer-container{
+    position: relative;
+    top: 680px;
 }
 
-@media (min-width: 768px) and (max-width: 1024px) {
-  html {
-    width: 100%;
-    overflow: hidden;
-  }
 
-  body {
-    width: 100%;
-  }
-  .Charttable-container {
-    min-width: 25vw;
-    width: 100%;
-    margin: 0px;
-    padding-top: 1.765vw;
-    padding-right: 1.209vw;
-    padding-bottom: 1.278vw;
-    padding-left: 1.209vw;
-    box-shadow: 1px 2px 6px 3px #dbdbdb;
-    border-radius: 5px;
-    background-color: #ffffff;
-    //font-size: 0.9375vw;
-    font-size: small;
 
-    .rt-tr-group {
-      //line-height: 1.264vw;
-    }
-
-    .-striped {
-      border: solid 1px #ffffff;
-    }
-
-    .rt-tr-group div div:nth-child(even) {
-      border-left: solid 1px #f2f2f2;
-      border-right: solid 1px #f2f2f2;
+@media (min-width:768px) and (max-width:1024px){
+    html{
+        width: 100%;
+        overflow: hidden;
     }
 
     .-header {
@@ -685,28 +1009,123 @@
         //    height: 300px;
       }
     }
-  }
-
-  .trasaction-input-control {
-    //width: 13.874vw !important;
-    box-shadow: 3px 3px 3px #dbdbdb;
-    margin-bottom: 7.923%;
-    //font-size: 0.9375vw !important;
-    font-size: small;
-    color: #969696;
-  }
-
-  .transaction-select-control {
-    //font-size: 0.9375vw !important;
-    font-size: small;
-    text-align: center;
-    letter-spacing: 0.54px;
-    color: #646464;
-    opacity: 1;
-    width: auto;
-  }
-
-  /*
+    .Charttable-container{
+        min-width: 25vw;
+        width: 100%;
+        margin: 0px;
+        padding-top: 1.765vw;
+        padding-right: 1.209vw;
+        padding-bottom: 1.278vw;
+        padding-left: 1.209vw;
+        box-shadow: 1px 2px 6px 3px #DBDBDB;
+        border-radius: 5px;
+        background-color: #ffffff;
+        //font-size: 0.9375vw;
+        font-size: small;
+   
+       .rt-tr-group {
+           //line-height: 1.264vw;
+       }
+   
+       
+   
+       .-striped {
+           border: solid 1px #ffffff;
+          
+       }
+   
+       .rt-tr-group div div:nth-child(even) {
+           border-left: solid 1px #f2f2f2;
+           border-right:solid 1px #f2f2f2;
+       }
+   
+       .-header {
+           height: 0;
+       }
+   }
+   
+   .transactiontable-container{
+       //border: 1px solid blue;    
+       display: flex;
+       flex-direction: column;
+       min-width:100%;
+       margin-top: 5.416vw;
+       
+   
+       // display: flex;
+       // flex-direction: column;
+       // box-shadow: 1px 5px 12px 6px #DBDBDB;
+       // padding-top: 1.25vw;
+       // padding-left: 0.683vw;
+       // padding-right: 0.752vw;
+       // padding-bottom: 1.25vw;
+   
+       .transaction-container{
+           // border: 1px solid blue;
+           // margin-top: 0.752vw;
+           // margin-right: 1.302vw;
+           // margin-bottom: 1,239vw;
+           // margin-left: 1.302vw;
+   
+           .table-title {
+               text-align: left;
+               margin-bottom: 0.547vw;
+               //font-size: 1.25vw;
+               font-size: medium;
+           }
+   
+           .table-filters {
+               //border: 1px solid pink;
+               display: inline-block;            
+               flex-direction: row;
+               justify-content: space-between;
+           }
+       }
+       .reacttable-container1{
+           //border: 1px solid black;
+        //    width: 00px;
+           height: 100%;
+           min-width: 50vw;
+           // width: 61.351vw;
+           // margin-top: 6.823vw;
+           // margin-left: 10.4154vw;
+           box-shadow: 1px 2px 6px 3px #DBDBDB;
+           border-radius: 15px;
+          // font-size: 0.9375vw;
+           font-size: small;
+           padding-left: 1.302vw;
+           padding-right: 1.302vw;
+           padding-top: 1.146vw;
+           padding-bottom: 2.127vw;
+           
+   
+           .-striped {
+               border: solid 1px #ffffff;
+            //    height: 300px;
+           }
+        }
+   }
+   
+   .trasaction-input-control {
+       //width: 13.874vw !important;
+       box-shadow: 3px 3px 3px #DBDBDB;
+       margin-bottom: 7.923%;
+       //font-size: 0.9375vw !important;
+       font-size: small;
+       color: #969696;
+   }
+   
+   .transaction-select-control {
+       //font-size: 0.9375vw !important;
+       font-size: small;
+       text-align: center;
+       letter-spacing: 0.54px;
+       color: #646464;
+       opacity: 1;
+       width: auto;
+   }
+   
+   /*
    ** For Pagination Component
    */
   .Table__itemCount {
@@ -772,34 +1191,188 @@
   }
 }
 
-@media (min-width: 1025px) {
-  html {
-    width: 100%;
-  }
+@media (min-width:1025px){
+        html{
+            width: 100%;
+        }
+        
+        body{
+            width: 100%;
+        }
+        .Charttable-container{
+            min-width: 25vw;
+            width: 100%;
+            margin: 0px;
+            padding-top: 1.765vw;
+            padding-right: 1.209vw;
+            padding-bottom: 1.278vw;
+            padding-left: 1.209vw;
+            box-shadow: 1px 2px 6px 3px #DBDBDB;
+            border-radius: 5px;
+            background-color: #ffffff;
+            //font-size: 0.9375vw;
+            font-size: small;
+       
+           .rt-tr-group {
+               //line-height: 1.264vw;
+           }
+       
+           
+       
+           .-striped {
+               border: solid 1px #ffffff;
+              
+           }
+       
+           .rt-tr-group div div:nth-child(even) {
+               border-left: solid 1px #f2f2f2;
+               border-right:solid 1px #f2f2f2;
+           }
+       
+           .-header {
+               height: 0;
+           }
+       }
+       
+       .transactiontable-container{
+           //border: 1px solid blue;    
+           display: flex;
+           flex-direction: column;
+           min-width:100%;
+           margin-top: 5.416vw;
+           
+       
+           // display: flex;
+           // flex-direction: column;
+           // box-shadow: 1px 5px 12px 6px #DBDBDB;
+           // padding-top: 1.25vw;
+           // padding-left: 0.683vw;
+           // padding-right: 0.752vw;
+           // padding-bottom: 1.25vw;
+       
+           .transaction-container{
+               // border: 1px solid blue;
+               // margin-top: 0.752vw;
+               // margin-right: 1.302vw;
+               // margin-bottom: 1,239vw;
+               // margin-left: 1.302vw;
+       
+               .table-title {
+                   text-align: left;
+                   margin-bottom: 0.547vw;
+                   //font-size: 1.25vw;
+                   font-size: medium;
+               }
+       
+               .table-filters {
+                   //border: 1px solid pink;
+                   display: inline-block;            
+                   flex-direction: row;
+                   justify-content: space-between;
+               }
+           }
+           .reacttable-container1{
+               //border: 1px solid black;
+            //    width: 00px;
+               height: 100%;
+               min-width: 50vw;
+               // width: 61.351vw;
+               // margin-top: 6.823vw;
+               // margin-left: 10.4154vw;
+               box-shadow: 1px 2px 6px 3px #DBDBDB;
+               border-radius: 15px;
+              // font-size: 0.9375vw;
+               font-size: small;
+               padding-left: 1.302vw;
+               padding-right: 1.302vw;
+               padding-top: 1.146vw;
+               padding-bottom: 2.127vw;
+               
+       
+               .-striped {
+                   border: solid 1px #ffffff;
+                //    height: 300px;
+               }
+            }
+       }
+       
+       .trasaction-input-control {
+           //width: 13.874vw !important;
+           box-shadow: 3px 3px 3px #DBDBDB;
+           margin-bottom: 7.923%;
+           //font-size: 0.9375vw !important;
+           font-size: small;
+           color: #969696;
+       }
+       
+       .transaction-select-control {
+           //font-size: 0.9375vw !important;
+           font-size: small;
+           text-align: center;
+           letter-spacing: 0.54px;
+           color: #646464;
+           opacity: 1;
+           width: auto;
+       }
+       
+       /*
+       ** For Pagination Component
+       */
+       .Table__itemCount {
+           /* margin-top: 10px; */
+           //font-size: 0.9375vw;
+           font-size: small;
+         }
+         
+         .Table__pagination {
+           display: flex;
+           justify-content: center;
+           padding: 20px 10px;
+         }
+         
+         .Table__pageButton {
+          // font-size: 0.9375vw;
+           font-size: small;
+           outline: none;
+           border: none;
+           background-color: transparent;
+           cursor: pointer;
+         }
+         
+         .Table__pageButton:disabled {
+           cursor: not-allowed;
+           color: gray;
+         }
+         
+         .Table__pageButton--active {
+           color: #40BBF2;
+           font-weight: bold;
+         }
+       
+         .marginTop-1vw{
+             margin-top: 1vw;
+         }
+       
+       .payments-btn{
+           // width: 6vw;
+           // border-radius: 40px !important;
+           // background: #4D96CC 0% 0% no-repeat padding-box !important;
+           border-radius: 30px !important;
+           opacity: 1 !important;
+           margin: 5px;
+           font-size: 0.8rem !important;
+           border-color: transparent
+       
+       }
+    
+       .rt-td{
+           flex: 0 auto;
+           width: 50px;
+       }
 
-  body {
-    width: 100%;
-  }
-  .Charttable-container {
-    min-width: 25vw;
-    width: 100%;
-    margin: 0px;
-    padding-top: 1.765vw;
-    padding-right: 1.209vw;
-    padding-bottom: 1.278vw;
-    padding-left: 1.209vw;
-    box-shadow: 1px 2px 6px 3px #dbdbdb;
-    border-radius: 5px;
-    background-color: #ffffff;
-    //font-size: 0.9375vw;
-    font-size: small;
-
-    .rt-tr-group {
-      //line-height: 1.264vw;
-    }
-
-    .-striped {
-      border: solid 1px #ffffff;
+       .ReactTable.-striped .rt-tr.-odd {
+        background: rgba(0,0,0,.03);
+        height: 50px;
     }
 
     .rt-tr-group div div:nth-child(even) {

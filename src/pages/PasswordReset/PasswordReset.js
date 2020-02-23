@@ -67,15 +67,15 @@ export default class PasswordReset extends Component {
         //If no token is provided redirect in URL, redirect to Sign In Page
         if(token == '')
         {    
-            return <Redirect to='/signin' />
+            return <Redirect to='/login' />
         }
 
         //if update password is successful redirect to Sign In page with confirmation message
         else if(isSuccess){
 
-           return <Redirect to="signin"
+           return <Redirect to="login"
                 to= {{
-                  pathname: '/signin',
+                  pathname: '/login',
                   state: { confirmation_msg }
                 }}
             />
