@@ -84,8 +84,4 @@ class ResponsiveSidebar extends Component {
   }
 }
 
-<<<<<<< HEAD
 export default ResponsiveSidebar;
-=======
-export default (ResponsiveSidebar);
->>>>>>> 2eee2f513c5b6fe4b5bfa274b4b80dde3a0407b2
