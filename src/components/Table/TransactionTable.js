@@ -37,6 +37,7 @@ export default class TransactionTable extends Component {
     let tableData = transactionTable(data, search);
     console.log("TABLE DATA: ");
     console.log(data);
+    console.log("tableData: ", tableData);
 
     const columns = [
       {
@@ -74,7 +75,7 @@ export default class TransactionTable extends Component {
         id: "amount_cad",
         Header: "Amount in CAD",
         accessor: data => {
-          return "$" + formatAmount(data.amount_cad, true);
+          return `$${String(formatAmount(data.amount_cad, true))}`;
         },
         sortMethod: (a, b) => {
           console.log("cad: ", a, b);
