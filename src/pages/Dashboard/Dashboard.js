@@ -63,7 +63,8 @@ export default class Dashboard extends Component {
       alertType: "",
       alertMessage: "",
       showOrientation: parseInt(localStorage.getItem("new_user")) == 1,
-      isFull: false
+      isFull: false,
+      dashbboardMounted: false
     };
 
     this.showAlert = this.showAlert.bind(this);
@@ -71,7 +72,9 @@ export default class Dashboard extends Component {
     this.showWelcomePage = this.showWelcomePage.bind(this);
     this.hideWelcomePage = this.hideWelcomePage.bind(this);
   }
-
+  componentDidMount() {
+    this.setState({ dashbboardMounted: true });
+  }
   showAlert(message, type) {
     this.setState({
       alertMessage: message,
@@ -107,7 +110,8 @@ export default class Dashboard extends Component {
       isAlertVisible,
       alertType,
       alertMessage,
-      showOrientation
+      showOrientation,
+      dashbboardMounted
     } = this.state;
     const ref_code = localStorage.getItem("ref_code");
     let username = localStorage.getItem("username");
@@ -141,17 +145,6 @@ export default class Dashboard extends Component {
 
     return (
       <div>
-        {showOrientation && level != 0 && (
-          <div className="page-overlay">
-            <WelcomeSlider
-              show={showOrientation}
-              onHide={this.hideWelcomePage}
-              history={this.props.history}
-              close={this.hideWelcomePage}
-            ></WelcomeSlider>
-          </div>
-        )}
-
         <div className="navigation d-lg-none d-sm">
           <ResponsiveSidebar history={this.props.history} />
         </div>
@@ -162,6 +155,11 @@ export default class Dashboard extends Component {
         >
           {this.state.isFull && (
             <Container fluid={true} className="fullScreen">
+              <Row>
+                <Col lg={12} md={12} sm={12}>
+                  <LineChartMin interval={linechart_time_days} />
+                </Col>
+              </Row>
               <Row style={{ alignItems: "center" }}>
                 <Col lg={6} md={12} sm={12}>
                   <ChartTableMin />
@@ -273,6 +271,17 @@ export default class Dashboard extends Component {
             </Row>
           </Container>
         </div>
+        {showOrientation && level !== 0 && (
+          <div className="page-overlay">
+            <WelcomeSlider
+              show={showOrientation}
+              onHide={this.hideWelcomePage}
+              history={this.props.history}
+              close={this.hideWelcomePage}
+              dashbboardMounted={dashbboardMounted}
+            ></WelcomeSlider>
+          </div>
+        )}
       </div>
     );
   }
