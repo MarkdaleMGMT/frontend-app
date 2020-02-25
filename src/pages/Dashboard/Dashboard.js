@@ -20,8 +20,7 @@ import FetchDataMin from "../../HOC/FetchDataMin";
 import {
   getOverviewTableData,
   getBalanceHistory,
-  getTransactionHistory,
-  getNewBalanceHistory,
+  getPaddedBalanceHistory,
   getNewTransactionHistory
 } from "../../service/axios-service";
 import { user, balance, account } from "../../service/body-data";
@@ -131,7 +130,7 @@ export default class Dashboard extends Component {
       key: "username",
       value: username
     });
-    const LineChartMin = FetchDataMin(LineChart, getBalanceHistory, {
+    const LineChartMin = FetchDataMin(LineChart, getPaddedBalanceHistory, {
       username,
       time_period_days: linechart_time_days,
       chart: true

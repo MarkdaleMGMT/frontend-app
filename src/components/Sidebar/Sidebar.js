@@ -194,7 +194,9 @@ class LeftSidebar extends Component {
               </Link>
             </li>
           </div>
+          
           <div className="currency-type">{InvestmentsMenu}</div>
+          
           <div className="other-containt">
             <li className="nav-item">
               <i className="fa fa-envelope-square"></i>
