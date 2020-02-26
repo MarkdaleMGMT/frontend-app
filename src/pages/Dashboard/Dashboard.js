@@ -154,11 +154,6 @@ export default class Dashboard extends Component {
         >
           {this.state.isFull && (
             <Container fluid={true} className="fullScreen">
-              <Row>
-                <Col lg={12} md={12} sm={12}>
-                  <LineChartMin interval={linechart_time_days} />
-                </Col>
-              </Row>
               <Row style={{ alignItems: "center" }}>
                 <Col lg={6} md={12} sm={12}>
                   <ChartTableMin />
