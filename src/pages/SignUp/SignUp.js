@@ -15,6 +15,7 @@ class SignUp extends Component {
   state = {
     code: '',
     password: '',
+    confirmPassword: '',
     username: '',
     email: '',
     className: 'needs-validation',  // When validation fails, add a boostrap class to display prompts.
@@ -46,12 +47,37 @@ class SignUp extends Component {
     })
   }
 
+//   handleSubmit = () => {
+//     const { password, confirmPassword } = this.state;
+//     // perform all neccassary validations
+//     if (password !== confirmPassword) {
+//         alert("Passwords don't match");
+//     } else {
+//         // make API call
+//     }
+// }
+
   handleSubmit = (e)=>{
+
+    const { password, confirmPassword } = this.state;
+    // perform all neccassary validations
+    if (password !== confirmPassword) {
+      this.setState({
+        err_msg: {err: true, msg:`Passwords dont match.`},
+        className: 'needs-validation'
+
+      });
+      return;
+    } else {
+        // make API call
+        
+    }
+    
     if(!e.target.checkValidity()){  // Add a Bootstrap class to show prompts if checkValidity is false.
       this.setState({ className: 'needs-validation was-validated'});
     }else{
-      const { code, username, password, email} = this.state;
-      axios.post(FRONTEND_API + "signup", {code, username, password, email})
+      const { code, username, password, confirmPassword, email} = this.state;
+      axios.post(FRONTEND_API + "signup", {code, username, password, confirmPassword, email})
       .then((res)=>{
           //if(res.data.code === 'Signup successful, please check your inbox to confirm your e-mail address - might go to "junk/spam" folder')
             this.setState({ isSuccess: true , confirmation_msg:{show:true, msg:res.data.code}});
@@ -72,7 +98,7 @@ class SignUp extends Component {
 
 
   render(){
-    const { code, username, password, email, className, isSuccess, err_msg, confirmation_msg} = this.state;
+    const { code, username, password, confirmPassword, email, className, isSuccess, err_msg, confirmation_msg} = this.state;
     if(!isSuccess)
         return (
           <Container fluid={true} className="formbox" >
@@ -97,6 +123,12 @@ class SignUp extends Component {
                       </div>
                   </div>
                   <div className="form-group">
+                      <input name="confirmPassword" type="password" className="form-control signup-form-control" id="confirmPassword" placeholder="Password Confimation" required value={confirmPassword} onChange={this.handleInputChange} ></input>
+                      <div className="invalid-feedback text-left ml-1">
+                        Make sure it's at least 6 characters including a number, a lowercase, a uppercase and a special character.
+                      </div>
+                  </div>
+                  <div className="form-group">
                       <input name="email" type="email" className="form-control signup-form-control" id="email" placeholder="Email" required value={email} onChange={this.handleInputChange} pattern={EMAIL_CHECK}></input>
                       <div className="invalid-feedback text-left ml-1">
                         Incorrect email format.
@@ -109,7 +141,7 @@ class SignUp extends Component {
                       </div></div>
                   <Row className="justify-content-center">
                     <Col xs={6} md={8} lg={4}>
-                      <button type="submit" name="signUp" className=" btn btn-info signup-btn">Sign Up</button>
+                      <button type="button" name="signUp" className=" btn btn-info signup-btn">Sign Up</button>
                     </Col>
                   </Row>
                 </form>
