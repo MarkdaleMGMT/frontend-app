@@ -230,16 +230,16 @@ export default class Payments extends Component {
                         
                         />
                         <br />
-                        <label className="form-control Trans-form-control">
-                            Bank:
-                            <select>
+                        <div className="form-group" placeholder="Branch Number:">
+                        <select className="form-control Trans-form-control" name="bank" required  onChange={this.handleInputChange}>
+                            <option value="" defaultValue>Bank</option>
                             <option value="CIBC">CIBC</option>
                             <option value="RBC">RBC</option>
-                            <option selected value="TD">TD</option>
+                            <option value="TD">TD</option>
                             <option value="BMO">BMO</option>
                             <option value="BNS">BNS</option>
                         </select>
-                        </label>
+                    </div>
                         <br />
                         <FormControl className="form-control Trans-form-control"
 

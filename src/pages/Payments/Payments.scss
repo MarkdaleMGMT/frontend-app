@@ -1070,13 +1070,27 @@
     }
 
     .submit1 {
+        padding: 0.375rem 0.75rem;
         margin-left: 10px;
-        margin-bottom: 10px;
+        margin-bottom: 20px;
         color: #fff;
         background-color: #17a2b8;
         border-radius: 30px !important;
         opacity: 1 !important;
-        margin: 5px;
         font-size: 0.8rem !important;
         border-color: transparent;
+        }
+
+        .modal-content {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            pointer-events: auto;
+            background-color: #fff;
+            background-clip: padding-box;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+            border-radius: 0.3rem;
+            outline: 0;
+            padding: 10px;
         }
