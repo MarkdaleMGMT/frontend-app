@@ -27,8 +27,9 @@ class ResponsiveSidebar extends Component {
 
   componentDidMount() {
     window.addEventListener("resize", () => {
-      this.setState({ open: false });
       document.body.style.overflow = "visible";
+      this.setState({ open: false });
+      
     });
 
     const height = document.getElementById("nav-bar").clientHeight;
@@ -37,11 +38,11 @@ class ResponsiveSidebar extends Component {
 
   toggle() {
     this.setState({ open: !this.state.open });
-    if (this.state.open) {
-      document.body.style.overflow = "visible";
-    } else if (!this.state.open) {
-      document.body.style.overflow = "hidden";
-    }
+    // if (this.state.open) {
+    //   document.body.style.overflow = "visible";
+    // } else if (!this.state.open) {
+    //   document.body.style.overflow = "hidden";
+    // }
   }
 
   render() {
