@@ -47,15 +47,7 @@ class SignUp extends Component {
     })
   }
 
-//   handleSubmit = () => {
-//     const { password, confirmPassword } = this.state;
-//     // perform all neccassary validations
-//     if (password !== confirmPassword) {
-//         alert("Passwords don't match");
-//     } else {
-//         // make API call
-//     }
-// }
+
 
   handleSubmit = (e)=>{
 
@@ -68,6 +60,7 @@ class SignUp extends Component {
 
       });
       e.preventDefault();
+      return;
     } else {
         // make API call
         
