@@ -1,4 +1,7 @@
 //media query for responsive
+
+
+
 .reacttable-container1{
     //border: 1px solid black;
     // width: 320px;
@@ -1052,3 +1055,28 @@
        }
        
     }
+
+    .row1 {
+        display: flex;
+        flex-wrap: wrap;
+        margin-right: -15px;
+        margin-left: 0px;
+    }
+
+    .label1 {
+        display: inline-block;
+        margin-bottom: 0.5rem;
+        margin-left: 10px;
+    }
+
+    .submit1 {
+        margin-left: 10px;
+        margin-bottom: 10px;
+        color: #fff;
+        background-color: #17a2b8;
+        border-radius: 30px !important;
+        opacity: 1 !important;
+        margin: 5px;
+        font-size: 0.8rem !important;
+        border-color: transparent;
+        }

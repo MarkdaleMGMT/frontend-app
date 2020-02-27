@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Row, Col , Modal, InputGroup, FormControl, Button} from 'react-bootstrap';
 import { getUserInvestmentDetails } from '../../service/axios-service'
+import { hashUserName } from '../../service/axios-service'
+
 
 
 import {   
@@ -37,10 +39,28 @@ export default class Payments extends Component {
         this.onWithdrawal = this.onWithdrawal.bind(this);
     }
 
+    componentDidMount(){
+        this.fetchHashUserName()
+    }
+
     componentWillMount(){
 
         this.fetchInvestmentDetails()
 
+    }
+
+    fetchHashUserName(){
+        const username = localStorage.getItem("username")
+        hashUserName({username})
+        .then((res)=>{
+
+            
+            this.setState({hashUserName: res.data.hash_username});
+        })
+        .catch((err)=>{
+            //triggers a state change which will refresh all components
+            // this.showAlert(err.response.data.code,'error');
+        });
     }
 
     fetchInvestmentDetails(){
@@ -77,6 +97,10 @@ export default class Payments extends Component {
 
     }
     
+    handleSubmit() {
+        alert('Send email ');
+        
+      }
 
 
 
@@ -126,12 +150,15 @@ export default class Payments extends Component {
                         <Container>
 
                             <Row> Send an INTERAC transfer </Row>
+                            
+                            <Row> Send to this email: </Row>
                             <Row>
 
                             <InputGroup className="mb-3" size="sm">
+                    
                                 <FormControl
                                 disabled={true}
-                                value="deposits@qoinify.com"
+                                value="chavisistheman@gmail.com"
                                 placeholder="Recipient's Email"
                                 aria-label="Recipient's Email"
                                 aria-describedby="basic-addon2"
@@ -142,7 +169,7 @@ export default class Payments extends Component {
                                 </InputGroup.Append>
 
                             </InputGroup>
-
+                                   <Row className="row1"> Use the username as security question: </Row>
                             <InputGroup className="mb-3" size="sm">
                                 <FormControl
                                 disabled={true}
@@ -158,10 +185,13 @@ export default class Payments extends Component {
 
                             </InputGroup>
 
+                            <Row className="row1"> Use the username hash as the password: </Row>
+
+
                             <InputGroup className="mb-3" size="sm">
                                 <FormControl
                                 disabled={true}
-                                value="ayesha"
+                                value={username}
                                 placeholder="Recipient's username"
                                 aria-label="Recipient's username"
                                 aria-describedby="basic-addon2"
@@ -173,7 +203,7 @@ export default class Payments extends Component {
 
                             </InputGroup>
 
-                            
+                            <Row className="row1">Deposit may take up to 24 hours, <a href={"http://165.227.42.25/contact"}> contact us for any questions</a></Row>
                            
  
                             </Row>
@@ -190,7 +220,49 @@ export default class Payments extends Component {
                     <Modal.Header closeButton>
                     <Modal.Title>Withdrawal</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <form  onSubmit={this.handleSubmit}>
+                        <FormControl className="form-control Trans-form-control"
+
+                            
+                                placeholder="Amount to withdraw:"
+                                aria-label="Amount to withdraw:"
+                                aria-describedby="basic-addon2"
+                        
+                        />
+                        <br />
+                        <label className="form-control Trans-form-control">
+                            Bank:
+                            <select>
+                            <option value="CIBC">CIBC</option>
+                            <option value="RBC">RBC</option>
+                            <option selected value="TD">TD</option>
+                            <option value="BMO">BMO</option>
+                            <option value="BNS">BNS</option>
+                        </select>
+                        </label>
+                        <br />
+                        <FormControl className="form-control Trans-form-control"
+
+                            
+                                placeholder="Branch Number:"
+                                aria-label="Branch Number:"
+                                aria-describedby="basic-addon2"
+                        
+                        />
+                    
+                        <br />
+                        <FormControl className="form-control Trans-form-control"
+
+                            
+                                placeholder="Name of Account Holder:"
+                                aria-label="Name of Account Holder:"
+                                aria-describedby="basic-addon2"
+                        
+                        />
+                        <br />
+                        <input className="submit1" type="submit" value="Submit"  />
+                        </form>
+                        
                 </Modal>
                 
             </div>
