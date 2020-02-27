@@ -332,7 +332,7 @@ class ExchangeForm extends Component {
                         <form  onSubmit={this.executeExchange}>
 
                         {/* Button For Yael */}
-                        <Button variant="outline-dark" onClick={()=>{this.reverse()}}>
+                        <Button style={{"zIndex": 1}} variant="outline-dark" onClick={()=>{this.reverse()}}>
                             <i className="fa fa-exchange"></i>
                         </Button>
        
