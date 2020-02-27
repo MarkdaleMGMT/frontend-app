@@ -67,7 +67,7 @@ class SignUp extends Component {
         className: 'needs-validation'
 
       });
-      return;
+      e.preventDefault();
     } else {
         // make API call
         
@@ -141,7 +141,7 @@ class SignUp extends Component {
                       </div></div>
                   <Row className="justify-content-center">
                     <Col xs={6} md={8} lg={4}>
-                      <button type="button" name="signUp" className=" btn btn-info signup-btn">Sign Up</button>
+                      <button type="submit" name="signUp" className=" btn btn-info signup-btn">Sign Up</button>
                     </Col>
                   </Row>
                 </form>
