@@ -130,7 +130,7 @@ export default class Payments extends Component {
 
     render() {
         // Get hash of username from state
-        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showWithdrawal ,hashUserName} = this.state;
+        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showMessage, showWithdrawal ,hashUserName} = this.state;
 
         const username = localStorage.getItem("username")
         
