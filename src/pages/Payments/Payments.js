@@ -1,9 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Row, Col , Modal, InputGroup, FormControl, Button} from 'react-bootstrap';
-import { getUserInvestmentDetails } from '../../service/axios-service'
-import { hashUserName } from '../../service/axios-service'
 
-
+// [1] Import API axios requestion from axios-service file
+import { getUserInvestmentDetails, hashUserName } from '../../service/axios-service'
 
 import {   
     ResponsiveSidebar,
@@ -51,13 +50,16 @@ export default class Payments extends Component {
 
     }
 
+    // [2] : Make a function to call imported API from step 1
     fetchHashUserName(){
         const username = localStorage.getItem("username")
         hashUserName({username})
         .then((res)=>{
 
-            
-            this.setState({hashUserName: res.data.hash_username});
+            // [3] : From the res data, assign hash to local state value
+            console.log(res)
+            this.setState({hashUserName: res.data.hash});
+
         })
         .catch((err)=>{
             //triggers a state change which will refresh all components
@@ -127,8 +129,9 @@ export default class Payments extends Component {
 
 
     render() {
+        // Get hash of username from state
+        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showWithdrawal ,hashUserName} = this.state;
 
-        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showMessage, showWithdrawal } = this.state;
         const username = localStorage.getItem("username")
         
         return (
@@ -228,7 +231,8 @@ export default class Payments extends Component {
                             <InputGroup className="mb-3" size="sm">
                                 <FormControl
                                 disabled={true}
-                                value={username}
+                                //[5] : Set value as hash of user name
+                                value={hashUserName}
                                 placeholder="Recipient's username"
                                 aria-label="Recipient's username"
                                 aria-describedby="basic-addon2"
