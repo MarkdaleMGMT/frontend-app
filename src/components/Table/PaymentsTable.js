@@ -20,7 +20,7 @@ class PaymentsTable extends Component {
     
 
     render(){
-        const { data, onDeposit, onWithdrawal, isCrypto}= this.props;
+        const { data, onDeposit, onWithdrawal, currency, isCrypto}= this.props;
         const username = localStorage.getItem("username")
 
     
@@ -40,8 +40,8 @@ class PaymentsTable extends Component {
                 Header:'Deposit/ Withdraw',
                 Cell: row => (
                     <div>
-                        <button className="btn btn-info payments-btn light-grey" onClick={() => onDeposit(row.investment_id, username, row.original.isCrypto)}>Deposit</button>
-                        <button className="btn btn-info payments-btn" onClick={() => onWithdrawal(row.investment_id, username, row.original.isCrypto)}>Withdraw</button>
+                        <button className="btn btn-info payments-btn light-grey" onClick={() => onDeposit(row.investment_id, username, row.original.isCrypto, row.original.currency)}>Deposit</button>
+                        <button className="btn btn-info payments-btn" onClick={() => onWithdrawal(row.investment_id, username, row.original.isCrypto, row.original.currency)}>Withdraw</button>
                     </div>
                 )
 

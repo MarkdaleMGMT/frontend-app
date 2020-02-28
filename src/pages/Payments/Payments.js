@@ -70,7 +70,8 @@ export default class Payments extends Component {
     fetchInvestmentDetails(){
 
         const username = localStorage.getItem("username")
-        getUserInvestmentDetails({username})
+        const investment_id = localStorage.getItem("investment_id")
+        getUserInvestmentDetails({username, investment_id})
         .then((res)=>{
 
             
@@ -100,21 +101,25 @@ export default class Payments extends Component {
 
     
 
-    onDeposit(username, investment_id, is_crypto){
+    onDeposit(username, investment_id, is_crypto, currency){
         console.log(is_crypto);
-        if (is_crypto == true) {
+       
+        
+        if (is_crypto == true || currency == "USD") {
             this.setState({showMessage: true, showDeposit: false, showWithdrawal: false});
         }
-        else{this.setState({showDeposit: true, showWithdrawal: false})}
+        else{this.setState({showDeposit: true, showMessage:false, showWithdrawal: false})}
         
     }
 
-    onWithdrawal(username, investment_id, is_crypto){
+    onWithdrawal(username, investment_id, is_crypto, currency){
         console.log(is_crypto);
-        if (is_crypto == true) {
+        console.log(currency);
+        
+        if (is_crypto == true || currency == "USD") {
             this.setState({showMessage: true, showDeposit: false, showWithdrawal: false});
         }
-        else{this.setState({showDeposit: false, showWithdrawal: true})}
+        else{this.setState({showDeposit: false, showMessage:false, showWithdrawal: true})}
     }
 
    
@@ -130,7 +135,7 @@ export default class Payments extends Component {
 
     render() {
         // Get hash of username from state
-        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showWithdrawal ,hashUserName} = this.state;
+        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit,showMessage, showWithdrawal ,hashUserName} = this.state;
 
         const username = localStorage.getItem("username")
         
