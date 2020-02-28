@@ -29,7 +29,8 @@ export default class Payments extends Component {
             alertMessage:'',
             investmentDetails:[],
             showWithdrawal: false,
-            showDeposit: false
+            showDeposit: false,
+            showMessage: false,
         };
 
         this.showAlert = this.showAlert.bind(this);
@@ -37,6 +38,7 @@ export default class Payments extends Component {
         this.fetchInvestmentDetails = this.fetchInvestmentDetails.bind(this);
         this.onDeposit = this.onDeposit.bind(this);
         this.onWithdrawal = this.onWithdrawal.bind(this);
+        this.isCrypto = this.isCrypto.bind(this);
     }
 
     componentDidMount(){
@@ -86,16 +88,36 @@ export default class Payments extends Component {
         this.setState({ isAlertVisible: false });
     }
 
+    isCrypto(is_crypto){
+        if (is_crypto == true) {
+            alert('Send email ');
+        }
+        
+        
+    }
+
+    
+
     onDeposit(username, investment_id, is_crypto){
-
-        this.setState({showDeposit: true, showWithdrawal: false})
+        console.log(is_crypto);
+        if (is_crypto == true) {
+            this.setState({showMessage: true, showDeposit: false, showWithdrawal: false});
+        }
+        else{this.setState({showDeposit: true, showWithdrawal: false})}
+        
     }
 
-    onWithdrawal(account_id){
-
-        this.setState({showDeposit: false, showWithdrawal: true})
-
+    onWithdrawal(username, investment_id, is_crypto){
+        console.log(is_crypto);
+        if (is_crypto == true) {
+            this.setState({showMessage: true, showDeposit: false, showWithdrawal: false});
+        }
+        else{this.setState({showDeposit: false, showWithdrawal: true})}
     }
+
+   
+
+    
     
     handleSubmit() {
         alert('Send email ');
@@ -106,7 +128,7 @@ export default class Payments extends Component {
 
     render() {
 
-        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showWithdrawal } = this.state;
+        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showMessage, showWithdrawal } = this.state;
         const username = localStorage.getItem("username")
         
         return (
@@ -128,7 +150,8 @@ export default class Payments extends Component {
                            <PaymentsTable
                                 data={investmentDetails}
                                 onDeposit={this.onDeposit}
-                                onWithdraw={this.onWithdrawal}
+                                onWithdrawal={this.onWithdrawal}
+                                isCrypto={this.isCrypto}
                            />
 
                         
@@ -139,6 +162,20 @@ export default class Payments extends Component {
                     <Row><Col lg={12} md={12} sm={12} className="footer-container"><Footer history={this.props.history} /></Col></Row>
                 </div>
                 </Container>
+                <Modal show={showMessage} onHide={()=> this.setState({ showMessage: false})}>
+                    <Modal.Header closeButton>
+                    </Modal.Header>
+                    <Modal.Body  >
+                        
+                        <Container>
+
+                            <Row> We're sorry, payments are not enabled for this currency </Row>
+                            
+                            
+                        </Container>
+
+                    </Modal.Body>
+                </Modal>
                 
 
                 <Modal show={showDeposit} onHide={()=> this.setState({ showDeposit: false})}>
