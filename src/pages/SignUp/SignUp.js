@@ -59,8 +59,7 @@ class SignUp extends Component {
         className: 'needs-validation'
 
       });
-      e.preventDefault()
-      return;
+      e.preventDefault();
     } else {
         // make API call
         
