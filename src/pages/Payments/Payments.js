@@ -214,7 +214,7 @@ export default class Payments extends Component {
                                 </InputGroup.Append>
 
                             </InputGroup>
-                                   <Row className="row1"> Use the username as security question: </Row>
+                                   <Row className="row1"> Use your username as the security question: </Row>
                             <InputGroup className="mb-3" size="sm">
                                 <FormControl
                                 disabled={true}
@@ -230,7 +230,7 @@ export default class Payments extends Component {
 
                             </InputGroup>
 
-                            <Row className="row1"> Use the username hash as the password: </Row>
+                            <Row className="row1"> Use this code as the password: </Row>
 
 
                             <InputGroup className="mb-3" size="sm">
@@ -249,7 +249,7 @@ export default class Payments extends Component {
 
                             </InputGroup>
 
-                            <Row className="row1">Deposit may take up to 24 hours, <a href={"http://165.227.42.25/contact"}> contact us for any questions</a></Row>
+                            <Row className="row1">Deposit may take up to 24 hours,&nbsp;<a href={"http://165.227.42.25/contact"}> contact us for any questions</a></Row>
                            
  
                             </Row>
@@ -292,6 +292,16 @@ export default class Payments extends Component {
                             
                                 placeholder="Branch Number:"
                                 aria-label="Branch Number:"
+                                aria-describedby="basic-addon2"
+                        
+                        />
+                    
+                        <br />
+                        <FormControl className="form-control Trans-form-control"
+
+                            
+                                placeholder="Account Number:"
+                                aria-label="Account Number:"
                                 aria-describedby="basic-addon2"
                         
                         />
