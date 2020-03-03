@@ -47,15 +47,7 @@ class SignUp extends Component {
     })
   }
 
-//   handleSubmit = () => {
-//     const { password, confirmPassword } = this.state;
-//     // perform all neccassary validations
-//     if (password !== confirmPassword) {
-//         alert("Passwords don't match");
-//     } else {
-//         // make API call
-//     }
-// }
+
 
   handleSubmit = (e)=>{
 
@@ -67,7 +59,7 @@ class SignUp extends Component {
         className: 'needs-validation'
 
       });
-      return;
+      e.preventDefault();
     } else {
         // make API call
         
@@ -79,7 +71,7 @@ class SignUp extends Component {
       const { code, username, password, confirmPassword, email} = this.state;
       axios.post(FRONTEND_API + "signup", {code, username, password, confirmPassword, email})
       .then((res)=>{
-          //if(res.data.code === 'Signup successful, please check your inbox to confirm your e-mail address - might go to "junk/spam" folder')
+          if(res.data.code === 'Signup successful, please check your inbox to confirm your e-mail address - might go to "junk/spam" folder')
             this.setState({ isSuccess: true , confirmation_msg:{show:true, msg:res.data.code}});
 
 
@@ -87,7 +79,7 @@ class SignUp extends Component {
       .catch((err)=>{
         this.setState({
           // Here, I used the message returned from server for user. Or customize a message for user.
-          err_msg: {err: true, msg:`${err.response.data.code}: ${err.response.data.message}`},
+          err_msg: {err: true, msg:`${err.response.data.code}: ${err.response.data.message}.`},
           className: 'needs-validation'
         });
       })

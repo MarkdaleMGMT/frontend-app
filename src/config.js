@@ -1,1 +1,1 @@
-module.exports = { serverIP: "http://138.197.145.155", domain: "ahana" };
+module.exports = { serverIP: "http://165.227.35.11", domain: "Merge Feb" };

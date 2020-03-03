@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Container, Row, Col , Modal, InputGroup, FormControl, Button} from 'react-bootstrap';
-import { getUserInvestmentDetails } from '../../service/axios-service'
 
+// [1] Import API axios requestion from axios-service file
+import { getUserInvestmentDetails, hashUserName } from '../../service/axios-service'
 
 import {   
     ResponsiveSidebar,
@@ -27,7 +28,8 @@ export default class Payments extends Component {
             alertMessage:'',
             investmentDetails:[],
             showWithdrawal: false,
-            showDeposit: false
+            showDeposit: false,
+            showMessage: false,
         };
 
         this.showAlert = this.showAlert.bind(this);
@@ -35,6 +37,11 @@ export default class Payments extends Component {
         this.fetchInvestmentDetails = this.fetchInvestmentDetails.bind(this);
         this.onDeposit = this.onDeposit.bind(this);
         this.onWithdrawal = this.onWithdrawal.bind(this);
+        this.isCrypto = this.isCrypto.bind(this);
+    }
+
+    componentDidMount(){
+        this.fetchHashUserName()
     }
 
     componentWillMount(){
@@ -43,10 +50,28 @@ export default class Payments extends Component {
 
     }
 
+    // [2] : Make a function to call imported API from step 1
+    fetchHashUserName(){
+        const username = localStorage.getItem("username")
+        hashUserName({username})
+        .then((res)=>{
+
+            // [3] : From the res data, assign hash to local state value
+            console.log(res)
+            this.setState({hashUserName: res.data.hash});
+
+        })
+        .catch((err)=>{
+            //triggers a state change which will refresh all components
+            // this.showAlert(err.response.data.code,'error');
+        });
+    }
+
     fetchInvestmentDetails(){
 
         const username = localStorage.getItem("username")
-        getUserInvestmentDetails({username})
+        const investment_id = localStorage.getItem("investment_id")
+        getUserInvestmentDetails({username, investment_id})
         .then((res)=>{
 
             
@@ -66,23 +91,53 @@ export default class Payments extends Component {
         this.setState({ isAlertVisible: false });
     }
 
-    onDeposit(username, investment_id, is_crypto){
-
-        this.setState({showDeposit: true, showWithdrawal: false})
+    isCrypto(is_crypto){
+        if (is_crypto == true) {
+            alert('Send email ');
+        }
+        
+        
     }
 
-    onWithdrawal(account_id){
-
-        this.setState({showDeposit: false, showWithdrawal: true})
-
-    }
     
+
+    onDeposit(username, investment_id, is_crypto, currency){
+        console.log(is_crypto);
+       
+        
+        if (is_crypto == true || currency == "USD") {
+            this.setState({showMessage: true, showDeposit: false, showWithdrawal: false});
+        }
+        else{this.setState({showDeposit: true, showMessage:false, showWithdrawal: false})}
+        
+    }
+
+    onWithdrawal(username, investment_id, is_crypto, currency){
+        console.log(is_crypto);
+        console.log(currency);
+        
+        if (is_crypto == true || currency == "USD") {
+            this.setState({showMessage: true, showDeposit: false, showWithdrawal: false});
+        }
+        else{this.setState({showDeposit: false, showMessage:false, showWithdrawal: true})}
+    }
+
+   
+
+    
+    
+    handleSubmit() {
+        alert('Send email ');
+        
+      }
 
 
 
     render() {
+        // Get hash of username from state
+        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showMessage, showWithdrawal ,hashUserName} = this.state;
 
-        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showWithdrawal } = this.state;
+
         const username = localStorage.getItem("username")
         
         return (
@@ -104,7 +159,8 @@ export default class Payments extends Component {
                            <PaymentsTable
                                 data={investmentDetails}
                                 onDeposit={this.onDeposit}
-                                onWithdraw={this.onWithdrawal}
+                                onWithdrawal={this.onWithdrawal}
+                                isCrypto={this.isCrypto}
                            />
 
                         
@@ -115,6 +171,20 @@ export default class Payments extends Component {
                     <Row><Col lg={12} md={12} sm={12} className="footer-container"><Footer history={this.props.history} /></Col></Row>
                 </div>
                 </Container>
+                <Modal show={showMessage} onHide={()=> this.setState({ showMessage: false})}>
+                    <Modal.Header closeButton>
+                    </Modal.Header>
+                    <Modal.Body  >
+                        
+                        <Container>
+
+                            <Row> We're sorry, payments are not enabled for this currency </Row>
+                            
+                            
+                        </Container>
+
+                    </Modal.Body>
+                </Modal>
                 
 
                 <Modal show={showDeposit} onHide={()=> this.setState({ showDeposit: false})}>
@@ -126,12 +196,15 @@ export default class Payments extends Component {
                         <Container>
 
                             <Row> Send an INTERAC transfer </Row>
+                            
+                            <Row> Send to this email: </Row>
                             <Row>
 
                             <InputGroup className="mb-3" size="sm">
+                    
                                 <FormControl
                                 disabled={true}
-                                value="deposits@qoinify.com"
+                                value="chavisistheman@gmail.com"
                                 placeholder="Recipient's Email"
                                 aria-label="Recipient's Email"
                                 aria-describedby="basic-addon2"
@@ -142,7 +215,7 @@ export default class Payments extends Component {
                                 </InputGroup.Append>
 
                             </InputGroup>
-
+                                   <Row className="row1"> Use your username as the security question: </Row>
                             <InputGroup className="mb-3" size="sm">
                                 <FormControl
                                 disabled={true}
@@ -158,10 +231,14 @@ export default class Payments extends Component {
 
                             </InputGroup>
 
+                            <Row className="row1"> Use this code as the password: </Row>
+
+
                             <InputGroup className="mb-3" size="sm">
                                 <FormControl
                                 disabled={true}
-                                value="ayesha"
+                                //[5] : Set value as hash of user name
+                                value={hashUserName}
                                 placeholder="Recipient's username"
                                 aria-label="Recipient's username"
                                 aria-describedby="basic-addon2"
@@ -173,7 +250,7 @@ export default class Payments extends Component {
 
                             </InputGroup>
 
-                            
+                            <Row className="row1">Deposit may take up to 24 hours,&nbsp;<a href={"http://165.227.42.25/contact"}> contact us for any questions</a></Row>
                            
  
                             </Row>
@@ -190,7 +267,59 @@ export default class Payments extends Component {
                     <Modal.Header closeButton>
                     <Modal.Title>Withdrawal</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+                    <form  onSubmit={this.handleSubmit}>
+                        <FormControl className="form-control Trans-form-control"
+
+                            
+                                placeholder="Amount to withdraw:"
+                                aria-label="Amount to withdraw:"
+                                aria-describedby="basic-addon2"
+                        
+                        />
+                        <br />
+                        <div className="form-group" placeholder="Branch Number:">
+                        <select className="form-control Trans-form-control" name="bank" required  onChange={this.handleInputChange}>
+                            <option value="" defaultValue>Bank</option>
+                            <option value="CIBC">CIBC</option>
+                            <option value="RBC">RBC</option>
+                            <option value="TD">TD</option>
+                            <option value="BMO">BMO</option>
+                            <option value="BNS">BNS</option>
+                        </select>
+                    </div>
+                        <br />
+                        <FormControl className="form-control Trans-form-control"
+
+                            
+                                placeholder="Branch Number:"
+                                aria-label="Branch Number:"
+                                aria-describedby="basic-addon2"
+                        
+                        />
+                    
+                        <br />
+                        <FormControl className="form-control Trans-form-control"
+
+                            
+                                placeholder="Account Number:"
+                                aria-label="Account Number:"
+                                aria-describedby="basic-addon2"
+                        
+                        />
+                    
+                        <br />
+                        <FormControl className="form-control Trans-form-control"
+
+                            
+                                placeholder="Name of Account Holder:"
+                                aria-label="Name of Account Holder:"
+                                aria-describedby="basic-addon2"
+                        
+                        />
+                        <br />
+                        <input className="submit1" type="submit" value="Submit"  />
+                        </form>
+                        
                 </Modal>
                 
             </div>
