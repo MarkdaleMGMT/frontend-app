@@ -6,6 +6,7 @@ import { BACKEND_API, FRONTEND_API } from '../config/config';
  */
 export const getOverviewTableData = (data)=>Axios.post(BACKEND_API + 'users/balance', data);
 export const getBalanceHistory = (data)=>Axios.post(BACKEND_API + 'users/balance_history', data);
+export const getPaddedBalanceHistory = (data)=>Axios.post(BACKEND_API + 'users/padded_balance_history', data);
 export const getTransactionHistory = (data)=>Axios.post(BACKEND_API + 'accounts/transaction_history', data);
 export const getInvestments  = (data) => Axios.post(FRONTEND_API + 'all_investments', data);
 
@@ -34,6 +35,11 @@ export const getNewRatesHistory = (data) => Axios.post(BACKEND_API + "fx/new_rat
 
 export const updateUserInfo = (data) => Axios.post(FRONTEND_API+'update_info', data);
 export const getUserInvestmentDetails = (data) => Axios.post(BACKEND_API + 'users/investments', data);
-export const hashUserName = (data) => Axios.post(BACKEND_API + 'payments/secret', data);
 export const postContact = (data) => Axios.post(BACKEND_API + "contact", data);
+
+export const hashUserName = (data) => Axios.post(BACKEND_API + 'payments/secret', data);
+export const getReceiver = () => Axios.get(BACKEND_API + 'payments/receiver');
+
+
+
 

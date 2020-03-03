@@ -1,6 +1,1 @@
-module.exports = {
-
-  serverIP:"http://142.93.148.141",
-  domain:"Qoinify"
-
-}
+module.exports = { serverIP: "http://165.227.35.11", domain: "Merge Feb" };
