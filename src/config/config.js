@@ -17,6 +17,7 @@ export const BACKEND_API = SERVERIP + "/backend/";
 
 export const SESSION_SIGNOUT_TIME = 1000 * 60 * 15;
 
+
 export const FETCH_DATA_INTERVAL = 1000 * 60;
 
 export const ALERT_SIGNOUT_MSG = "Time is up. Please log in again.";

@@ -81,9 +81,16 @@ rect.annotation-note-bg {
   }
 }
 
+
+rect.annotation-note-bg{
+    fill:white;
+    fill-opacity: 0.8;
+}
+
 @media screen and (max-width: 767px) {
-    .welcome-message-container{
+    .welcome-container{
     display: none;
     }
     }
+
 
