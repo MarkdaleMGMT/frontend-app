@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Row, Col , Modal, InputGroup, FormControl, Button} from 'react-bootstrap';
 
 // [1] Import API axios requestion from axios-service file
-import { getUserInvestmentDetails, hashUserName } from '../../service/axios-service'
+import { getUserInvestmentDetails, hashUserName, getReceiver } from '../../service/axios-service'
 
 import {   
     ResponsiveSidebar,
@@ -30,6 +30,7 @@ export default class Payments extends Component {
             showWithdrawal: false,
             showDeposit: false,
             showMessage: false,
+            receiverEmail: "admin@qoinify.com"
         };
 
         this.showAlert = this.showAlert.bind(this);
@@ -38,16 +39,32 @@ export default class Payments extends Component {
         this.onDeposit = this.onDeposit.bind(this);
         this.onWithdrawal = this.onWithdrawal.bind(this);
         this.isCrypto = this.isCrypto.bind(this);
+        
+        this.fetchReceiver = this.fetchReceiver.bind(this);
     }
 
     componentDidMount(){
         this.fetchHashUserName()
+        this.fetchReceiver()
     }
 
     componentWillMount(){
 
         this.fetchInvestmentDetails()
 
+    }
+
+    fetchReceiver(){
+        getReceiver()
+        .then((res)=>{
+            console.log(res)
+            this.setState({receiverEmail: res.data.email});
+
+        })
+        .catch((err)=>{
+            //triggers a state change which will refresh all components
+            // this.showAlert(err.response.data.code,'error');
+        });
     }
 
     // [2] : Make a function to call imported API from step 1
@@ -135,7 +152,7 @@ export default class Payments extends Component {
 
     render() {
         // Get hash of username from state
-        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showMessage, showWithdrawal ,hashUserName} = this.state;
+        const { isAlertVisible, alertType, alertMessage, investmentDetails, showDeposit, showMessage, showWithdrawal ,hashUserName, receiverEmail} = this.state;
 
 
         const username = localStorage.getItem("username")
@@ -204,7 +221,7 @@ export default class Payments extends Component {
                     
                                 <FormControl
                                 disabled={true}
-                                value="chavisistheman@gmail.com"
+                                value= {receiverEmail}
                                 placeholder="Recipient's Email"
                                 aria-label="Recipient's Email"
                                 aria-describedby="basic-addon2"
