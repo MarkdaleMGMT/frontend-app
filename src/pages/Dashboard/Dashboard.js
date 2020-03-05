@@ -141,7 +141,7 @@ export default class Dashboard extends Component{
             <Fullscreen enabled={this.state.isFull} onChange={isFull => this.setState({isFull})}>
             { this.state.isFull &&
                 <Container fluid={true} className="fullScreen">
-                <Row ><Col lg={12} md={12} sm={12}><LineChartMin interval={linechart_time_days} /></Col></Row>                   
+                <Row ><Col className="trying" lg={12} md={12} sm={12}><LineChartMin interval={linechart_time_days} /></Col></Row>                   
                     <Row style={{ alignItems: "center"}} >
                         <Col lg={6} md={12} sm={12} ><ChartTableMin/></Col>
                         <Col className="" lg={6} md={12} sm={12} ><DoughnutChartMin/></Col>
