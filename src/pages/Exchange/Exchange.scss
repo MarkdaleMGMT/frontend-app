@@ -59,3 +59,9 @@
   overflow: scroll;
   scrollbar-width: none; /* Firefox */
 }
+
+@media (min-width:1326px){
+    .simple-chart-container .simple-chart-wrapper div div .highcharts-container{
+        max-height: 200px;  
+    }
+}
