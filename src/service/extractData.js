@@ -157,18 +157,25 @@ export const formatUserHistoryData = (series_name, user_data) =>{
     return [chartData];
 }
 
-export const formatRatesHistoryData = (data) => {
+export const formatRatesHistoryData = (data, interval) => {
 
     console.log("NEW FORMATTED ",data);
     
     let currency_rate_histories = data;
     let chartData = [];
 
-    chartData = currency_rate_histories.map( rate_history => {
 
+    let dateProcessor = (date) => {return Date.parse(convertDateInLineChart(date))}
+    if (interval == 1){
+        dateProcessor =  (date) => {return new Date(date).getTime()}
+    }
+
+    chartData = currency_rate_histories.map( rate_history => {
         let obj = { name: rate_history.currency , data: []}
         obj['data'] = rate_history.rates.map( rate => {
-            return {x: Date.parse(convertDateInLineChart(rate.date)) , y:parseFloat(rate.rate)};
+            return {
+                x:dateProcessor(rate.date), 
+                y:parseFloat(rate.rate)};
         });
 
         return obj;

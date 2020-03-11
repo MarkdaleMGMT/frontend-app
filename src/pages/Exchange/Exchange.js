@@ -72,6 +72,7 @@ export default class Exchange extends Component {
 
     updateRateHistory(newInterval){
         console.log(newInterval)
+        console.log(newInterval)
         let time_period_days = this.state.time_period_chart;
 
         if(newInterval){

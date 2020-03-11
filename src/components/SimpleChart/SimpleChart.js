@@ -42,7 +42,7 @@ export default class SimpleChart extends Component {
         else if (dataType == "balance")   
             return lineChartSingleSeries(this.props.investmentName, data, interval);
         else if (dataType == "rates")
-            return formatRatesHistoryData(data)
+            return formatRatesHistoryData(data, interval)
         
     }
 
