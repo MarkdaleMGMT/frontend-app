@@ -247,7 +247,20 @@ export default class Investment extends Component {
                     </Row>
 
                     <Row>
-                        <SimpleChart chartType="line" dataType="balance" data={account_balance_history} index={index}  investmentName={investment_name} chartTitle={investment_name} refreshData={this.updateAccountBalanceHistory} interval={linechart_time_days}></SimpleChart>
+                        <SimpleChart 
+                            chartType="line" 
+                            dataType="balance" 
+                            data={account_balance_history} 
+                            index={index}  
+                            investmentName={investment_name} 
+                            chartTitle={investment_name} 
+                            refreshData={this.updateAccountBalanceHistory} 
+                            interval={linechart_time_days}
+                            show24Hours={false}
+                            >
+                           
+
+                        </SimpleChart>
                     </Row>
 
                 </Container>

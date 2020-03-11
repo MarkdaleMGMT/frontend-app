@@ -170,7 +170,7 @@ export default class Exchange extends Component {
                             <ExchangeTable data={rates_in_cad}></ExchangeTable>
                         </Row>
                         <Row style={{paddingBottom:"30px"}}>
-                            <SimpleChart chartTitle={"Currency"} data={rates_history} dataType="rates" chartType="line"  refreshData={this.updateRateHistory} interval={time_period_chart}></SimpleChart>
+                            <SimpleChart chartTitle={"Currency"} data={rates_history} dataType="rates" chartType="line"  refreshData={this.updateRateHistory} interval={time_period_chart} show24Hours={true}></SimpleChart>
                         </Row>
                            
 
