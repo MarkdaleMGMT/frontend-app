@@ -215,7 +215,6 @@ export default class LineChart extends Component {
                                 <Row style={{justifyContent:"flex-end"}}>
                                     <Col xs={6} md={12}>
                                     <select style={{float:"right"}} name="interval" className="chart-dropdown" value={ this.state.interval } onChange={ this.handleChange }>
-                                        <option value='1'>Last 24 Hours</option>
                                         <option value='30'>Last 30 Days</option>
                                         <option value='60'>Last 60 Days</option>
                                         <option value='90'>Last 90 Days</option>

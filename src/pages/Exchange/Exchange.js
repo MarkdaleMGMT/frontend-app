@@ -140,7 +140,7 @@ export default class Exchange extends Component {
                         </Row>
                         <Row>
                             <Col lg={12} md={12} sm={12}>
-                                <SimpleChart chartTitle={"Currency"} data={rates_history} dataType="rates" chartType="line"  refreshData={this.updateRateHistory} interval={time_period_chart}></SimpleChart>
+                                <SimpleChart chartTitle={"Currency"} data={rates_history} dataType="rates" chartType="line"  refreshData={this.updateRateHistory} interval={time_period_chart} show24Hours={true}></SimpleChart>
                             </Col>
                         </Row>
                         </Container>
