@@ -15,7 +15,9 @@ export const BACKEND_API = SERVERIP + "/backend/";
 
 // export const BACKEND_API = "http://localhost:3000/" + "backend/";
 
+
 export const SESSION_SIGNOUT_TIME = 1000 * 60 * 15;
+
 
 export const FETCH_DATA_INTERVAL = 1000 * 60;
 
