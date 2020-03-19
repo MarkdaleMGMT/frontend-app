@@ -30,7 +30,13 @@ export default class Payments extends Component {
             showWithdrawal: false,
             showDeposit: false,
             showMessage: false,
-            receiverEmail: "admin@qoinify.com"
+            receiverEmail: "admin@qoinify.com",
+
+            account_number: "",
+            account_holder_name: "",
+            bank:"",
+            branch_number:"",
+            withdraw_amount:""
         };
 
         this.showAlert = this.showAlert.bind(this);
@@ -149,8 +155,32 @@ export default class Payments extends Component {
       }
     
     
-    handleSubmit() {
-        console.log(this.state)
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const {account_number, withdraw_amount, account_holder_name, branch_number, bank} = this.state
+        //console.log(account_number, withdraw_amount, account_holder_name, branch_number, bank)
+        withdrawal_email({account_number, withdraw_amount, account_holder_name, branch_number, bank})
+        .then(
+            (res) => {
+                console.log(res)
+                if (res.status_code == 200){
+                    this.setState({
+                        showWithdrawal: false,
+                        isAlertVisible: true,
+                        alertType: "success",
+                        alertMessage: res.data.code}
+                    )
+                }
+            }
+        ).catch((err) => { 
+            console.log(err)
+            this.setState({
+                isAlertVisible: true,
+                alertType: "error",
+                alertMessage: err.response.data.code}
+            )
+        })
+        e.preventDefault();
       }
 
 
