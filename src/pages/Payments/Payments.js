@@ -157,19 +157,21 @@ export default class Payments extends Component {
     
     handleSubmit = (e) => {
         e.preventDefault();
+
         const {account_number, withdraw_amount, account_holder_name, branch_number, bank} = this.state
+        let username = localStorage.getItem("username");
+
         //console.log(account_number, withdraw_amount, account_holder_name, branch_number, bank)
-        withdrawal_email({account_number, withdraw_amount, account_holder_name, branch_number, bank})
+        withdrawal_email({account_number, withdraw_amount, account_holder_name, branch_number, bank, username})
         .then(
             (res) => {
                 console.log(res)
-                if (res.status_code == 200){
+                if (res.status == 200){
                     this.setState({
                         showWithdrawal: false,
                         isAlertVisible: true,
                         alertType: "success",
-                        alertMessage: res.data.code}
-                    )
+                        alertMessage: res.data.code})
                 }
             }
         ).catch((err) => { 
