@@ -1012,23 +1012,26 @@
     width: 100px;
     white-space: unset;
   }
+  .main-container {
+    // height:100%;
+  }
   .main-container .content-wrapper {
     display: flex;
     flex-direction: column;
     justify-content: left;
     max-width: 100%;
-    height:100%;
     position: relative;
+    // min-height:100%;
   }
 
-    // .main-container .content-wrapper .page-content {
-    //     margin-top: 0px;
-    //     height: 100%;
-    //     padding: 50px 10%;
-    // }
-       .main-container .footer-container{
+    .main-container .content-wrapper .page-content {
+        margin-top: 0px;
+        height: 0%;
+        padding: none;
+    }
+       .main-container .content-wrapper .footer-container{
            position: absolute;
-          //  bottom: 0;
+           bottom: 0;
        }
        
     }
@@ -1071,4 +1074,3 @@
             outline: 0;
             padding: 10px;
         }
-
