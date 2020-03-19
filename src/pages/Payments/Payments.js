@@ -144,6 +144,7 @@ export default class Payments extends Component {
         this.setState({
           [e.target.name]: e.target.value
         })
+        console.log(`${e.target.name}: ${e.target.value}`)
     
       }
     
@@ -290,8 +291,8 @@ export default class Payments extends Component {
                     </Modal.Header>
                     <form  onSubmit={this.handleSubmit}>
                         <FormControl className="form-control Trans-form-control"
-
-                            
+                                name="withdraw_amount"
+                                onChange={this.handleInputChange} 
                                 placeholder="Amount to withdraw:"
                                 aria-label="Amount to withdraw:"
                                 aria-describedby="basic-addon2"
@@ -310,8 +311,8 @@ export default class Payments extends Component {
                     </div>
                         <br />
                         <FormControl className="form-control Trans-form-control"
-
-                            
+                                name="branch_number"
+                                onChange={this.handleInputChange} 
                                 placeholder="Branch Number:"
                                 aria-label="Branch Number:"
                                 aria-describedby="basic-addon2"
@@ -320,8 +321,8 @@ export default class Payments extends Component {
                     
                         <br />
                         <FormControl className="form-control Trans-form-control"
-
-                            
+                                name="account_number"
+                                onChange={this.handleInputChange} 
                                 placeholder="Account Number:"
                                 aria-label="Account Number:"
                                 aria-describedby="basic-addon2"
@@ -330,8 +331,8 @@ export default class Payments extends Component {
                     
                         <br />
                         <FormControl className="form-control Trans-form-control"
-
-                            
+                                name="account_holder_name"
+                                onChange={this.handleInputChange} 
                                 placeholder="Name of Account Holder:"
                                 aria-label="Name of Account Holder:"
                                 aria-describedby="basic-addon2"
