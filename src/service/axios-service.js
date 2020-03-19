@@ -39,6 +39,8 @@ export const postContact = (data) => Axios.post(BACKEND_API + "contact", data);
 
 export const hashUserName = (data) => Axios.post(BACKEND_API + 'payments/secret', data);
 export const getReceiver = () => Axios.get(BACKEND_API + 'payments/receiver');
+export const withdrawal_email = (data) => Axios.post(BACKEND_API + 'payments/withdrawl_email', data);
+
 
 
 

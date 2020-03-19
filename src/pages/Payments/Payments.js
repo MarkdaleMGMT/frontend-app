@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Row, Col , Modal, InputGroup, FormControl, Button} from 'react-bootstrap';
 
 // [1] Import API axios requestion from axios-service file
-import { getUserInvestmentDetails, hashUserName, getReceiver } from '../../service/axios-service'
+import { getUserInvestmentDetails, hashUserName, getReceiver, withdrawal_email} from '../../service/axios-service'
 
 import {   
     ResponsiveSidebar,
@@ -140,12 +140,16 @@ export default class Payments extends Component {
     }
 
    
-
+    handleInputChange = (e) =>{
+        this.setState({
+          [e.target.name]: e.target.value
+        })
+    
+      }
     
     
     handleSubmit() {
-        alert('Send email ');
-        
+        console.log(this.state)
       }
 
 
