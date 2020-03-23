@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Container, Row, Col , Modal, InputGroup, FormControl, Button} from 'react-bootstrap';
 
 // [1] Import API axios requestion from axios-service file
-import { getUserInvestmentDetails, hashUserName, getReceiver } from '../../service/axios-service'
+import { getUserInvestmentDetails, hashUserName, getReceiver, withdrawal_email} from '../../service/axios-service'
 
 import {   
     ResponsiveSidebar,
@@ -30,7 +30,13 @@ export default class Payments extends Component {
             showWithdrawal: false,
             showDeposit: false,
             showMessage: false,
-            receiverEmail: "admin@qoinify.com"
+            receiverEmail: "admin@qoinify.com",
+
+            account_number: "",
+            account_holder_name: "",
+            bank:"",
+            branch_number:"",
+            withdraw_amount:""
         };
 
         this.showAlert = this.showAlert.bind(this);
@@ -140,12 +146,43 @@ export default class Payments extends Component {
     }
 
    
+    handleInputChange = (e) =>{
+        this.setState({
+          [e.target.name]: e.target.value
+        })
+        console.log(`${e.target.name}: ${e.target.value}`)
+    
+      }
+    
+    
+    handleSubmit = (e) => {
+        e.preventDefault();
 
-    
-    
-    handleSubmit() {
-        alert('Send email ');
-        
+        const {account_number, withdraw_amount, account_holder_name, branch_number, bank} = this.state
+        let username = localStorage.getItem("username");
+
+        //console.log(account_number, withdraw_amount, account_holder_name, branch_number, bank)
+        withdrawal_email({account_number, withdraw_amount, account_holder_name, branch_number, bank, username})
+        .then(
+            (res) => {
+                console.log(res)
+                if (res.status == 200){
+                    this.setState({
+                        showWithdrawal: false,
+                        isAlertVisible: true,
+                        alertType: "success",
+                        alertMessage: res.data.code})
+                }
+            }
+        ).catch((err) => { 
+            console.log(err)
+            this.setState({
+                isAlertVisible: true,
+                alertType: "error",
+                alertMessage: err.response.data.code}
+            )
+        })
+        e.preventDefault();
       }
 
 
@@ -286,8 +323,8 @@ export default class Payments extends Component {
                     </Modal.Header>
                     <form  onSubmit={this.handleSubmit}>
                         <FormControl className="form-control Trans-form-control"
-
-                            
+                                name="withdraw_amount"
+                                onChange={this.handleInputChange} 
                                 placeholder="Amount to withdraw:"
                                 aria-label="Amount to withdraw:"
                                 aria-describedby="basic-addon2"
@@ -306,8 +343,8 @@ export default class Payments extends Component {
                     </div>
                         <br />
                         <FormControl className="form-control Trans-form-control"
-
-                            
+                                name="branch_number"
+                                onChange={this.handleInputChange} 
                                 placeholder="Branch Number:"
                                 aria-label="Branch Number:"
                                 aria-describedby="basic-addon2"
@@ -316,8 +353,8 @@ export default class Payments extends Component {
                     
                         <br />
                         <FormControl className="form-control Trans-form-control"
-
-                            
+                                name="account_number"
+                                onChange={this.handleInputChange} 
                                 placeholder="Account Number:"
                                 aria-label="Account Number:"
                                 aria-describedby="basic-addon2"
@@ -326,8 +363,8 @@ export default class Payments extends Component {
                     
                         <br />
                         <FormControl className="form-control Trans-form-control"
-
-                            
+                                name="account_holder_name"
+                                onChange={this.handleInputChange} 
                                 placeholder="Name of Account Holder:"
                                 aria-label="Name of Account Holder:"
                                 aria-describedby="basic-addon2"
