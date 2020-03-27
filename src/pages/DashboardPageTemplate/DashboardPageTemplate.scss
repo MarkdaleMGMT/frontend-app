@@ -1,0 +1,66 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    font-family: 'Lato';
+
+    .content-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        //width: -webkit-fill-available;
+        padding-top: 64px;
+
+    }
+}
+
+.footer-container{
+    // margin-top: 7.142vw;
+    min-height: 8vh;
+    background-color: #373737;
+    width: 100%;
+}
+
+.side-margin{
+     padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.no-margin{
+    margin:0px !important;
+}
+
+.hidescroll{
+  overflow: scroll;
+  scrollbar-width: none; /* Firefox */
+}
+
+
+.page-overlay {
+    opacity:    1; 
+    background: transparent; 
+    width:      100%;
+    height:     100%; 
+    z-index:    10;
+    top:        0; 
+    left:       0; 
+    position:   fixed; 
+  }
+
+.show-bg{
+    background: #ffffff;
+    enable-background: 100%
+}
+
+.fullScreen{
+    background-color: #ffffff;
+    font-family: 'Lato';
+    height: 100%;
+}
+
+.navigation{
+    min-width: 210px;
+
+}
