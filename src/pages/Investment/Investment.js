@@ -178,8 +178,6 @@ export default class Investment extends Component {
         const { investment_name, currency, index } = this.props.location.state;
         const { accountExist, isAlertVisible, alertType, alertMessage, account_details, account_tx_history, account_balance_history, linechart_time_days } = this.state;
 
-        let pageContent = ''
-
         if(!accountExist){
           
             return <div style={{height:"inherit"}}>
@@ -220,8 +218,6 @@ export default class Investment extends Component {
         const exchange_rate = currency == 'USD'?  parseFloat(1/account_details.exchange_rate.ask): account_details.exchange_rate.bid ;
         console.log("investment_id ",investment_id)
 
-
-        //console.log("ACCOUNT_BALANCE_HISTORY " + account_balance_history.balance_history)
         let k = 0
         for (k ; k< account_balance_history.balance_history.length; k++){
             let record = account_balance_history.balance_history[k]
@@ -229,13 +225,8 @@ export default class Investment extends Component {
             console.log(` ${JSON.stringify(record)}`)
 
         }
-       // console.log("account_balance_history:",account_balance_history.balance_history)
         return (
             <div>
-
-            <div className="navigation d-lg-none d-sm">
-                    <ResponsiveSidebar  history={this.props.history} />
-            </div>
 
             <Fullscreen enabled={this.state.isFull} onChange={isFull => this.setState({isFull})}>
             { this.state.isFull &&
@@ -269,17 +260,13 @@ export default class Investment extends Component {
             }
             </Fullscreen>
 
-            <div className="dashboard-container">
 
                 <div className="expandButton d-none d-lg-block">
                     <Button style={{border:"none"}} variant="outline-dark" className="fa fa-expand" onClick={this.goFull}></Button>
                 </div>
 
                 <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
-                <div className="navigation d-none d-lg-block">
-                    <LeftSidebar history={this.props.history} />
-                </div>
-                <Container fluid={true}  className="content-wrapper" id="content-div">
+
                     <Container>
                     
                     <div className="page-content">
@@ -305,12 +292,6 @@ export default class Investment extends Component {
                     
                     </Container>                   
             
-                    <Row><Col lg={12} md={12} sm={12} className="footer-container"><Footer history={this.props.history} /></Col></Row>
-
-                </Container>
-                
-                
-            </div>
             </div>
         )
     }
