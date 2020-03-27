@@ -7,22 +7,22 @@
     .content-wrapper{
         display: flex;
         flex-direction: column;
-        justify-content: left;
+        min-height: 100vh;
         //width: -webkit-fill-available;
-        padding-top: 64px;
 
     }
 }
 
 .footer-container{
     // margin-top: 7.142vw;
-    min-height: 8vh;
+    height: 8vh;
     background-color: #373737;
-    width: 100%;
+    min-width: auto;
+    margin-top: auto;
 }
 
 .side-margin{
-     padding-right: 15px;
+    padding-right: 15px;
     padding-left: 15px;
     margin-right: auto;
     margin-left: auto;
@@ -62,5 +62,5 @@
 
 .navigation{
     min-width: 210px;
-
+    min-height: 100vh;
 }

@@ -28,8 +28,9 @@ function App() {
           <Route path="/signup" component={SignUp}/>
           <Route path="/forgot" component={ForgotPassword}/>
           <Route path="/resetPassword" component={PasswordReset}/>
-          <Route path="/dashboard" component={sessionTimeout(Dashboard)}/>
-          <Route path="/affiliate" component={sessionTimeout(Affiliates)}/>
+          <Route path="/dashboard" component={sessionTimeout(dashboardTemplate(Dashboard))}/>
+          {/* <Route path="/affiliate" component={sessionTimeout(Affiliates)}/> */}
+          <Route path="/affiliate" component={sessionTimeout(dashboardTemplate(Affiliates))}/>
           <Route path="/investment/:investment_id" component={sessionTimeout(Investment)}/>
           <Route path="/stats" component={Stats}/>
           <Route path="/exchange" component={sessionTimeout(Exchange)}/>
