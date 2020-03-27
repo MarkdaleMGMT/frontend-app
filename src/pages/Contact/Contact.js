@@ -86,15 +86,8 @@ export default class Contact extends Component {
         let {isAlertVisible, alertType, alertMessage} = this.state
 
         return (
-            <div style={{ height: "inherit" }}>
-                <div className="navigation d-lg-none d-sm">
-                    <ResponsiveSidebar history={this.props.history} />
-                </div>
-                <div className="main-container ">
-                    <div className="navigation d-none d-lg-block">
-                        <LeftSidebar history={this.props.history} />
-                    </div>
-                    <Container className="content-wrapper" id="content-div" style={{ paddingTop: "70px" }}>
+            <div >
+                <Container style={{ paddingTop: "70px" }}>
                     <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
 
                         <Row style={{ marginBottom: "auto" }} className="justify-content-center">
@@ -128,13 +121,10 @@ export default class Contact extends Component {
                             </Col>
                         </Row>
 
-                        <Row><Col lg={12} md={12} sm={12} className="footer-container"><Footer history={this.props.history} /></Col></Row>
-
                     </Container>
 
 
                 </div>
-            </div>
 
         )
     }

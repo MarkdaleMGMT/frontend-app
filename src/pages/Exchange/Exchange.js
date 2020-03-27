@@ -147,20 +147,14 @@ export default class Exchange extends Component {
                     }
                     </Fullscreen>
 
-            <div className="navigation d-lg-none d-sm">
-                    <ResponsiveSidebar  history={this.props.history} />
-            </div>
-
-            <div className="dashboard-container">
+           
+            <div>
                 <div className="expandButton d-none d-lg-block">
                     <Button style={{border:"none"}} variant="outline-dark" className="fa fa-expand" onClick={this.goFull}></Button>
                 </div>
 
                 <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
-                <div className="navigation d-none d-lg-block">
-                    <LeftSidebar history={this.props.history} />
-                </div>
-                <Container fluid={true}  className="content-wrapper" id="content-div">
+  
                     <Container>
                     <div className="page-content">
                         <Row >
@@ -177,10 +171,6 @@ export default class Exchange extends Component {
 
                         
                     </div>
-
-                    </Container>
-            
-                    <Row><Col lg={12} md={12} sm={12} className="footer-container"><Footer history={this.props.history} /></Col></Row>
 
                 </Container>
                 
