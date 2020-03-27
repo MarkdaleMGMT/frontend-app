@@ -51,7 +51,7 @@ class PaymentsTable extends Component {
     
         return(
             
-            <div className="transactiontable-container">
+            <div>
             <div className="reacttable-container1">
                 <div className="transaction-container">
                     <div className="table-title">{ "Investments"}</div>
