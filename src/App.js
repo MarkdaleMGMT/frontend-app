@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { Route, Switch, Redirect } from "react-router-dom";
 import { SignIn, SignUp, ForgotPassword, Dashboard, Affiliates, Investment, Stats, Exchange, PasswordReset, Contact, Payments } from './pages';
 import sessionTimeout from './HOC/sessionTimeout'
+import dashboardTemplate from './pages/DashboardPageTemplate/DashboardPageTemplate'
 import './App.scss';
 import { domain } from './config'
 
