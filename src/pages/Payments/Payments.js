@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col , Modal, InputGroup, FormControl, Button} from 'react-bootstrap';
-
+import { serverIP } from '../../../src/config'
 // [1] Import API axios requestion from axios-service file
 import { getUserInvestmentDetails, hashUserName, getReceiver, withdrawal_email} from '../../service/axios-service'
 
