@@ -286,7 +286,7 @@ export default class Payments extends Component {
 
                             </InputGroup>
 
-                            <Row className="row1">Deposit may take up to 24 hours,&nbsp;<a href={"http://165.227.42.25/contact"}> contact us for any questions</a></Row>
+                            <Row className="row1">Deposit may take up to 24 hours,&nbsp;<a href={serverIP+"/contact"}> contact us for any questions</a></Row>
                            
  
                             </Row>
