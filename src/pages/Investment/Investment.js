@@ -231,13 +231,16 @@ export default class Investment extends Component {
             <Fullscreen enabled={this.state.isFull} onChange={isFull => this.setState({isFull})}>
             { this.state.isFull &&
                 <Container fluid={true} className="fullScreen">
-                <Row style={{justifyContent:"space-between", height: "fit-content"}}>
-                    <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}} ><InfoCard label={investment_name+" Balance"} value={formatAmount(account_details.account_balance)}></InfoCard></Col>
-                    <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}}><InfoCard label={currency+" / CAD"} value={formatAmount(account_details.exchange_rate,true)}></InfoCard></Col>
-                    <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}}><InfoCard label="CAD VALUE" value={"$"+formatAmount(account_details.account_balance_cad, true)}></InfoCard></Col>
+              
+                    <Row style={{justifyContent:"space-between", height: "fit-content"}}>
+                        <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}} ><InfoCard label={investment_name+" Balance"} value={formatAmount(account_details.account_balance)}></InfoCard></Col>
+                        <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}}><InfoCard label={exchange_rate_label} value={formatAmount(exchange_rate,true)}></InfoCard></Col>
+                        <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}}><InfoCard label="CAD VALUE" value={"$"+formatAmount(account_details.account_balance_cad, true)}></InfoCard></Col>
                     </Row>
 
                     <Row>
+                        <Col lg={12} md={12} sm={12} style={{ paddingBottom: "5.416vh", paddingTop: "5.416vh", minHeight:"85vh"}}>
+
                         <SimpleChart 
                             chartType="line" 
                             dataType="balance" 
@@ -249,9 +252,8 @@ export default class Investment extends Component {
                             interval={linechart_time_days}
                             show24Hours={false}
                             >
-                           
-
                         </SimpleChart>
+                        </Col>
                     </Row>
 
                 </Container>
