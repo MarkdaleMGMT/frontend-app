@@ -155,7 +155,7 @@ export default class Exchange extends Component {
 
                 <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
   
-                    <Container>
+                <Container>
                     <div >
                         <Row >
                             <ExchangeForm exchange_rates={exchange_rates} showAlert={this.showAlert} ></ExchangeForm>

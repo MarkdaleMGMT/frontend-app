@@ -171,7 +171,7 @@ export default class Dashboard extends Component {
             onClose={this.dismissAlert}
           ></CustomSnackbar>
           
-          <Container fluid={true} class="row form-group">
+          <Container>
             <div className="expandButton d-none d-lg-block">
               <Button
                 style={{ border: "none" }}
