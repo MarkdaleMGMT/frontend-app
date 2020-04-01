@@ -78,7 +78,7 @@ export default class LineChart extends Component {
                 spacingRight: 10,
                 margin: null,
                 width: null,
-                height: null,
+                height:  null,
                 style: { 'font-family': 'Lato', 'font-size': '0.6771vw'}
             },
             credits: { enabled: false},
@@ -93,23 +93,9 @@ export default class LineChart extends Component {
                 tickmarkPlacement:"on",
                 showFirstLabel:true,
                 showLastLabel:true,
-                // labels :{step:interval-1},
                 type: 'datetime',
                 gridLineWidth: 1,
-                // max: endDate,
-                // min: startDate,
-                // startOnTick: false,
-                // endOnTick: false,
-                // dateTimeLabelFormats: {
-                //     /* millisecond: '%H:%M:%S.%L',
-                //     second: '%H:%M:%S',
-                //     minute: '%H:%M',
-                //     hour: '%H:%M', */
-                //     // day: '%d-%m-%y',
-                //     /* week: '%m-%d',
-                //     month: '%Y-%m',
-                //     year: '%Y' */
-                // }
+
             },
             yAxis: [{
                 lineWidth: 1,
@@ -131,6 +117,7 @@ export default class LineChart extends Component {
         }
 
         const mountainOptions={
+            
             chart: {
                 type: 'area',
                 spacingBottom: 15,
@@ -193,18 +180,21 @@ export default class LineChart extends Component {
         let showOne = <HighchartsReact
                         highcharts = { Highcharts }
                         options = { lineOptions }
+                        containerProps={{ style: { height: "100%" } }}
+
                         
                     />;
         if(!showLineChart)
         showOne = <HighchartsReact
                     highcharts = { Highcharts }
                     options = { mountainOptions }
+                    containerProps={{ style: { height: "100%" } }}
 
                 />;
 
         return (
-            <div className="line-chart-container">
-                <div className="line-chart-wrapper">
+            <div className="line-chart-container" style={{height:"100%"}}>
+                <div className="line-chart-wrapper" style={{height:"100%"}}>
                     <Container style={{paddingLeft:"50px"}}>
                         <Row style={{alignItems:"center", paddingBottom:"4.0vh", justifyContent:"space-between", fontSize:"1.6vh"}}>
                             <Col xs={12} md={8} lg={6} className=" py-3 py-md-0"> <Row>
@@ -224,29 +214,14 @@ export default class LineChart extends Component {
                                     </select>
                                     </Col>
                                 </Row>
-                                
                             </Col> 
                         </Row>
                     </Container>
-                    {/* <div className="line-chart-controls">
-                        <div className="" style={{display: 'inline-flex'}}>
-                          <div onClick={this.handleClickLineChart} className={ showLineChart? "chart-link-active" : "chart-link"}>Line Chart View</div>
-                          <div onClick={this.handleClickMountainChart} className={ !showLineChart? "chart-link-active" : "chart-link"} >Mountain Chart View</div>
-                        </div>
-                      <div>
-                            <select name="interval" className="chart-dropdown" value={ this.state.interval } onChange={ this.handleChange }>
-                                <option value='30'>Last 30 Days</option>
-                                <option value='60'>Last 60 Days</option>
-                                <option value='90'>Last 90 Days</option>
-                                <option value='180'>Last 180 Days</option>
-                                <option value='365'>Last 1 year</option>
-                            </select>
-                        </div>
-                    </div> */}
-                    <div>
+                    <div style={{height:"100%"}}>
                         { showOne}
                     </div>
                 </div>
+
             </div>
         );
     }
