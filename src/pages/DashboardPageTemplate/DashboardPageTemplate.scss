@@ -14,11 +14,12 @@
 }
 
 .footer-container{
-    // margin-top: 7.142vw;
-    height: 8vh;
+    min-height: 10vh;
     background-color: #373737;
     min-width: auto;
     margin-top: auto;
+    justify-content: center;
+    align-content: center;
 }
 
 .side-margin{

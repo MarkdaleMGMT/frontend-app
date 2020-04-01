@@ -33,7 +33,7 @@ export default function(WrappedComponent){
                             <div><WrappedComponent {...this.props}/></div>
 
                             <Row className="footer-container">
-                                <Col lg={12} md={12} sm={12} className="footer-container">
+                                <Col>
                                     <Footer history={this.props.history} />
                                 </Col>
                             </Row>

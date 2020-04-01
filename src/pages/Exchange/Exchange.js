@@ -139,7 +139,7 @@ export default class Exchange extends Component {
                             </Col>
                         </Row>
                         <Row>
-                            <Col lg={12} md={12} sm={12}>
+                            <Col lg={12} md={12} sm={12} style={{ paddingBottom: "5.416vh", paddingTop: "5.416vh", minHeight:"60vh"}}>
                                 <SimpleChart chartTitle={"Currency"} data={rates_history} dataType="rates" chartType="line"  refreshData={this.updateRateHistory} interval={time_period_chart} show24Hours={true}></SimpleChart>
                             </Col>
                         </Row>
