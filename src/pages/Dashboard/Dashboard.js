@@ -142,19 +142,23 @@ export default class Dashboard extends Component {
           onChange={isFull => this.setState({ isFull })}
         >
           {this.state.isFull && (
-            <div style={{minHeight:"100%"}}>
-            <Container fluid={true} className="fullScreen">
+            <div style={{minHeight:"100vh"}}>
+            <Container style={{minHeight:"100vh"}} fluid={true} className="fullScreen">
               <Row style={{ alignItems: "center" }}>
-                <Col lg={6} md={12} sm={12}>
+            
+                <Col lg={6} md={6} sm={6} >
                   <ChartTableMin />
                 </Col>
-                <Col className="" lg={6} md={12} sm={12}>
+                <Col   style={{height: "40vh"}} className="" lg={6} md={6} sm={6}>
                   <DoughnutChartMin />
                 </Col>
               </Row>
-
+              <Row style={{ paddingBottom: "5.416vh", paddingTop: "5.416vh", minHeight:"60vh"}}>
+                <Col lg={12} md={12} sm={12}>
+                  <LineChartMin interval={linechart_time_days} />
+                </Col>
+              </Row>
             </Container>
-            <LineChartMin interval={linechart_time_days} />
 
             </div>
           )}
