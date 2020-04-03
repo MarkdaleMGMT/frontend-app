@@ -1,0 +1,60 @@
+.dashboard-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #ffffff;
+    font-family: 'Lato';
+
+    .content-wrapper{
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        //width: -webkit-fill-available;
+
+    }
+}
+
+.footer-container{
+    min-height: 10vh;
+    background-color: #373737;
+    min-width: auto;
+    margin-top: auto;
+    justify-content: center;
+    align-content: center;
+}
+
+.side-margin{
+    padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.no-margin{
+    margin:0px !important;
+}
+
+.hidescroll{
+  overflow: scroll;
+  scrollbar-width: none; /* Firefox */
+}
+
+
+.page-overlay {
+    opacity:    1; 
+    background: transparent; 
+    width:      100%;
+    height:     100%; 
+    z-index:    10;
+    top:        0; 
+    left:       0; 
+    position:   fixed; 
+  }
+
+.show-bg{
+    background: #ffffff;
+    enable-background: 100%
+}
+
+.navigation{
+    min-width: 210px;
+}

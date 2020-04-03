@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col , Modal, InputGroup, FormControl, Button} from 'react-bootstrap';
-
+import { serverIP } from '../../../src/config'
 // [1] Import API axios requestion from axios-service file
 import { getUserInvestmentDetails, hashUserName, getReceiver, withdrawal_email} from '../../service/axios-service'
 
@@ -197,34 +197,16 @@ export default class Payments extends Component {
         return (
             <div>
 
-            <div className="navigation d-lg-none d-sm">
-                    <ResponsiveSidebar  history={this.props.history} />
-            </div>
-
-            <div className="main-container">
                 <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
-                <div className="navigation d-none d-lg-block">
-                    <LeftSidebar history={this.props.history} />
-                </div>
-                <Container fluid={true}  className="content-wrapper" id="content-div" >
-                    <Container>
-                    <div className="page-content" style={{minHeight:"100%"}}>
+                
+   
+                <Container fluid={true} class="row form-group">
+                <PaymentsTable data={investmentDetails} onDeposit={this.onDeposit} onWithdrawal={this.onWithdrawal} isCrypto={this.isCrypto}/>
 
-                           <PaymentsTable
-                                data={investmentDetails}
-                                onDeposit={this.onDeposit}
-                                onWithdrawal={this.onWithdrawal}
-                                isCrypto={this.isCrypto}
-                           />
+                </Container>
 
                         
-                    </div>
-
-                    </Container>
-                <div>
-                    <Row><Col lg={12} md={12} sm={12} className="footer-container"><Footer history={this.props.history} /></Col></Row>
-                </div>
-                </Container>
+       
                 <Modal show={showMessage} onHide={()=> this.setState({ showMessage: false})}>
                     <Modal.Header closeButton>
                     </Modal.Header>
@@ -304,16 +286,12 @@ export default class Payments extends Component {
 
                             </InputGroup>
 
-                            <Row className="row1">Deposit may take up to 24 hours,&nbsp;<a href={"http://165.227.42.25/contact"}> contact us for any questions</a></Row>
+                            <Row className="row1">Deposit may take up to 24 hours,&nbsp;<a href={serverIP+"/contact"}> contact us for any questions</a></Row>
                            
  
                             </Row>
                         </Container>
                         
-                       
-
-                        
-
                     </Modal.Body>
                 </Modal>
 
@@ -372,11 +350,8 @@ export default class Payments extends Component {
                         />
                         <br />
                         <input className="submit1" type="submit" value="Submit"  />
-                        </form>
-                        
-                </Modal>
-                
-            </div>
+                        </form>       
+                </Modal>               
             </div>
         )
     }

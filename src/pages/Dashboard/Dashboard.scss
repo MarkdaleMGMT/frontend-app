@@ -1,48 +1,29 @@
-.dashboard-container {
-    display: flex;
-    flex-direction: row;
-    background-color: #ffffff;
-    font-family: 'Lato';
-
-    .content-wrapper{
-        display: flex;
-        flex-direction: column;
-        justify-content: left;
-        //width: -webkit-fill-available;
-        padding-top: 64px;
-
-        .overview-container{
-            display: flex;
-            flex-direction: row;
-            justify-content: left;
-
-            .overview-table{
-                //border: 1px solid red;
-                margin-left:7.758vw;
-                margin-top: 3.156vw;
-                margin-right: 3.414vw;
-            }
-
-            .table-container{
-                border: 1px solid green;
-            }
-
-            .overview-graph {
-                //border: 1px solid blue;
-                width: 29.241vw;
-                margin-top: 2.221vw;
-            }
+.container {
+            width: 90%;
         }
 
-       
-    }
-}
 
-.footer-container{
-    // margin-top: 7.142vw;
-    min-height: 8vh;
-    background-color: #373737;
-    width: 100%;
+.overview-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+
+    .overview-table{
+        //border: 1px solid red;
+        margin-left:7.758vw;
+        margin-top: 3.156vw;
+        margin-right: 3.414vw;
+    }
+
+    .table-container{
+        border: 1px solid green;
+    }
+
+    .overview-graph {
+        //border: 1px solid blue;
+        width: 29.241vw;
+        margin-top: 2.221vw;
+    }
 }
 
 .side-margin{
@@ -54,11 +35,6 @@
 
 .no-margin{
     margin:0px !important;
-}
-
-.hidescroll{
-  overflow: scroll;
-  scrollbar-width: none; /* Firefox */
 }
 
 
@@ -91,7 +67,7 @@
     height: 100%;
 }
 
-.navigation{
-    min-width: 210px;
+// .navigation{
+//     min-width: 210px;
 
-}
+// }

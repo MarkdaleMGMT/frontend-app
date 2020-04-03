@@ -4,11 +4,7 @@ import {
   Container,
   Row,
   Col,
-  Navbar,
-  NavbarBrand,
   Button,
-  Collapse,
-  NavDropdown
 } from "react-bootstrap";
 import { AnnotationLabel } from "react-annotation";
 
@@ -98,10 +94,6 @@ export default class Dashboard extends Component {
     this.setState({ isFull: true });
   };
 
-  // handleChange = (e)=>{
-  //     this.setState({interval: e.target.value});
-  // }
-
   render() {
     const {
       refresh_interval_sec,
@@ -144,59 +136,54 @@ export default class Dashboard extends Component {
 
     return (
       <div>
-        <div className="navigation d-lg-none d-sm">
-          <ResponsiveSidebar history={this.props.history} />
-        </div>
-
+ 
         <Fullscreen
           enabled={this.state.isFull}
           onChange={isFull => this.setState({ isFull })}
         >
           {this.state.isFull && (
-            <Container fluid={true} className="fullScreen">
+            <div style={{minHeight:"100vh"}}>
+            <Container style={{minHeight:"100vh"}} fluid={true} className="fullScreen">
               <Row style={{ alignItems: "center" }}>
-                <Col lg={6} md={12} sm={12}>
+            
+                <Col lg={6} md={6} sm={6} >
                   <ChartTableMin />
                 </Col>
-                <Col className="" lg={6} md={12} sm={12}>
+                <Col   style={{height: "40vh"}} className="" lg={6} md={6} sm={6}>
                   <DoughnutChartMin />
                 </Col>
               </Row>
-              <Row>
+              <Row style={{ paddingBottom: "5.416vh", paddingTop: "5.416vh", minHeight:"60vh"}}>
                 <Col lg={12} md={12} sm={12}>
                   <LineChartMin interval={linechart_time_days} />
                 </Col>
               </Row>
             </Container>
+
+            </div>
           )}
         </Fullscreen>
 
-        <div className="dashboard-container">
-          <div className="expandButton d-none d-lg-block">
-            <Button
-              style={{ border: "none" }}
-              variant="outline-dark"
-              className="fa fa-expand"
-              onClick={this.goFull}
-            ></Button>
-          </div>
-
-          <CustomSnackbar
+        <CustomSnackbar
             open={isAlertVisible}
             variant={alertType}
             message={alertMessage}
             onClose={this.dismissAlert}
           ></CustomSnackbar>
+          
+          <Container>
+            <div className="expandButton d-none d-lg-block">
+              <Button
+                style={{ border: "none" }}
+                variant="outline-dark"
+                className="fa fa-expand"
+                onClick={this.goFull}
+              ></Button>
+            </div>
 
-          <div className="navigation d-none d-lg-block sidebarDesktop">
-            <LeftSidebar history={this.props.history} />
-          </div>
-
-          <Container fluid={true} className="content-wrapper " id="content-div">
-            <Container class="row form-group">
-              <Row>
-                <Col></Col>
-              </Row>
+            <Row>
+              <Col></Col>
+            </Row>
 
               <Row style={{ alignItems: "center" }}>
                 <Col lg={6} md={12} sm={12}>
@@ -206,7 +193,7 @@ export default class Dashboard extends Component {
                   <DoughnutChartMin />
                 </Col>
               </Row>
-              <Row style={{ paddingTop: "5.416vw" }}>
+              <Row style={{ paddingTop: "5.416vw"}}>
                 <Col lg={12} md={12} sm={12}>
                   <LineChartMin interval={linechart_time_days} />
                 </Col>
@@ -256,15 +243,9 @@ export default class Dashboard extends Component {
                   </Col>
                 </Row>
               )}
+
             </Container>
 
-            <Row>
-              <Col lg={12} md={12} sm={12} className="footer-container">
-                <Footer history={this.props.history} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
         {showOrientation && level !== 0 && (
           <div className="page-overlay">
             <WelcomeSlider
@@ -276,6 +257,7 @@ export default class Dashboard extends Component {
             ></WelcomeSlider>
           </div>
         )}
+
       </div>
     );
   }

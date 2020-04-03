@@ -79,29 +79,22 @@ class Affiliates extends Component {
         const ref_code = localStorage.getItem("ref_code");
 
         return (
-          
-            <div style={{height:"inherit"}}>
-            <div className="navigation d-lg-none d-sm">
-                    <ResponsiveSidebar  history={this.props.history} />
-            </div>
-            <div className="main-container ">
+
+            <div>
                 <CustomSnackbar open={isAlertVisible} variant={alertType} message={alertMessage} onClose={this.dismissAlert}></CustomSnackbar>
-                <div className="navigation d-none d-lg-block">
-                    <LeftSidebar history={this.props.history} />
-                </div>
-                <Container  className="content-wrapper" id="content-div" style={{paddingTop:"70px"}}>
-                    
-                    <Row style={{marginBottom: "auto"}} className="justify-content-center">
+
+                <Container fluid={true} class="row form-group">                    
+                    <Row  className="justify-content-center">
                     <Col  lg={12} md={12} xs={12}>
                         <Row style={{marginTop: "10vw"}} className="justify-content-center">
                             <Col  lg={4} md={4} xs={10}><InfoCard label="Referral Code" value={ref_code}></InfoCard></Col>
                         </Row>
 
                         <Row  className="justify-content-center" style={{marginTop:"5vw"}}>
-                        <Col xs={10} md={6} lg={6}>
+                            <Col xs={10} md={6} lg={6}>
 
-                            <InputWithCopy label="Referral Link" isDisabled={false} text={serverIP+"/signup?ref_code="+ref_code} onCopy={()=>this.showAlert("Copied to Clipboard!", "success")}></InputWithCopy>
-                        </Col>
+                                <InputWithCopy label="Referral Link" isDisabled={false} text={serverIP+"/signup?ref_code="+ref_code} onCopy={()=>this.showAlert("Copied to Clipboard!", "success")}></InputWithCopy>
+                            </Col>
                         </Row>
                         <form className="invite-form" onSubmit={this.sendAffiliateInvite}>
                             <Row className="justify-content-center"><Col xs={10} md={6} lg={6}>
@@ -117,14 +110,9 @@ class Affiliates extends Component {
                     </Col>                    
                     </Row>
             
-                    <Row><Col lg={12} md={12} sm={12} className="footer-container"><Footer history={this.props.history} /></Col></Row>
-
                 </Container>
                 
-                
             </div>
-            </div>    
-
         )
     }
 }

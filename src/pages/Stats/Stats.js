@@ -145,9 +145,6 @@ export default class Stats extends Component {
 
     return (
       <div>
-        <div className="navigation d-lg-none d-sm">
-          <ResponsiveSidebar history={this.props.history} />
-        </div>
 
         <Fullscreen
           enabled={this.state.isFull}
@@ -178,21 +175,15 @@ export default class Stats extends Component {
           )}
         </Fullscreen>
 
-        <div className="dashboard-container">
-          <div className="expandButton d-none d-lg-block">
-            <Button
-              style={{ border: "none" }}
-              variant="outline-dark"
-              className="fa fa-expand"
-              onClick={this.goFull}
-            ></Button>
-          </div>
-
-          <div className="navigation  d-none d-lg-block">
-            <LeftSidebar history={this.props.history} />
-          </div>
-          <Container fluid={true} className="content-wrapper" id="content-div">
             <Container>
+              <div className="expandButton d-none d-lg-block">
+              <Button
+                style={{ border: "none" }}
+                variant="outline-dark"
+                className="fa fa-expand"
+                onClick={this.goFull}
+              ></Button>
+            </div>
               <div className="page-content">
                 <Row style={{ alignContent: "center", alignItems: "center" }}>
                   <Col lg={6} md={12} sm={12}>
@@ -246,13 +237,7 @@ export default class Stats extends Component {
                 </Row>
               </div>
             </Container>
-            <Row>
-              <Col lg={12} md={12} sm={12} className="footer-container">
-                <Footer history={this.props.history} />
-              </Col>
-            </Row>
-          </Container>
-        </div>
+
       </div>
     );
   }

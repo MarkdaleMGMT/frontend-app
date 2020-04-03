@@ -122,8 +122,8 @@ export default class SimpleChart extends Component {
 
 
         return (
-            <div className="simple-chart-container">
-            <div className="simple-chart-wrapper">
+            <div className="simple-chart-container"  style={{height:"100%"}}>
+            <div className="simple-chart-wrapper"  style={{height:"100%"}}>
                 <div className="simple-chart-controls">
                     <div style={{display: 'inline-flex'}}>
                       <div onClick={this.handleClickLineChart} className="chart-title">{chartTitle}</div>
@@ -141,10 +141,12 @@ export default class SimpleChart extends Component {
                         </select>
                     </div>
                 </div>
-                <div>
+                <div style={{height:"100%"}}>
                 <HighchartsReact
                         highcharts = { Highcharts }
                         options = { chartOptions }
+                        containerProps={{ style: { height: "100%" } }}
+
                         
                     />
                 </div>
