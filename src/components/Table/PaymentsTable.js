@@ -52,8 +52,8 @@ class PaymentsTable extends Component {
         return(
             
             <div>
-            <div className="reacttable-container1">
-                <div className="transaction-container">
+            <div className="reacttable-container1" style={{height:"100%"}}>
+                <div className="transaction-container" style={{height:"100%"}}>
                     <div className="table-title">{ "Investments"}</div>
             
                     <ReactTable
