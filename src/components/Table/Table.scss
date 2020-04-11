@@ -21,6 +21,7 @@
     }
     .-striped {
         border: solid 1px #ffffff;
+        height:100%;
     }
 
     .rt-tr-group div div:nth-child(even) {
@@ -36,6 +37,21 @@
         height: 0;
     }
 }
+
+.Charttable-container.d-none.d-sm-block {
+//  font-size: calc(12px + (14 - 12) * ((100vw - 300px) / (1600 - 300)));
+font-size:85%;
+}
+
+.Charttable-container.d-sm-none.d-xs {
+    font-size: 85%//20% //calc(20% + 1.5vh);
+}
+
+.ReactTable * {
+    // height: 10%;
+}
+
+
 
 .transactiontable-container{
     //border: 1px solid blue;    
@@ -154,3 +170,13 @@
   .marginTop-1vw{
       margin-top: 1vw;
   }
+
+
+.ReactTable .rt-tr-group {
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    /* overflow: hidden; */
+    height: 10%;
+}

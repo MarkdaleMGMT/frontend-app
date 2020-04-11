@@ -41,7 +41,7 @@ class ChartTable extends Component {
               style: {textAlign:"left"},
               width: 110,
               Cell: row => (
-                <Container><Row><Col>
+                <Container><Row style={{height:"100%"}}><Col>
                     <div style={{whiteSpace:"normal", wordBreak:"normal"}}>
                         {row.value}
                      </div>
@@ -51,13 +51,13 @@ class ChartTable extends Component {
             ),
               accessor: 'investment_name',
               Footer:  () => (
-              <Container><Row><Col>{'Total in CAD'}</Col> </Row> </Container>),
+              <Container><Row style={{height:"100%"}}><Col>{'Total in CAD'}</Col> </Row> </Container>),
              
             },
             { id: 'balance',
               Cell: row => (
                     <Container fluid={true}>
-                        <Row style={{justifyContent:"flex-end"}}>
+                        <Row style={{height:"100%"}} style={{justifyContent:"flex-end"}}>
                             <Col><span>{row.value[0]}</span></Col>
                         </Row>
                         <Row style={{ justifyContent:"flex-end", fontSize:"smaller"}}> <Col>
@@ -68,35 +68,39 @@ class ChartTable extends Component {
               style: {textAlign:"end"},
               accessor: (data) => [formatAmount(+data.balance), formatAmount((+data.balance_cad).toFixed(2),true) ],
               Footer: () => (
-                <Container><Row><Col>{`$${formatAmount((CADSum).toFixed(2))}`}</Col> </Row> </Container>)
+                <Container><Row style={{height:"100%"}}><Col>{`$${formatAmount((CADSum).toFixed(2))}`}</Col> </Row> </Container>)
               //width: 200,
             },
         ]
 
         if(JSON.stringify(data) === '{}')
-            return <div className="Charttable-container"></div> ;
+            return <div className="Charttable-container" style={{height:"100%"}}></div> ;
         else  if(typeof(data.code) !== 'undefined')
             if( data.code === "Success" )
                 return(
-                    <div>
-                        <div className="Charttable-container d-none d-sm-block">
+                    <div className="outer" style={{height:"100%"}}>
+                    <div style={{height:"100%"}}>
+                        <div className="Charttable-container d-none d-sm-block" style={{height:"100%"}}>
                             <ReactTable
                                 className="-striped"
                                 data={data.user_balance}
                                 columns={columns}
                                 pageSize={data.user_balance.length}
                                 showPagination={false}
+                                containerProps={{ style: { height: "100%", } }}
                             />
                         </div>
-                        <div className="Charttable-container d-sm-none d-xs">
+                        <div className="Charttable-container d-sm-none d-xs" style={{height:"100%"}}>
                             <ReactTable
                                 className="-striped"
                                 data={data.user_balance}
                                 columns={columnsSmall}
                                 pageSize={data.user_balance.length}
                                 showPagination={false}
+                                containerProps={{ style: { height: "100%", } }}
                             />
                         </div>
+                    </div>
                     </div>
                 )
     }

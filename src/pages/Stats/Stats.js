@@ -156,7 +156,9 @@ export default class Stats extends Component {
                 style={{
                   alignContent: "center",
                   alignItems: "center",
-                  paddingTop: "3%"
+                  paddingTop: "0",
+                  height: "50vh"
+    
                 }}
               >
                 <Col lg={6} md={12} sm={12}>
@@ -166,7 +168,7 @@ export default class Stats extends Component {
                   <DoughnutChart data={overall_balance}></DoughnutChart>
                 </Col>
               </Row>
-              <Row style={{ alignItems: "center", paddingTop: "3%" }}>
+              <Row style={{ alignItems: "center", paddingTop: "0%", height: "50vh" }}>
                 <Col lg={12} md={12} sm={12}>
                   <ExchangeTable data={rates_in_cad}></ExchangeTable>
                 </Col>
@@ -185,7 +187,7 @@ export default class Stats extends Component {
               ></Button>
             </div>
               <div className="page-content">
-                <Row style={{ alignContent: "center", alignItems: "center" }}>
+                <Row style={{ alignContent: "center", alignItems: "center", height:"100%"}}>
                   <Col lg={6} md={12} sm={12}>
                     <ChartTable data={overall_balance}></ChartTable>
                   </Col>
@@ -193,7 +195,7 @@ export default class Stats extends Component {
                     <DoughnutChart data={overall_balance}></DoughnutChart>
                   </Col>
                 </Row>
-                <Row>
+                <Row style={{height:"100%"}}>
                   <ExchangeTable data={rates_in_cad}></ExchangeTable>
                 </Row>
                 <Row>
@@ -218,7 +220,8 @@ export default class Stats extends Component {
                     justifyContent: "space-between",
                     height: "fit-content",
                     marginTop: "10px",
-                    marginBottom: "30px"
+                    marginBottom: "30px",
+                    height:"100%"
                   }}
                 >
                   <Col

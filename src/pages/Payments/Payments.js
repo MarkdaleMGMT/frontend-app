@@ -201,7 +201,7 @@ export default class Payments extends Component {
                 
    
                 <Container fluid={true} class="row form-group">
-                <PaymentsTable data={investmentDetails} onDeposit={this.onDeposit} onWithdrawal={this.onWithdrawal} isCrypto={this.isCrypto}/>
+                <PaymentsTable data={investmentDetails} onDeposit={this.onDeposit} onWithdrawal={this.onWithdrawal} isCrypto={this.isCrypto} style={{height:"100%"}}/>
 
                 </Container>
 
