@@ -57,7 +57,7 @@ export default class Dashboard extends Component {
       isAlertVisible: false,
       alertType: "",
       alertMessage: "",
-      showOrientation: parseInt(localStorage.getItem("new_user")) == 1,
+      showOrientation: false, // parseInt(localStorage.getItem("new_user")) == 1,
       isFull: false,
       dashbboardMounted: false
     };
