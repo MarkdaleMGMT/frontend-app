@@ -44,7 +44,7 @@ font-size:85%;
 }
 
 .Charttable-container.d-sm-none.d-xs {
-    font-size:20%;
+    font-size:calc(20% + 2vw);
 }
 
 .ReactTable * {
