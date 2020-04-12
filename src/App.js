@@ -6,9 +6,14 @@ import sessionTimeout from './HOC/sessionTimeout'
 import dashboardTemplate from './pages/DashboardPageTemplate/DashboardPageTemplate'
 import './App.scss';
 import { domain } from './config'
+import { useClearCache } from "react-clear-cache";
 
 function App() {
-
+  const { isLatestVersion, emptyCacheStorage } = useClearCache({'auto':true});
+  if (isLatestVersion ){ console.log("Already new")} else if (!isLatestVersion){
+    console.log("Old")
+  }
+  emptyCacheStorage()
   useEffect(() => {
     document.title = domain
   },[]);
