@@ -8,6 +8,7 @@ import 'font-awesome/css/font-awesome.min.css';
 import { IntlProvider } from "react-intl";
 import messages_en from "./translation/en.json";
 import { BrowserRouter } from 'react-router-dom';
+import { useClearCache } from "react-clear-cache";
 
 //redux
 // import { createStore, applyMiddleware/* , compose */ } from 'redux';
@@ -27,7 +28,10 @@ import store from './store'
 const messages = {
     'en': messages_en
 };
-const Application = () => (
+const Application = () => {
+    const { isLatestVersion, emptyCacheStorage } = useClearCache();
+    if ( !isLatestVersion ) emptyCacheStorage()
+    return (
         <IntlProvider locale='en' messages={messages['en']}>
             <Provider store={store}>
                     <BrowserRouter>
@@ -35,7 +39,7 @@ const Application = () => (
                     </BrowserRouter>
             </Provider>
         </IntlProvider>
-)
+)}
 ReactDOM.render(<Application />, document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
