@@ -114,7 +114,7 @@ export default class SimpleChart extends Component {
 
     render() {
 
-        const { chartTitle, chartType, dataType, index, data} = this.props;
+        const { chartTitle, chartType, dataType, startDate, index, data} = this.props;
         const { interval, show24Hours } = this.state;
 
         const chartData = this.extractChartData(data, interval, dataType);
@@ -137,7 +137,7 @@ export default class SimpleChart extends Component {
                             <option value='90'>Last 90 Days</option>
                             <option value='180'>Last 180 Days</option>
                             <option value='365'>Last 1 year</option>
-                            <option value='365'>From Start</option>
+                            <option value= '-1'>From Start</option>
                         </select>
                     </div>
                 </div>

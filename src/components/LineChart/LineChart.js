@@ -210,7 +210,7 @@ export default class LineChart extends Component {
                                         <option value='90'>Last 90 Days</option>
                                         <option value='180'>Last 180 Days</option>
                                         <option value='365'>Last 1 year</option>
-                                        <option value='365'>From Start</option>
+                                        <option value='-1'>From Start</option>
                                     </select>
                                     </Col>
                                 </Row>
