@@ -132,15 +132,17 @@ export default class SimpleChart extends Component {
                   <div>
                         <select name="interval" className="chart-dropdown" value={ this.state.interval } onChange={ this.handleChange }>
                             {show24Hours && <option value='1'>Last 24 Hours</option>}
-                            <option value='30'>Last 30 Days</option>
-                            <option value='60'>Last 60 Days</option>
-                            <option value='90'>Last 90 Days</option>
-                            <option value='180'>Last 180 Days</option>
-                            <option value='365'>Last 1 year</option>
-                            <option value='1825'>Last 5 years</option>
-                            <option value='3650'>Last 10 years</option>
-                            <option value='7300'>Last 20 years</option>
-                            <option value= '-1'>From Start</option>
+
+                                    <option value='30'>Last 30 Days</option>
+                                    <option value='60'>Last 60 Days</option>
+                                    <option value='90'>Last 90 Days</option>
+                                    <option value='180'>Last 180 Days</option>
+                                    <option value='365'>Last 1 year</option>
+                                    <option value='1825'>Last 5 years</option>
+                                    <option value='3650'>Last 10 years</option>
+                                    <option value='7300'>Last 20 years</option>
+                                    <option value= '-1'>From Start</option>
+
                         </select>
                     </div>
                 </div>
