@@ -199,7 +199,7 @@ export default class Investment extends Component {
                                     +username+" &"
                                    +"body=Hi,%0D%0A%0D%0AI would like to create a "+investment_name+" account with a starting balance of: ENTER BALANCE HERE%0D%0A%0D%0ARegards,%0D%0A"}>
                                     
-                                     accounts@qoinify.com
+                                     james@markdalemanagement.com
                                 </a>
                             </div>
                         </Col>                    
