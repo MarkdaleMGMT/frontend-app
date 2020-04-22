@@ -197,9 +197,7 @@ export default class Investment extends Component {
                             </div>
                         </Col>                    
                         </Row>
-                
-                        <Row><Col lg={12} md={12} sm={12} className="footer-container"><Footer history={this.props.history} /></Col></Row>
-    
+               
                     </Container>
                     
                     
