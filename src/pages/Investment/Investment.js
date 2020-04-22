@@ -186,21 +186,13 @@ export default class Investment extends Component {
                 </div>
                 <div className="main-container ">
                     <div className="navigation d-none d-lg-block">
-                        <LeftSidebar history={this.props.history} />
                     </div>
                     <Container  className="content-wrapper" id="content-div" style={{paddingTop:"70px"}}>
                         
                         <Row style={{marginBottom: "auto"}} className="justify-content-center">
                         <Col  lg={12} md={12} xs={12}>
                             <div>
-                                You do not have a {investment_name} account. To create one, contact <a href={
-                                    "mailto:accounts@qoinify.com?"
-                                    +"subject=Qoinify Account Creation Request: "
-                                    +username+" &"
-                                   +"body=Hi,%0D%0A%0D%0AI would like to create a "+investment_name+" account with a starting balance of: ENTER BALANCE HERE%0D%0A%0D%0ARegards,%0D%0A"}>
-                                    
-                                     james@markdalemanagement.com
-                                </a>
+                                You do not have a {investment_name} account. To create one please,<a href={serverIP+"/contact"}> contact us.</a>
                             </div>
                         </Col>                    
                         </Row>
