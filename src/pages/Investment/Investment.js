@@ -186,8 +186,7 @@ export default class Investment extends Component {
                         <ResponsiveSidebar  history={this.props.history} />
                 </div>
                 <div className="main-container ">
-                    <div className="navigation d-none d-lg-block">
-                    </div>
+                    
                     <Container  className="content-wrapper" id="content-div" style={{paddingTop:"70px"}}>
                         
                         <Row style={{marginBottom: "auto"}} className="justify-content-center">
