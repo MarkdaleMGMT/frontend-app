@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { Container, Row, Col, Button } from 'react-bootstrap';
+import { serverIP } from '../../../src/config'
 import {   
     ResponsiveSidebar,
     LeftSidebar,
