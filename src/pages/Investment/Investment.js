@@ -43,7 +43,7 @@ export default class Investment extends Component {
             account_tx_history:[],
             account_balance_history:{ balance_history:[]},
 
-            linechart_time_days: 180,
+            linechart_time_days: 1825,
             isFull: false,
 
         };
