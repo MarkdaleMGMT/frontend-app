@@ -166,20 +166,7 @@ class LeftSidebar extends Component {
               </Link>
             </li>
 
-//             <li className="nav-item">
-//               <i className="fa fa-empire"></i>
-//               {/* <i class="fas fa-steering-wheel"></i> */}
-//               <Link to="/affiliate" className="nav-link-top affiliate">
-//                 Affiliate
-//               </Link>
-//             </li>
 
-//             <li className="nav-item">
-//               <i className="fa fa-exchange"></i>
-//               <Link to="/payments" className="nav-link-top payments">
-//                 Payments
-//               </Link>
-//             </li>
             <li className="nav-item">
               <i className="fa fa-clock-o"></i>
               <Link to="/stats" className="nav-link-top stats">
@@ -187,12 +174,7 @@ class LeftSidebar extends Component {
               </Link>
             </li>
 
-//             <li className="nav-item">
-//               <i className="fa fa-line-chart"></i>
-//               <Link to="/exchange" className="nav-link-top exchange">
-//                 Exchange
-//               </Link>
-//             </li>
+
           </div>
           
           <div className="currency-type">{InvestmentsMenu}</div>
