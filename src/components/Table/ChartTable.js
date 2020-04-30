@@ -30,7 +30,7 @@ class ChartTable extends Component {
             },
             { id: 'balance_cad',
               accessor: (data) =>'$' + formatAmount((+data.balance_cad).toFixed(2),true),
-              Footer: <span>{`$${formatAmount((CADSum).toFixed(2))}`}</span>}
+              Footer: <span>{`$${formatAmount((CADSum).toFixed(2),true)}`}</span>}
         ]
 
         const columnsSmall = [
