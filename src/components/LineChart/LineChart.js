@@ -111,7 +111,10 @@ export default class LineChart extends Component {
             }],
             plotOptions: {
 
-                series:{pointStart: startDate},
+                series:{
+                    turboThreshold: 30000,
+                    pointStart: startDate
+                },
 
             }
         }
@@ -170,6 +173,7 @@ export default class LineChart extends Component {
                     stacking: 'normal',
                 },
                 series:{
+                    turboThreshold: 30000,
                     pointStart: startDate,
                     connectNulls: true,
                 },
