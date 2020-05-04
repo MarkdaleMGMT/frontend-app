@@ -26,11 +26,12 @@ class ChartTable extends Component {
             { accessor: 'investment_name',
               Footer: <span>{'Total in CAD'}</span>},
             { id: 'balance',
-              accessor: (data)=> formatAmount((+data.balance).toFixed(2),true),
+              accessor: (data)=> formatAmount((+data.balance).toFixed(2), true),
             },
             { id: 'balance_cad',
-              accessor: (data) =>'$' + formatAmount((+data.balance_cad).toFixed(2),true),
-              Footer: <span>{`$${formatAmount((CADSum).toFixed(2),true)}`}</span>}
+              accessor: (data) =>'$' + formatAmount((+data.balance_cad).toFixed(2), true),
+              Footer: <span>{`$${formatAmount((CADSum).toFixed(2), true)}`}
+              </span>}
         ]
 
         const columnsSmall = [
@@ -66,9 +67,9 @@ class ChartTable extends Component {
                     </Container>        
                 ),
               style: {textAlign:"end"},
-              accessor: (data) => [formatAmount(+data.balance), formatAmount((+data.balance_cad).toFixed(2),true) ],
+              accessor: (data) => [formatAmount((+data.balance).toFixed(2),true), formatAmount((+data.balance_cad).toFixed(2),true) ],
               Footer: () => (
-                <Container><Row style={{height:"100%"}}><Col>{`$${formatAmount((CADSum).toFixed(2))}`}</Col> </Row> </Container>)
+                <Container><Row style={{height:"100%"}}><Col>{`$${formatAmount((CADSum).toFixed(2), true)}`}</Col> </Row> </Container>)
               //width: 200,
             },
         ]
