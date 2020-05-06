@@ -192,7 +192,18 @@ export default class Investment extends Component {
                         <Row style={{marginBottom: "auto"}} className="justify-content-center">
                         <Col  lg={12} md={12} xs={12}>
                             <div>
-                                You do not have a {investment_name} account. To create one please,<a href={serverIP+"/contact"}> contact us.</a>
+                                 You do not have a {investment_name} account. To create one, you must Make a <a href={serverIP+"/payments"}> Deposit</a> by navigating to the <a href={serverIP+"/payments"}> Payments page </a> where you will see a list of currencies with "deposit" and "withdraw" buttons. Choose the Canadian dollars <a href={serverIP+"/payments"}> "Deposit"</a> button, and then follow the instructions on the screen to send an etransfer. 
+                            <br/>
+                            <br/>
+
+                             Once you have Canadian dollars in your {serverIP} account, use the  <a href={serverIP+"/exchange"}> Exchange Page</a> to trade your Canadian dollars for any other investment such as bitcoins.
+
+                                <br/><br/>
+                             Please  <a href={serverIP+"/contact"}>Contact Us</a> if you have further questions.
+
+                            <br/><br/>Click <a href="https://riskingtime.com/qoinify-how-to/"> here  </a> for more step by step instructions about how to use {serverIP}.
+         
+                                                            
                             </div>
                         </Col>                    
                         </Row>
