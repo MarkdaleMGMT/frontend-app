@@ -68,7 +68,7 @@ class ChartTable extends Component {
               style: {textAlign:"end"},
               accessor: (data) => [formatAmount(+data.balance), formatAmount((+data.balance_cad).toFixed(2),true) ],
               Footer: () => (
-                <Container><Row style={{height:"100%"}}><Col>{`$${formatAmount((CADSum).toFixed(2))}`}</Col> </Row> </Container>)
+                <Container><Row style={{height:"100%"}}><Col>{`$${formatAmount((CADSum).toFixed(2), true)}`}</Col> </Row> </Container>)
               //width: 200,
             },
         ]
