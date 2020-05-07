@@ -73,6 +73,7 @@ export default class Investment extends Component {
         //TODO: set a timer for update
         this.updateInfoTimer = setInterval(() => this.updateAccountInfo(), 60*1000);
         this.updateAccountInfo();
+        this.fetchHashUserName()
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -127,6 +128,22 @@ export default class Investment extends Component {
 
 
 
+    }
+
+    fetchHashUserName(){
+        const username = localStorage.getItem("username")
+        hashUserName({username})
+        .then((res)=>{
+
+            // [3] : From the res data, assign hash to local state value
+            console.log(res)
+            this.setState({hashUserName: res.data.hash});
+
+        })
+        .catch((err)=>{
+            //triggers a state change which will refresh all components
+            // this.showAlert(err.response.data.code,'error');
+        });
     }
 
     updateTransactionHistory(account_id){
@@ -200,7 +217,7 @@ export default class Investment extends Component {
         const username = localStorage.getItem("username")
         const { investment_id } = this.props.match.params
         const { investment_name, currency, index } = this.props.location.state;
-        const { accountExist,showDeposit,receiverEmail,onDeposit,showMessage, isAlertVisible, alertType, alertMessage, account_details, account_tx_history, account_balance_history, linechart_time_days } = this.state;
+        const { accountExist,showDeposit,receiverEmail,onDeposit,showMessage, isAlertVisible, alertType, alertMessage, account_details, account_tx_history, hashUserName,account_balance_history, linechart_time_days } = this.state;
         const columns = [
             { 
                 Header:'Balance',
@@ -245,91 +262,91 @@ export default class Investment extends Component {
                             <br/>
                             <br/>
 
-                                Once you have Canadian dollars in your {serverIP} account, use the  <a href={serverIP+"/exchange"}> Exchange Page</a> to trade your Canadian dollars for any other investment such as bitcoins.
+Once you have Canadian dollars in your {serverIP} account, use the  <a href={serverIP+"/exchange"}> Exchange Page</a> to trade your Canadian dollars for any other investment such as bitcoins.
 
-                                <br/><br/>
-                                Please  <a href={serverIP+"/contact"}>Contact Us</a> if you have further questions.
+<br/><br/>
+Please  <a href={serverIP+"/contact"}>Contact Us</a> if you have further questions.
 
-                                <br/><br/>Click <a href="https://riskingtime.com/qoinify-how-to/"> here  </a> for more step by step instructions about how to use {serverIP}.
-
-                                <p columns={columns} onDeposit={this.onDeposit}/> 
-
-
+<br/><br/>Click <a href="https://riskingtime.com/qoinify-how-to/"> here  </a> for more step by step instructions about how to use {serverIP}.
+   
+<p columns={columns} onDeposit={this.onDeposit}/> 
 
 
-                <Modal show={this.state.show} onHide={()=> this.setState({ showModal: false})}>
-                <Modal.Header closeButton onClick={()=> this.setState({ show: false})}>
-
-                <Modal.Title>Deposit</Modal.Title>
-                </Modal.Header>
-
-                <Modal.Body>
-
-                    <Container>
-
-                        <Row> Send an INTERAC transfer </Row>
-
-                        <Row> Send to this email: </Row>
-                        <Row>
-
-                        <InputGroup className="mb-3" size="sm">
-
-                            <FormControl
-                            disabled={true}
-                            value= {receiverEmail}
-                            placeholder="Recipient's Email"
-                            aria-label="Recipient's Email"
-                            aria-describedby="basic-addon2"
-
-                            />
-                            <InputGroup.Append>
-                                <Button variant="outline-secondary"><i className="fa fa-copy"></i></Button>
-                            </InputGroup.Append>
-
-                        </InputGroup>
-                               <Row className="row1"> Use your username as the security question: </Row>
-                        <InputGroup className="mb-3" size="sm">
-                            <FormControl
-                            disabled={true}
-                            value={username}
-                            placeholder="Security Question"
-                            aria-label="Security Question"
-                            aria-describedby="basic-addon2"
-
-                            />
-                            <InputGroup.Append>
-                                <Button variant="outline-secondary"><i className="fa fa-copy"></i></Button>
-                            </InputGroup.Append>
-
-                        </InputGroup>
-
-                        <Row className="row1"> Use this code as the password: </Row>
 
 
-                        <InputGroup className="mb-3" size="sm">
-                            <FormControl
-                            disabled={true}
-                            //[5] : Set value as hash of user name
-                            value={hashUserName}
-                            placeholder="Recipient's username"
-                            aria-label="Recipient's username"
-                            aria-describedby="basic-addon2"
+<Modal show={this.state.show} onHide={()=> this.setState({ showModal: false})}>
+<Modal.Header closeButton onClick={()=> this.setState({ show: false})}>
 
-                            />
-                            <InputGroup.Append>
-                                <Button variant="outline-secondary"><i className="fa fa-copy"></i></Button>
-                            </InputGroup.Append>
+<Modal.Title>Deposit</Modal.Title>
+</Modal.Header>
 
-                        </InputGroup>
+<Modal.Body>
+    
+    <Container>
 
-                                       <Row className="row1">Deposit may take up to 24 hours,&nbsp;<a href={serverIP+"/contact"}> contact us for any questions</a></Row>
+        <Row> Send an INTERAC transfer </Row>
+        
+        <Row> Send to this email: </Row>
+        <Row>
+
+        <InputGroup className="mb-3" size="sm">
+
+            <FormControl
+            disabled={true}
+            value= {receiverEmail}
+            placeholder="Recipient's Email"
+            aria-label="Recipient's Email"
+            aria-describedby="basic-addon2"
+            
+            />
+            <InputGroup.Append>
+                <Button variant="outline-secondary"><i className="fa fa-copy"></i></Button>
+            </InputGroup.Append>
+
+        </InputGroup>
+               <Row className="row1"> Use your username as the security question: </Row>
+        <InputGroup className="mb-3" size="sm">
+            <FormControl
+            disabled={true}
+            value={username}
+            placeholder="Security Question"
+            aria-label="Security Question"
+            aria-describedby="basic-addon2"
+            
+            />
+            <InputGroup.Append>
+                <Button variant="outline-secondary"><i className="fa fa-copy"></i></Button>
+            </InputGroup.Append>
+
+        </InputGroup>
+
+        <Row className="row1"> Use this code as the password: </Row>
+
+
+        <InputGroup className="mb-3" size="sm">
+            <FormControl
+            disabled={true}
+            //[5] : Set value as hash of user name
+            value={hashUserName}
+            placeholder="Recipient's username"
+            aria-label="Recipient's username"
+            aria-describedby="basic-addon2"
+            
+            />
+            <InputGroup.Append>
+                <Button variant="outline-secondary"><i className="fa fa-copy"></i></Button>
+            </InputGroup.Append>
+
+        </InputGroup>
+
+        <Row className="row1">Deposit may take up to 24 hours,&nbsp;<a href={serverIP+"/contact"}> contact us for any questions</a></Row>
        
 
-                                      </Row>
-                                   </Container>
+        </Row>
+    </Container>
     
-                                </Modal.Body>
-                              </Modal>
+</Modal.Body>
+</Modal>
                                                             
                         
                             </div>
