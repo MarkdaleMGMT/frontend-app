@@ -22,14 +22,14 @@ class ChartTable extends Component {
             }
         }
 
-         const columns = [
+        const columns = [
             { accessor: 'investment_name',
               Footer: <span>{'Total in CAD'}</span>},
             { id: 'balance',
-              accessor: (data)=> formatAmount(+data.balance),
+              accessor: (data)=> formatAmount((+data.balance).toFixed(2), true),
             },
             { id: 'balance_cad',
-              accessor: (data) =>'$' + formaterAmount((+data.balance_cad).toFixed(2),true),
+              accessor: (data) =>'$' + formatAmount((+data.balance_cad).toFixed(2), true),
               Footer: <span>{`$${formatAmount((CADSum).toFixed(2), true)}`}
               </span>}
         ]
