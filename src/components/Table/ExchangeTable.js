@@ -43,7 +43,7 @@ export default class ExchangeTable extends Component {
             {
                 Header:'Ask',
                 id:'ask',
-                accessor: (data)=> formatAmount(+data.rate_in_cad.ask, true),
+                accessor: (data)=> formaterAmount((+data.rate_in_cad.bid).toFixed(3), true),
                 sortMethod: (a, b) => {
 
                     console.log("cad: ",a,b)
