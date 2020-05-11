@@ -59,6 +59,7 @@ export default class Investment extends Component {
         this.updateTransactionHistory = this.updateTransactionHistory.bind(this);
         this.updateAccountBalanceHistory = this.updateAccountBalanceHistory.bind(this);
         this.onDeposit = this.onDeposit.bind(this);
+        this.fetchReceiver = this.fetchReceiver.bind(this);
         
     }
    
@@ -74,6 +75,7 @@ export default class Investment extends Component {
         this.updateInfoTimer = setInterval(() => this.updateAccountInfo(), 60*1000);
         this.updateAccountInfo();
         this.fetchHashUserName()
+        this.fetchReceiver()
     }
 
     componentDidUpdate(prevProps, prevState){
@@ -128,6 +130,19 @@ export default class Investment extends Component {
 
 
 
+    }
+
+    fetchReceiver(){
+        getReceiver()
+        .then((res)=>{
+            console.log(res)
+            this.setState({receiverEmail: res.data.email});
+
+        })
+        .catch((err)=>{
+            //triggers a state change which will refresh all components
+            // this.showAlert(err.response.data.code,'error');
+        });
     }
 
     fetchHashUserName(){
@@ -447,4 +462,3 @@ Please  <a href={serverIP+"/contact"}>Contact Us</a> if you have further questio
         )
     }
 }
-
