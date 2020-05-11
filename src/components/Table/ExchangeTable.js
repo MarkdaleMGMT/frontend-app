@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { Container, Row, Col } from 'react-bootstrap';
 
 import { formatAmount } from '../../util/util'
+import { formaterAmount } from '../../util/util'
 
 import './Table.scss';
 import 'react-table/react-table.css';
@@ -29,7 +30,7 @@ export default class ExchangeTable extends Component {
             {
                 Header:'Bid',
                 id:'bid',
-                accessor: (data)=> formatAmount(+data.rate_in_cad.bid, true),
+                accessor: (data)=> formaterAmount((+data.rate_in_cad.bid).toFixed(3), true),
                 sortMethod: (a, b) => {
 
                     console.log("cad: ",a,b)
@@ -42,7 +43,7 @@ export default class ExchangeTable extends Component {
             {
                 Header:'Ask',
                 id:'ask',
-                accessor: (data)=> formatAmount(+data.rate_in_cad.ask, true),
+                accessor: (data)=> formaterAmount(+data.rate_in_cad.ask, true),
                 sortMethod: (a, b) => {
 
                     console.log("cad: ",a,b)
