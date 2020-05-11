@@ -3,6 +3,7 @@ import './Table.scss';
 import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import { formatAmount } from '../../util/util'
+import { formaterAmount } from '../../util/util'
 import {Row, Col, Container} from "react-bootstrap"
 
 import PropTypes from 'prop-types';
@@ -26,11 +27,12 @@ class ChartTable extends Component {
             { accessor: 'investment_name',
               Footer: <span>{'Total in CAD'}</span>},
             { id: 'balance',
-              accessor: (data)=> formatAmount(+data.balance),
+              accessor: (data)=> formaterAmount((+data.balance).toFixed(2), false),
             },
             { id: 'balance_cad',
-              accessor: (data) =>'$' + formatAmount((+data.balance_cad).toFixed(2),true),
-              Footer: <span>{`$${formatAmount((CADSum).toFixed(2))}`}</span>}
+              accessor: (data) =>'$' + formatAmount((+data.balance_cad).toFixed(2), true),
+              Footer: <span>{`$${formaterAmount((CADSum).toFixed(2), true)}`}
+              </span>}
         ]
 
         const columnsSmall = [
@@ -66,9 +68,9 @@ class ChartTable extends Component {
                     </Container>        
                 ),
               style: {textAlign:"end"},
-              accessor: (data) => [formatAmount(+data.balance), formatAmount((+data.balance_cad).toFixed(2),true) ],
+              accessor: (data) => [formaterAmount((+data.balance).toFixed(2)), formatAmount((+data.balance_cad).toFixed(2),true) ],
               Footer: () => (
-                <Container><Row style={{height:"100%"}}><Col>{`$${formatAmount((CADSum).toFixed(2))}`}</Col> </Row> </Container>)
+                <Container><Row style={{height:"100%"}}><Col>{`$${formaterAmount((CADSum).toFixed(2), true)}`}</Col> </Row> </Container>)
               //width: 200,
             },
         ]
