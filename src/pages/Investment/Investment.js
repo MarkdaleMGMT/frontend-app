@@ -251,11 +251,11 @@ export default class Investment extends Component {
                         
                         <Row style={{marginBottom: "auto"}} className="justify-content-center">
                         <Col  lg={12} md={12} xs={12}>
-                            <div>
-                            You do not have a {investment_name} account. To create one, you must Make a <button className="invest-button" onClick={e => {
+                            <div style={{textAlign: 'left'}}>
+                            You do not have a {investment_name} balance. To create one, you must  <button className="invest-button" onClick={e => {
                                 this.showModal();
                             }}
-                            > Deposit </button> by navigating to the <a href={serverIP+"/payments"}> Payments page </a> where you will see a list of currencies with "deposit" and "withdraw" buttons. Choose the Canadian dollars <button className="invest-button" onClick={e => {
+                            > Make a Deposit </button> by navigating to the <a href={serverIP+"/payments"}> Payments page </a> where you will see a list of currencies with "deposit" and "withdraw" buttons. Choose the Canadian dollars <button className="invest-button" onClick={e => {
                                 this.showModal();
                             }}
                             > Deposit </button> button, and then follow the instructions on the screen to send an etransfer. 
@@ -267,7 +267,7 @@ Once you have Canadian dollars in your {serverIP} account, use the  <a href={ser
 <br/><br/>
 Please  <a href={serverIP+"/contact"}>Contact Us</a> if you have further questions.
 
-<br/><br/>Click <a href="https://riskingtime.com/qoinify-how-to/"> here  </a> for more step by step instructions about how to use {serverIP}.
+<br/><br/><a href="https://riskingtime.com/qoinify-how-to/">Click  here for more step by step instructions about how to use {serverIP}. </a> 
    
 <p columns={columns} onDeposit={this.onDeposit}/> 
 
