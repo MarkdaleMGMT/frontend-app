@@ -65,7 +65,7 @@ export const lineChart = (data, interval)=>{
                     data: []
                  };
 
-                 let accountHistory = balanceHistory[i].account_history
+                let accountHistory = balanceHistory[i].account_history
                // console.log("lastMillisecond: ",Date.parse(convertDateInLineChart(balanceHistory[i].account_history[0].date)));
 
                let tempMap = {}
@@ -76,14 +76,7 @@ export const lineChart = (data, interval)=>{
                     //obj.data.push( {x:Date.parse(convertDateInLineChart(accountHistory[j].date)), y:accountHistory[j].account_balance_cad } )
                    
                    let date = new Date(accountHistory[j].date)
-                    if ( balanceHistory[i].investment_name == "US Dollars" ){
-                        obj.data.push( {x: date.getTime() , y:accountHistory[j].account_balance} )
-                    } else {
-                        obj.data.push( {x: date.getTime() , y:accountHistory[j].account_balance_cad } )
-                    }
-
-                    
-
+                    obj.data.push( {x: date.getTime() , y:accountHistory[j].account_balance_cad } )
                     tempMap[formatDate(date)] = {x: new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime(), y:accountHistory[j].account_balance_cad } 
                     // }
                 }
