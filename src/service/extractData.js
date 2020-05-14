@@ -8,16 +8,22 @@ import { formatAmount } from '../util/util'
  */
 
 export const doughnutChart = (data)=>{
+    let colors = [];
+
     let chartData = [];
+    
         if(JSON.stringify(data) !== '{}'){
             for(let i=0; i<data.user_balance.length; i++){
+                colors.push(data.user_balance[i].description)
+                
                 chartData.push({
                     name: data.user_balance[i].investment_name,
-                    y: data.user_balance[i].balance_cad/* _cad */
+                    y: data.user_balance[i].balance_cad/* _cad */,
+                    
                 });
             }
         }
-    return chartData;
+    return {colors, chartData};
 }
 
 /** Convert the date format coming from the server */
@@ -65,9 +71,27 @@ export const lineChart = (data, interval)=>{
                     data: []
                  };
 
-                 let accountHistory = balanceHistory[i].account_history
+               
+               let accountHistory = balanceHistory[i].account_history
                // console.log("lastMillisecond: ",Date.parse(convertDateInLineChart(balanceHistory[i].account_history[0].date)));
 
+            //    let tempMap = {}
+
+               
+            //    for(let j=0; j<accountHistory.length; j++){
+                    
+            //         let dateMilliseconds = Date.parse(convertDateInLineChart(accountHistory[j].date));
+            //         // if(dateMilliseconds >= startMilliseconds){
+            //         //obj.data.push( {x:Date.parse(convertDateInLineChart(accountHistory[j].date)), y:accountHistory[j].account_balance_cad } )
+                   
+            //        let date = new Date(accountHistory[j].date)
+            //         if (formatDate(date) in tempMap){
+            //         obj.data.push( {x: date.getTime() , y:accountHistory[j].account_balance_cad } )
+            //         // }
+            //    }
+            //    tempMap[formatDate(date)] = {x: new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime(), y:accountHistory[j].account_balance_cad } 
+                
+            // }
                let tempMap = {}
                for(let j=0; j<accountHistory.length; j++){
                     
@@ -245,3 +269,4 @@ export const getMinimumY = (chartData) => {
     console.log("y_values", Math.min(y_values));
     return Math.min.apply(null, y_values);
 }
+
