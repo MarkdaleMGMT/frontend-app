@@ -26,10 +26,10 @@ export default class DoughnutChart extends Component {
         const { data } = this.props;
 
         //console.log("DATA:" + JSON.stringify(data))
-        const chartData = doughnutChart(data)
+        const {colors , chartData} = doughnutChart(data)
         //console.log("DATA:" + JSON.stringify(chartData))
         const options={
-            colors: COLORS,
+            colors: colors,
             chart: {
                 events: { redraw:true},
                 type: 'pie',
