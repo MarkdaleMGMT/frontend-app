@@ -57,7 +57,7 @@ export default class DoughnutChart extends Component {
                     dataLabels:{
                         enabled: true,
                         formatter:function(){
-                            return '<b style="color:'+ this.color+'">'+ this.point.name +'</b><br><b style="color:'+ this.color+'">$'+ formatAmount((this.point.y).toFixed(2),true)+' CAD</b>';
+                            return '<b style="color:'+ this.color+'">'+ this.point.name +'</b><br><b style="color:'+ this.color+'"></b>';
                         },
                         crop: "false",
                     },
