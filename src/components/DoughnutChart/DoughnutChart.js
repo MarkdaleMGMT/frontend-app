@@ -50,15 +50,14 @@ export default class DoughnutChart extends Component {
             tooltip: {
                 enabled: true,
                 valueDecimals: 2,
-                valuePrefix: '$'
+                valuePrefix: '$',
+                pointFormat: '<b>{point.y}</b><br>{point.percentage:.1f} %<br>'
             },
             plotOptions:{
                 pie:{
                     dataLabels:{
                         enabled: true,
-                        formatter:function(){
-                            return '<b style="color:'+ this.color+'">'+ this.point.name +'</b><br><b style="color:'+ this.color+'"></b>';
-                        },
+                        format: '<b>{point.name}</b>',
                         crop: "false",
                     },
                     
