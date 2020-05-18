@@ -13,6 +13,7 @@ import {
     SimpleChart } from './../../components';
 import { getAccountDetails, getTransactionHistory, getAccountBalanceHistory, getNewTransactionHistory} from '../../service/axios-service';
 import { formatAmount } from '../../util/util'
+import { formaterAmount } from '../../util/util'
 import { INVESTMENT_USER } from '../../config/config'
 import './Investment.scss'
 import Fullscreen from "react-full-screen";
@@ -439,7 +440,7 @@ Please  <a href={serverIP+"/contact"}>Contact Us</a> if you have further questio
 
                     <Row style={{justifyContent:"space-between", height: "fit-content"}}>
                     <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}} ><InfoCard label={investment_name+" Balance"} value={formatAmount(account_details.account_balance)}></InfoCard></Col>
-                    <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}}><InfoCard label={exchange_rate_label} value={formatAmount(exchange_rate,true)}></InfoCard></Col>
+                    <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}}><InfoCard label={exchange_rate_label} value={formaterAmount(exchange_rate,true)}></InfoCard></Col>
                     <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}}><InfoCard label="CAD VALUE" value={"$"+formatAmount(account_details.account_balance_cad, true)}></InfoCard></Col>
                     </Row>
 
