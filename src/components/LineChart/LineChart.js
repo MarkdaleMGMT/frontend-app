@@ -109,7 +109,7 @@ export default class LineChart extends Component {
                     text: null
                 }
             }],
-            lotOptions: {
+            plotOptions: {
                 line: {
                     marker: {
                         enabled: false
@@ -117,8 +117,6 @@ export default class LineChart extends Component {
                 },
 
                 series:{
-
-
                     turboThreshold: 30000,
                     pointStart: startDate,
 
