@@ -113,8 +113,12 @@ export default class LineChart extends Component {
 
                 series:{
                     turboThreshold: 30000,
-                    pointStart: startDate
+                    pointStart: startDate,
+                    marker: {
+                        enabled: false,
+                
                 },
+            }
 
             }
         }
