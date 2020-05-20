@@ -265,7 +265,7 @@ export default class Investment extends Component {
                     <div className="page-content">
 
                     <Row style={{justifyContent:"space-between", height: "fit-content"}}>
-                    <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}} ><InfoCard label={investment_name+" Balance"} value={formatAmount((account_details.account_balance), true)}></InfoCard></Col>
+                    <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}} ><InfoCard label={investment_name+" Balance"} value={formatAmount(account_details.account_balance)}></InfoCard></Col>
                     <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}}><InfoCard label={exchange_rate_label} value={formaterAmount(exchange_rate,true)}></InfoCard></Col>
                     <Col lg={4} md={4} xs={12} className="auto-height" style={{paddingTop: "10px"}}><InfoCard label="CAD VALUE" value={"$"+formatAmount(account_details.account_balance_cad, true)}></InfoCard></Col>
                     </Row>
