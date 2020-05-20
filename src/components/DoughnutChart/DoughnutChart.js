@@ -26,10 +26,10 @@ export default class DoughnutChart extends Component {
         const { data } = this.props;
 
         //console.log("DATA:" + JSON.stringify(data))
-        const chartData = doughnutChart(data)
+        const {colors , chartData} = doughnutChart(data)
         //console.log("DATA:" + JSON.stringify(chartData))
         const options={
-            colors: COLORS,
+            colors: colors,
             chart: {
                 events: { redraw:true},
                 type: 'pie',
@@ -46,19 +46,18 @@ export default class DoughnutChart extends Component {
                 style: { "font-size": "0.8rem"},
                 y: 0
             },
-            series: [ {showInLegend: false, size: "70%", innerSize: '50%', data: chartData, name:""} ],
+            series: [ {turboThreshold: 30000, showInLegend: false, size: "70%", innerSize: '50%', data: chartData, name:""} ],
             tooltip: {
                 enabled: true,
                 valueDecimals: 2,
-                valuePrefix: '$'
+                valuePrefix: '$',
+                pointFormat: '<b>{point.y}</b><br>{point.percentage:.1f} %<br>'
             },
             plotOptions:{
                 pie:{
                     dataLabels:{
                         enabled: true,
-                        formatter:function(){
-                            return '<b style="color:'+ this.color+'">'+ this.point.name +'</b><br><b style="color:'+ this.color+'">$'+ formatAmount((this.point.y).toFixed(2),true)+' CAD</b>';
-                        },
+                        format: '<b>{point.name}</b>',
                         crop: "false",
                     },
                     
@@ -78,7 +77,7 @@ export default class DoughnutChart extends Component {
                                     }
                                 }
                             },
-                            series: [ {showInLegend:true , size: "100%", innerSize: '50%'} ],
+                            series: [ {turboThreshold: 30000,showInLegend:true , size: "100%", innerSize: '50%'} ],
                             legend: {
                                 enabled: true,
                                 //layout: 'horizontal',
