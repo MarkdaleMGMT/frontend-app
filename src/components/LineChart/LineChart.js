@@ -109,13 +109,21 @@ export default class LineChart extends Component {
                     text: null
                 }
             }],
-            plotOptions: {
+            lotOptions: {
+                line: {
+                    marker: {
+                        enabled: false
+                    }
+                },
 
-                series:{pointStart: startDate},
+                series:{
+
+                    pointStart: startDate,
+            
+            }
 
             }
         }
-
         const mountainOptions={
             
             chart: {
