@@ -107,3 +107,4 @@ class ChartTable extends Component {
     }
 }
 export default ChartTable;
+
