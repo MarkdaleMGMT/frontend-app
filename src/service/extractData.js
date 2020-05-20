@@ -8,16 +8,22 @@ import { formatAmount } from '../util/util'
  */
 
 export const doughnutChart = (data)=>{
+    let colors = [];
+
     let chartData = [];
+    
         if(JSON.stringify(data) !== '{}'){
             for(let i=0; i<data.user_balance.length; i++){
+                colors.push(data.user_balance[i].description)
+                
                 chartData.push({
                     name: data.user_balance[i].investment_name,
-                    y: data.user_balance[i].balance_cad/* _cad */
+                    y: data.user_balance[i].balance_cad/* _cad */,
+                    
                 });
             }
         }
-    return chartData;
+    return {colors, chartData};
 }
 
 /** Convert the date format coming from the server */
