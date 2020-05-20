@@ -46,7 +46,7 @@ export default class DoughnutChart extends Component {
                 style: { "font-size": "0.8rem"},
                 y: 0
             },
-            series: [ {showInLegend: false, size: "70%", innerSize: '50%', data: chartData, name:""} ],
+            series: [ {turboThreshold: 30000, showInLegend: false, size: "70%", innerSize: '50%', data: chartData, name:""} ],
             tooltip: {
                 enabled: true,
                 valueDecimals: 2,
@@ -77,7 +77,7 @@ export default class DoughnutChart extends Component {
                                     }
                                 }
                             },
-                            series: [ {showInLegend:true , size: "100%", innerSize: '50%'} ],
+                            series: [ {turboThreshold: 30000,showInLegend:true , size: "100%", innerSize: '50%'} ],
                             legend: {
                                 enabled: true,
                                 //layout: 'horizontal',
