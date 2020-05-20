@@ -261,3 +261,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { fetchAllInvestments, reset, logout })(
   LeftSidebar
 );
+
