@@ -195,6 +195,8 @@ class LeftSidebar extends Component {
 
             
 
+            <li className="nav-item">
+
               <i className="fa fa-clock-o"></i>
               <Link to="/stats" onClick={ this.handleMenuClick } className="nav-link-top stats">
                 Stats
@@ -202,7 +204,7 @@ class LeftSidebar extends Component {
             </li>
 
 
-          
+
 
           </div>
           
