@@ -193,21 +193,7 @@ class LeftSidebar extends Component {
             </li>
 
 
-            <li className="nav-item">
-              <i className="fa fa-empire"></i>
-              {/* <i class="fas fa-steering-wheel"></i> */}
-              <Link to="/affiliate" onClick={ this.handleMenuClick } className="nav-link-top affiliate">
-                Affiliate
-              </Link>
-            </li>
-
-            <li className="nav-item">
-              <i className="fa fa-exchange"></i>
-              <Link to="/payments" onClick={ this.handleMenuClick } className="nav-link-top payments">
-                Payments
-              </Link>
-            </li>
-            <li className="nav-item">
+            
 
               <i className="fa fa-clock-o"></i>
               <Link to="/stats" onClick={ this.handleMenuClick } className="nav-link-top stats">
@@ -216,12 +202,7 @@ class LeftSidebar extends Component {
             </li>
 
 
-            <li className="nav-item">
-              <i className="fa fa-line-chart"></i>
-              <Link to="/exchange" onClick={ this.handleMenuClick } className="nav-link-top exchange">
-                Exchange
-              </Link>
-            </li>
+            
 
           </div>
           
