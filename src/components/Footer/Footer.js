@@ -35,9 +35,9 @@ class Footer extends Component {
                 <div className="footer-control">
                     <Row className="footer-filter">
                         <Col><Link to="/dashboard" className="nav-link-top">Dashboard</Link></Col>
-                        <Col className="d-none d-md-block"><Link to="/affiliate" className="nav-link-top">Affiliates</Link></Col>
+            
                         <Col ><Link to="/stats" className="nav-link-top">Stats</Link></Col>
-                        <Col className="d-none d-md-block"><Link to="/exchange" className="nav-link-top">Exchange</Link></Col>
+                        
                         <Col ><Link to="/contact" className="nav-link-top">Contact</Link></Col>
                         <Col className="d-none d-md-block"><Link to="/sigin" onClick={this.props.logout} className="nav-link-top">Logout</Link></Col>
                         

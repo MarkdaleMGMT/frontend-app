@@ -2,7 +2,9 @@ export function formatAmount(amount, isCAD=false){
 
   if(!amount) return "-";
 
+
   let dp = isCAD?   0 : 8;
+
 
   let strAmount = parseFloat(amount).toFixed(dp);
   let [beforeDecimal, afterDecimal] = strAmount.split(".");
@@ -20,7 +22,9 @@ export function formatAmount(amount, isCAD=false){
   // console.log(beforeDecimal)
   // console.log(afterDecimal)
 
+
   let formattedAmount = [beforeDecimal, afterDecimal].join("  ")
+
   formattedAmount = formattedAmount.trim().replace(/(^,)|(,$)/g, "")
   return formattedAmount.trim();
 }

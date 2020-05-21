@@ -59,7 +59,9 @@ export default class TransactionTable extends Component {
             { Header: 'Description', accessor: mask? 'transaction_type': 'description' },
             { id:'amount', Header: 'Amount', 
                 accessor: (data) => {
+
                     return formaterAmount((+data.amount),true);
+
                 } ,
                 sortMethod: (a, b) => {
 
@@ -88,7 +90,9 @@ export default class TransactionTable extends Component {
 
                 id: 'account_balance', Header: 'Balance',
                 accessor: (data) => {
+
                     return formaterAmount((+data.account_balance), true);
+
                 } ,
                 sortMethod: (a, b) => {
 
