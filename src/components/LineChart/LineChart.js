@@ -109,24 +109,16 @@ export default class LineChart extends Component {
                     text: null
                 }
             }],
-            lotOptions: {
-                line: {
-                    marker: {
-                        enabled: false
-                    }
-                },
+            plotOptions: {
 
                 series:{
-
-
                     turboThreshold: 30000,
-                    pointStart: startDate,
-
-            
-            }
+                    pointStart: startDate
+                },
 
             }
         }
+
         const mountainOptions={
             
             chart: {
@@ -181,7 +173,6 @@ export default class LineChart extends Component {
                     stacking: 'normal',
                 },
                 series:{
-                    turboThreshold: 30000,
                     pointStart: startDate,
                     connectNulls: true,
                 },
@@ -241,6 +232,5 @@ export default class LineChart extends Component {
 
             </div>
         );
-
     }
 }
