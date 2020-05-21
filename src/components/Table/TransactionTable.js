@@ -6,7 +6,7 @@ import Pagination from './Pagination';
 
 import PropTypes, { string } from 'prop-types';
 import { transactionTable } from '../../service/extractData'
-import { formatAmount, filterRow } from '../../util/util'
+import { formatAmount, formaterAmount, filterRow } from '../../util/util'
 
 import {Row, Col, } from 'react-bootstrap'
 
@@ -59,7 +59,7 @@ export default class TransactionTable extends Component {
             { Header: 'Description', accessor: mask? 'transaction_type': 'description' },
             { id:'amount', Header: 'Amount', 
                 accessor: (data) => {
-                    return formatAmount((+data.amount).toFixed(2),true);
+                    return formaterAmount((+data.amount),true);
                 } ,
                 sortMethod: (a, b) => {
 
@@ -88,7 +88,7 @@ export default class TransactionTable extends Component {
 
                 id: 'account_balance', Header: 'Balance',
                 accessor: (data) => {
-                    return formatAmount((+data.account_balance).toFixed(2),true);
+                    return formaterAmount((+data.account_balance), true);
                 } ,
                 sortMethod: (a, b) => {
 
@@ -102,7 +102,6 @@ export default class TransactionTable extends Component {
             }
     
     ]
-
         //Filters data before rendering object
         //Probably want to have a stronger search function later on
         if (this.state.search) {
