@@ -6,7 +6,7 @@ import Pagination from './Pagination';
 
 import PropTypes, { string } from 'prop-types';
 import { transactionTable } from '../../service/extractData'
-import { formatAmount, filterRow } from '../../util/util'
+import { formatAmount, formaterAmount, filterRow } from '../../util/util'
 
 import {Row, Col, } from 'react-bootstrap'
 
