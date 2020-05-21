@@ -34,7 +34,7 @@ export default class TransactionTable extends Component {
         this.setState({ [name]: value });
     }
 
-    render(){
+   render(){
         const { entries, search } = this.state;
         const { data , title, mask }= this.props;
         let tableData = transactionTable(data, search);
@@ -59,7 +59,7 @@ export default class TransactionTable extends Component {
             { Header: 'Description', accessor: mask? 'transaction_type': 'description' },
             { id:'amount', Header: 'Amount', 
                 accessor: (data) => {
-                    return formatAmount(+data.amount);
+                    return formaterAmount((+data.amount),true);
                 } ,
                 sortMethod: (a, b) => {
 
@@ -88,7 +88,7 @@ export default class TransactionTable extends Component {
 
                 id: 'account_balance', Header: 'Balance',
                 accessor: (data) => {
-                    return formatAmount(+data.account_balance);
+                    return formaterAmount((+data.account_balance), true);
                 } ,
                 sortMethod: (a, b) => {
 
