@@ -9,15 +9,19 @@ import { formatAmount } from '../util/util'
 
 export const doughnutChart = (data)=>{
     let chartData = [];
+    
+    let colors = [];
+    
         if(JSON.stringify(data) !== '{}'){
             for(let i=0; i<data.user_balance.length; i++){
                 chartData.push({
                     name: data.user_balance[i].investment_name,
                     y: data.user_balance[i].balance_cad/* _cad */
                 });
+                colors.push(data.user_balance[i].description)
             }
         }
-    return chartData;
+    return {chartData, colors};
 }
 
 /** Convert the date format coming from the server */

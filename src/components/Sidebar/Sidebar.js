@@ -15,18 +15,36 @@ class LeftSidebar extends Component {
     fetchAllInvestments: PropTypes.func.isRequired,
     investments: PropTypes.array.isRequired,
     logout: PropTypes.func.isRequired,
-    reset: PropTypes.func.isRequired
+    reset: PropTypes.func.isRequired,
+    
   };
 
   constructor(props) {
     super(props);
     //   this.logout = this.logout.bind(this);
     //this.toggle = this.toggle.bind(this);
+    this.state ={
+     
+      show: false
+
+  };
   }
 
   componentWillMount() {
     this.props.fetchAllInvestments();
   }
+
+  // handleMenuClick(event) {
+  //   event.preventDefault();
+  //   // Using the parent component's state to keep track of the menu
+  //   this.setState({menuOpen: false});
+  // }
+
+  handleMenuClick = e => {
+    this.setState({
+      show: false
+    });
+  };
 
   getCurrencyInvestmentMapping() {
     console.log("getCurrencyInvestmentMapping: ", this.props);
@@ -63,7 +81,7 @@ class LeftSidebar extends Component {
       const { currency, investments } = mapping;
 
       return (
-        <div key={currency}>
+        <div key={currency} show={this.state.show} onHide={()=> this.setState({handleMenuClick : false})}  >
           {/* Hide on screens smaller than lg */}
           <div className="d-none d-lg-block">
             <a href="" className="nav-link-top">
@@ -117,7 +135,7 @@ class LeftSidebar extends Component {
 
                   {/* Entire block is clickable */}
                   <div className="d-none d-lg-block">
-                    <Link
+                    <Link onClick={ this.handleMenuClick }
                       to={{
                         pathname: "/investment/" + i.investment_id,
                         state: {
@@ -148,6 +166,12 @@ class LeftSidebar extends Component {
     this.props.history.push("/signin");
   }
 
+  handleMenuClick = e => {
+    this.setState({
+      show: false
+    });
+  };
+
   render() {
     // console.log("mapping  ", this.getCurrencyInvestmentMapping());
     const InvestmentsMenu = this.renderInvestmentsMenu();
@@ -155,25 +179,49 @@ class LeftSidebar extends Component {
     const level = localStorage.getItem("user_level");
     console.log("YOUR LEVEL IS " + level);
 
+    
+
     return (
-      <div className="sidebar-container">
-        <ul className="sidebar navbar-nav scroll">
+      <div className="sidebar-container" show={this.state.show} onHide={()=> this.setState({handleMenuClick : false})} >
+        <ul className="sidebar navbar-nav scroll" >
           <div className="navigation-type">
             <li className="nav-item">
               <i className="fa fa-home"></i>
-              <Link to="/dashboard" className="nav-link-top dashboard">
+              <Link to="/dashboard" onClick={ this.handleMenuClick } className="nav-link-top dashboard">
                 Dashboard
               </Link>
             </li>
 
 
             <li className="nav-item">
+              <i className="fa fa-empire"></i>
+              {/* <i class="fas fa-steering-wheel"></i> */}
+              <Link to="/affiliate" onClick={ this.handleMenuClick } className="nav-link-top affiliate">
+                Affiliate
+              </Link>
+            </li>
+
+            <li className="nav-item">
+              <i className="fa fa-exchange"></i>
+              <Link to="/payments" onClick={ this.handleMenuClick } className="nav-link-top payments">
+                Payments
+              </Link>
+            </li>
+            <li className="nav-item">
+
               <i className="fa fa-clock-o"></i>
-              <Link to="/stats" className="nav-link-top stats">
+              <Link to="/stats" onClick={ this.handleMenuClick } className="nav-link-top stats">
                 Stats
               </Link>
             </li>
 
+
+            <li className="nav-item">
+              <i className="fa fa-line-chart"></i>
+              <Link to="/exchange" onClick={ this.handleMenuClick } className="nav-link-top exchange">
+                Exchange
+              </Link>
+            </li>
 
           </div>
           
@@ -182,7 +230,7 @@ class LeftSidebar extends Component {
           <div className="other-containt">
             <li className="nav-item">
               <i className="fa fa-envelope-square"></i>
-              <Link to="/contact" className="nav-link-top">
+              <Link to="/contact" onClick={ this.handleMenuClick } className="nav-link-top">
                 Contact
               </Link>
             </li>
@@ -217,3 +265,4 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, { fetchAllInvestments, reset, logout })(
   LeftSidebar
 );
+
