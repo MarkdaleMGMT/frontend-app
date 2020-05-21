@@ -22,12 +22,12 @@ function App() {
           <Route path="/forgot" component={ForgotPassword}/>
           <Route path="/resetPassword" component={PasswordReset}/>
           <Route path="/dashboard" component={sessionTimeout(dashboardTemplate(Dashboard))}/>
-          <Route path="/affiliate" component={sessionTimeout(dashboardTemplate(Affiliates))}/>
+          
           <Route path="/investment/:investment_id" component={sessionTimeout(dashboardTemplate(Investment))}/>
           <Route path="/stats" component={sessionTimeout(dashboardTemplate(Stats))}/>
-          <Route path="/exchange" component={sessionTimeout(dashboardTemplate(Exchange))}/>
+      
           <Route path="/contact" component={sessionTimeout(dashboardTemplate(Contact))}/>
-          <Route path="/payments" component={sessionTimeout(dashboardTemplate(Payments))}/>
+         
 
           <Route render={ props => <Redirect to={{ pathname: '/login', state: { from: props.location } }} /> } />
         </Switch>
