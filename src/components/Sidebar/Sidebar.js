@@ -34,11 +34,6 @@ class LeftSidebar extends Component {
     this.props.fetchAllInvestments();
   }
 
-  // handleMenuClick(event) {
-  //   event.preventDefault();
-  //   // Using the parent component's state to keep track of the menu
-  //   this.setState({menuOpen: false});
-  // }
 
   handleMenuClick = e => {
     this.setState({
