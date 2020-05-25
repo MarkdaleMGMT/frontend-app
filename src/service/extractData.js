@@ -83,7 +83,8 @@ export const lineChart = (data, interval)=>{
 
                let tempMap = {}
 
-               
+               if (interval >= 1825) {
+                   
                for(let j=0; j<accountHistory.length; j++){
                     
                     let dateMilliseconds = Date.parse(convertDateInLineChart(accountHistory[j].date));
@@ -91,15 +92,40 @@ export const lineChart = (data, interval)=>{
                     //obj.data.push( {x:Date.parse(convertDateInLineChart(accountHistory[j].date)), y:accountHistory[j].account_balance_cad } )
                    
                    let date = new Date(accountHistory[j].date)
+                   console.log(date, "yo");
+                   
+                   
                     if (! (formatYear(date) in tempMap)){
                     obj.data.push( {x: date.getTime() , y:accountHistory[j].account_balance_cad } )
                     }tempMap[formatYear(date)] = {x: new Date(date.getFullYear(), date.getMonth()).getTime(), y:accountHistory[j].account_balance_cad } 
+              console.log(date);
                
             console.log( chartDataLine, "hiii");
 
-               
-               
                 
+                }     
+               
+            }
+            else{
+                for(let j=0; j<accountHistory.length; j++){
+                    
+                    let dateMilliseconds = Date.parse(convertDateInLineChart(accountHistory[j].date));
+                    // if(dateMilliseconds >= startMilliseconds){
+                    //obj.data.push( {x:Date.parse(convertDateInLineChart(accountHistory[j].date)), y:accountHistory[j].account_balance_cad } )
+                   
+                   let date = new Date(accountHistory[j].date)
+                   
+                   
+                   
+                    if (! (formatDate(date) in tempMap)){
+                    obj.data.push( {x: date.getTime() , y:accountHistory[j].account_balance_cad } )
+                    }tempMap[formatDate(date)] = {x: new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime(), y:accountHistory[j].account_balance_cad } 
+             
+               
+            
+
+                
+                }
             }
 
                // console.log(balanceHistory[i].investment_name)
