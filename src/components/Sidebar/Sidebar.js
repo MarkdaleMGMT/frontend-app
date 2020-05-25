@@ -91,7 +91,7 @@ toggleMenu () {
       const { currency, investments } = mapping;
 
       return (
-        <div key={currency} show={this.state.show} onHide={()=> this.setState({handleMenuClick : false})}  >
+        <div key={currency}   >
           {/* Hide on screens smaller than lg */}
           <div className="d-none d-lg-block">
             <a href="" className="nav-link-top">
@@ -188,9 +188,9 @@ toggleMenu () {
     
 
     return (
-      <div className="sidebar-container" isOpen={this.state.menuOpen}
+      <div className="sidebar-container" >
+        <ul className="sidebar navbar-nav scroll" isOpen={this.state.menuOpen}
           onStateChange={(state) => this.handleStateChange(state)}>
-        <ul className="sidebar navbar-nav scroll" >
           <div className="navigation-type">
             <li className="nav-item">
               <i className="fa fa-home"></i>
