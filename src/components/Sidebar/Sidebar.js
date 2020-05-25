@@ -25,7 +25,7 @@ class LeftSidebar extends Component {
     //this.toggle = this.toggle.bind(this);
     this.state ={
      
-      menuOpen: false
+      show: false
 
   };
   }
@@ -34,21 +34,11 @@ class LeftSidebar extends Component {
     this.props.fetchAllInvestments();
   }
 
-handleStateChange (state) {
-    this.setState({menuOpen: state.isOpen})  
-  }
-  
-  // This can be used to close the menu, e.g. when a user clicks a menu item
-  closeMenu () {
-    this.setState({menuOpen: false})
-  }
-
-toggleMenu () {
-    this.setState(state => ({menuOpen: !state.menuOpen}))
-  }
-
-
-
+  // handleMenuClick(event) {
+  //   event.preventDefault();
+  //   // Using the parent component's state to keep track of the menu
+  //   this.setState({menuOpen: false});
+  // }
 
   handleMenuClick = e => {
     this.setState({
@@ -91,7 +81,7 @@ toggleMenu () {
       const { currency, investments } = mapping;
 
       return (
-        <div key={currency}   >
+        <div key={currency} show={this.state.show} onHide={()=> this.setState({handleMenuClick : false})}  >
           {/* Hide on screens smaller than lg */}
           <div className="d-none d-lg-block">
             <a href="" className="nav-link-top">
@@ -176,7 +166,11 @@ toggleMenu () {
     this.props.history.push("/signin");
   }
 
- 
+  handleMenuClick = e => {
+    this.setState({
+      show: false
+    });
+  };
 
   render() {
     // console.log("mapping  ", this.getCurrencyInvestmentMapping());
@@ -188,13 +182,12 @@ toggleMenu () {
     
 
     return (
-      <div className="sidebar-container" >
-        <ul className="sidebar navbar-nav scroll" isOpen={this.state.menuOpen}
-          onStateChange={(state) => this.handleStateChange(state)}>
+      <div className="sidebar-container" show={this.state.show} onHide={()=> this.setState({handleMenuClick : false})} >
+        <ul className="sidebar navbar-nav scroll" >
           <div className="navigation-type">
             <li className="nav-item">
               <i className="fa fa-home"></i>
-              <Link to="/dashboard" onClick={() => this.closeMenu()} className="nav-link-top dashboard">
+              <Link to="/dashboard" onClick={ this.handleMenuClick } className="nav-link-top dashboard">
                 Dashboard
               </Link>
             </li>
@@ -202,27 +195,27 @@ toggleMenu () {
             <li className="nav-item">
               <i className="fa fa-empire"></i>
               {/* <i class="fas fa-steering-wheel"></i> */}
-              <Link to="/affiliate" onClick={() => this.closeMenu()} className="nav-link-top affiliate">
+              <Link to="/affiliate" onClick={ this.handleMenuClick } className="nav-link-top affiliate">
                 Affiliate
               </Link>
             </li>
 
             <li className="nav-item">
               <i className="fa fa-exchange"></i>
-              <Link to="/payments" onClick={() => this.closeMenu()} className="nav-link-top payments">
+              <Link to="/payments" onClick={ this.handleMenuClick } className="nav-link-top payments">
                 Payments
               </Link>
             </li>
             <li className="nav-item">
               <i className="fa fa-clock-o"></i>
-              <Link to="/stats" onClick={() => this.closeMenu()} className="nav-link-top stats">
+              <Link to="/stats" onClick={ this.handleMenuClick } className="nav-link-top stats">
                 Stats
               </Link>
             </li>
 
             <li className="nav-item">
               <i className="fa fa-line-chart"></i>
-              <Link to="/exchange" onClick={() => this.closeMenu()} className="nav-link-top exchange">
+              <Link to="/exchange" onClick={ this.handleMenuClick } className="nav-link-top exchange">
                 Exchange
               </Link>
             </li>
@@ -233,7 +226,7 @@ toggleMenu () {
           <div className="other-containt">
             <li className="nav-item">
               <i className="fa fa-envelope-square"></i>
-              <Link to="/contact" onClick={() => this.closeMenu()} className="nav-link-top">
+              <Link to="/contact" onClick={ this.handleMenuClick } className="nav-link-top">
                 Contact
               </Link>
             </li>
