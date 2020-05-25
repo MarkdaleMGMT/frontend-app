@@ -25,7 +25,7 @@ class LeftSidebar extends Component {
     //this.toggle = this.toggle.bind(this);
     this.state ={
      
-      show: false
+      menuOpen: false
 
   };
   }
@@ -33,6 +33,21 @@ class LeftSidebar extends Component {
   componentWillMount() {
     this.props.fetchAllInvestments();
   }
+
+handleStateChange (state) {
+    this.setState({menuOpen: state.isOpen})  
+  }
+  
+  // This can be used to close the menu, e.g. when a user clicks a menu item
+  closeMenu () {
+    this.setState({menuOpen: false})
+  }
+
+toggleMenu () {
+    this.setState(state => ({menuOpen: !state.menuOpen}))
+  }
+
+
 
 
   handleMenuClick = e => {
@@ -173,12 +188,13 @@ class LeftSidebar extends Component {
     
 
     return (
-      <div className="sidebar-container" show={this.state.show} onHide={()=> this.setState({handleMenuClick : false})} >
+      <div className="sidebar-container" isOpen={this.state.menuOpen}
+          onStateChange={(state) => this.handleStateChange(state)}>
         <ul className="sidebar navbar-nav scroll" >
           <div className="navigation-type">
             <li className="nav-item">
               <i className="fa fa-home"></i>
-              <Link to="/dashboard" onClick={ this.handleMenuClick } className="nav-link-top dashboard">
+              <Link to="/dashboard" onClick={() => this.closeMenu()} className="nav-link-top dashboard">
                 Dashboard
               </Link>
             </li>
@@ -186,27 +202,27 @@ class LeftSidebar extends Component {
             <li className="nav-item">
               <i className="fa fa-empire"></i>
               {/* <i class="fas fa-steering-wheel"></i> */}
-              <Link to="/affiliate" onClick={ this.handleMenuClick } className="nav-link-top affiliate">
+              <Link to="/affiliate" onClick={() => this.closeMenu()} className="nav-link-top affiliate">
                 Affiliate
               </Link>
             </li>
 
             <li className="nav-item">
               <i className="fa fa-exchange"></i>
-              <Link to="/payments" onClick={ this.handleMenuClick } className="nav-link-top payments">
+              <Link to="/payments" onClick={() => this.closeMenu()} className="nav-link-top payments">
                 Payments
               </Link>
             </li>
             <li className="nav-item">
               <i className="fa fa-clock-o"></i>
-              <Link to="/stats" onClick={ this.handleMenuClick } className="nav-link-top stats">
+              <Link to="/stats" onClick={() => this.closeMenu()} className="nav-link-top stats">
                 Stats
               </Link>
             </li>
 
             <li className="nav-item">
               <i className="fa fa-line-chart"></i>
-              <Link to="/exchange" onClick={ this.handleMenuClick } className="nav-link-top exchange">
+              <Link to="/exchange" onClick={() => this.closeMenu()} className="nav-link-top exchange">
                 Exchange
               </Link>
             </li>
@@ -217,7 +233,7 @@ class LeftSidebar extends Component {
           <div className="other-containt">
             <li className="nav-item">
               <i className="fa fa-envelope-square"></i>
-              <Link to="/contact" onClick={ this.handleMenuClick } className="nav-link-top">
+              <Link to="/contact" onClick={() => this.closeMenu()} className="nav-link-top">
                 Contact
               </Link>
             </li>
