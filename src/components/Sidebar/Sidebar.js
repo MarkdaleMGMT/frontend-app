@@ -161,11 +161,7 @@ class LeftSidebar extends Component {
     this.props.history.push("/signin");
   }
 
-  handleMenuClick = e => {
-    this.setState({
-      show: false
-    });
-  };
+ 
 
   render() {
     // console.log("mapping  ", this.getCurrencyInvestmentMapping());
