@@ -41,6 +41,15 @@ const formatDate = (dateObj) =>{
     return year+"/"+month+"/"+date;
 }
 
+const formatYear = (dateObj) =>{
+    let year = dateObj.getFullYear()
+    let month = dateObj.getMonth()
+    
+
+    return year+"/"+month;
+}
+
+
 /** Use for sorting */
 const compare = (property)=>{
     return (obj1,obj2)=>{
@@ -73,6 +82,8 @@ export const lineChart = (data, interval)=>{
                // console.log("lastMillisecond: ",Date.parse(convertDateInLineChart(balanceHistory[i].account_history[0].date)));
 
                let tempMap = {}
+
+               
                for(let j=0; j<accountHistory.length; j++){
                     
                     let dateMilliseconds = Date.parse(convertDateInLineChart(accountHistory[j].date));
@@ -80,10 +91,16 @@ export const lineChart = (data, interval)=>{
                     //obj.data.push( {x:Date.parse(convertDateInLineChart(accountHistory[j].date)), y:accountHistory[j].account_balance_cad } )
                    
                    let date = new Date(accountHistory[j].date)
+                    if (! (formatYear(date) in tempMap)){
                     obj.data.push( {x: date.getTime() , y:accountHistory[j].account_balance_cad } )
-                    tempMap[formatDate(date)] = {x: new Date(date.getFullYear(), date.getMonth(), date.getDate()).getTime(), y:accountHistory[j].account_balance_cad } 
-                    // }
-                }
+                    }tempMap[formatYear(date)] = {x: new Date(date.getFullYear(), date.getMonth()).getTime(), y:accountHistory[j].account_balance_cad } 
+               
+            console.log( chartDataLine, "hiii");
+
+               
+               
+                
+            }
 
                // console.log(balanceHistory[i].investment_name)
               //  console.log(tempMap)
