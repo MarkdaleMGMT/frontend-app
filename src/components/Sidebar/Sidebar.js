@@ -115,7 +115,7 @@ class LeftSidebar extends Component {
                 <li className="nav-item" key={i.investment_id}>
                   {/* Only Clickable Links on Smaller Screens */}
                   <div style={{ width: "fit-content" }} className="d-md-none">
-                    <Link
+                    <Link onClick={ this.handleMenuClick }
                       to={{
                         pathname: "/investment/" + i.investment_id,
                         state: {
